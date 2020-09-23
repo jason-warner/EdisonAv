@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import Navbar from '../components/Navbar/Navbar';
 
-const Schedule = () => {
+const Support = () => {
     return(
         <Fragment>
             <Navbar/>
-            <h1>Schedule</h1>
+            <h1>Support</h1>
         </Fragment>
     );
 }
 
-export default Schedule;
+export default Support;

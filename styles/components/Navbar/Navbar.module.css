@@ -1,5 +1,5 @@
 .NavbarItems {
-    background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73, 63, 252, 1) 100%);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 13%, rgba(198, 0, 33, 1) 50%, rgba(0,0,0,1) 87%);
     height: 64px;
     width: 100%;
     margin: 0;
@@ -18,13 +18,37 @@
     grid-auto-flow: column;
 }
 
+.menu {
+    display: none;
+}
+
+.ediHome {
+    display: inline-grid;
+    cursor: pointer;
+}
+
+.imgEffect1 {
+    -webkit-filter: grayscale(0) blur(0);
+    filter: grayscale(0) blur(0);
+    -webkit-transition: 150ms ease-in-out;
+    transition: 150ms ease-in-out;
+}
+
+.imgEffect1:hover {
+    -webkit-filter: grayscale(100%) blur(3px);
+    filter: grayscale(100%) blur(3px);
+}
+
 .listItem {
     list-style-type: none;
     text-align: center;
     height: 100%;
     width: 100%;
     transition: .3s;
+    font-family: 'Fugaz One', cursive;
+
 }
+
 .listItem:hover {
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75), -5px 5px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75), -5px 5px 5px 0px rgba(0,0,0,0.75);
@@ -39,6 +63,7 @@
     display: inline-block;
     line-height: 64px;
     text-decoration: none;
+    color: white;
 }
 
 
@@ -55,32 +80,35 @@
         display: none;
     }
     /* MENU BUTTON START */
-.menu {
-    display: inline-grid;
-    grid-auto-flow: row;
-    row-gap: 3px;
-    cursor: pointer;
-    padding: 5px 5px 0 5px;
-}
+    .ediHome {
+        display: none;
+    }
+    .menu {
+        display: inline-grid;
+        grid-auto-flow: row;
+        row-gap: 3px;
+        cursor: pointer;
+        padding: 5px 5px 0 5px;
+    }
 
-.menu_1, .menu_2, .menu_3  {
-    width: 64px;
-    height: 80%;
-    background: black;
-    border-radius: 10px;
-    transition: 333ms;
-}
+    .menu_1, .menu_2, .menu_3  {
+        width: 64px;
+        height: 80%;
+        background: black;
+        border-radius: 10px;
+        transition: 333ms;
+    }
 
-.change.menu_1 {
-    -webkit-transform: rotate(-135deg) translate(-14px, -14px);
-    transform: rotate(-135deg) translate(-14px, -14px);
-  }
-  
-  .change.menu_2 {opacity: 0;}
-  
-  .change.menu_3 {
-    -webkit-transform: rotate(135deg) translate(-15px, 15px);
-    transform: rotate(135deg) translate(-15px, 15px);
-  }
+    .change.menu_1 {
+        -webkit-transform: rotate(-135deg) translate(-14px, -14px);
+        transform: rotate(-135deg) translate(-14px, -14px);
+    }
+    
+    .change.menu_2 {opacity: 0;}
+    
+    .change.menu_3 {
+        -webkit-transform: rotate(135deg) translate(-15px, 15px);
+        transform: rotate(135deg) translate(-15px, 15px);
+    }
 /* MENU BUTTON END */
 }

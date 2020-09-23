@@ -15,11 +15,16 @@ const Navbar = () => {
     return(
         <nav className={navStyles.NavbarItems}>
             <ul className={navStyles.listGroup} >
-            <div className={navStyles.menu} onClick={() => buttonIs(!buttonClicked)}>
-                <div className={navStyles.menu_1 + menuChange }></div>
-                <div className={navStyles.menu_2 + menuChange }></div>
-                <div className={navStyles.menu_3 + menuChange }></div>
-            </div>
+                <div className={navStyles.ediHome}>
+                    <Link href="/">
+                        <img className={navStyles.imgEffect1} src="../../ediHome.png" title="Home" alt="Home"/>
+                    </Link>
+                </div>
+                <div className={navStyles.menu} onClick={() => buttonIs(!buttonClicked)}>
+                    <div className={navStyles.menu_1 + menuChange }></div>
+                    <div className={navStyles.menu_2 + menuChange }></div>
+                    <div className={navStyles.menu_3 + menuChange }></div>
+                </div>
                 {MenuItems.map((item, index) => {
                     return(
                         <Fragment>
