@@ -9,6 +9,7 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        {/* <meta name="viewport" content="min-width=320" /> */}
       </Head>
       <Navbar />
       <section>

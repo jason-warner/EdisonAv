@@ -11,10 +11,11 @@ const Navbar = () => {
     // const [linkClicked, linkIs] = useState(false);
     const [buttonClicked, buttonIs] =useState(false);
     const menuChange = ` ${buttonClicked && navStyles.change}`;
+    const mobileNav = ` ${buttonClicked && navStyles.mobileNav}`;
 
     return(
-        <nav className={navStyles.NavbarItems}>
-            <ul className={navStyles.listGroup} >
+        <nav className={navStyles.NavbarItems + mobileNav}>
+            <ul className={navStyles.listGroup + mobileNav} >
                 <div className={navStyles.ediHome}>
                     <Link href="/">
                         <img className={navStyles.imgEffect1} src="../../ediHome.png" title="Home" alt="Home"/>
@@ -25,10 +26,13 @@ const Navbar = () => {
                     <div className={navStyles.menu_2 + menuChange }></div>
                     <div className={navStyles.menu_3 + menuChange }></div>
                 </div>
+                <div className={navStyles.ediTitleContainer}>
+                    <h1 className={navStyles.ediTitle + mobileNav}>Edison Av</h1>
+                </div>
                 {MenuItems.map((item, index) => {
                     return(
                         <Fragment>
-                            <li className={navStyles.listItem} key={index}>
+                            <li className={navStyles.listItem + mobileNav} key={index}>
                                 <Link href={"/" + item.url}>
                                     <a  className={item.cName + ` ${navStyles.anchor}`} href={item.url}> {item.title} </a>
                                 </Link>
