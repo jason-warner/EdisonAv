@@ -51,7 +51,10 @@
     height: 100%;
     width: 100%;
     transition: .3s;
-    font-family: 'Fugaz One', cursive;
+    font-family: 'StreakerFreaker';
+    font-weight: normal;
+    font-style: normal;
+    font-size: x-large;
 
 }
 
@@ -122,10 +125,14 @@
         display: inline-grid;
         width: 100%;
         text-align: center;
-        font-family: 'Fugaz One', cursive;
+        font-family: 'StreakerFreaker';
+        font-size: x-large;
+        font-weight: normal;
+        font-style: normal;
     }
     .ediTitle {
         padding-right: 64px;
+        margin: 11.5px auto;
     }
     .ediTitle.mobileNav {
         padding: 0;

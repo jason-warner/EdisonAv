@@ -1,0 +1,11 @@
+/* .mainVid {
+    overflow: hidden hidden;
+} */
+
+.vidContainer {
+    height: calc(100vh - 64px);
+    width: 100vw;
+}
+.ytp-chrome-top, .ytp-chrome-bottom {
+    display: none;
+}

@@ -26,9 +26,11 @@ const Navbar = () => {
                     <div className={navStyles.menu_2 + menuChange }></div>
                     <div className={navStyles.menu_3 + menuChange }></div>
                 </div>
-                <div className={navStyles.ediTitleContainer}>
-                    <h1 className={navStyles.ediTitle + mobileNav}>Edison Av</h1>
-                </div>
+                <Link href="/" >
+                    <div className={navStyles.ediTitleContainer}>
+                        <h1 className={navStyles.ediTitle + mobileNav}>Edison Av</h1>
+                    </div>
+                </Link>
                 {MenuItems.map((item, index) => {
                     return(
                         <Fragment>
