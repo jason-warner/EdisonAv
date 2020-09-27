@@ -6,6 +6,7 @@ const Music = () => {
         <Fragment>
             <Navbar/>
             <h1>Music</h1>
+            
         </Fragment>
     );
 }

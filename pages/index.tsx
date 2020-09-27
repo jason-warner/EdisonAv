@@ -3,15 +3,6 @@ import Navbar from '../components/Navbar/Navbar';
 import homeStyles from '../styles/pages/home.module.css';
 
 export default function Home() {
-  // const homeVid = document.getElementsByTagName('iframe')[0]
-  // if (homeVid && homeVid.contentWindow) {
-  //   homeVid.contentWindow.postMessage((event.target as HTMLTextAreaElement).value, '*');
-  // }
-  // window.addEventListener('message', function(event) {
-  //   if (event.origin === window.location.origin) {
-  //     document.text(event.data);
-  //   }
-  // }, false);
   return (
     <div>
       <Head>
@@ -25,7 +16,7 @@ export default function Home() {
         </header>
         <main className={homeStyles.mainVid}>
           <div className={homeStyles.vidContainer}>
-            <iframe id="homeVid" src="https://www.youtube-nocookie.com/embed/N31pvPzqJAY?vq=hd1080&autoplay=1&mute=0&loop=1color=%23000000&modestbranding=1&controls=0&origin=https%3A%2F%2Fedison-av.complaysinline=1&showinfo=0&rel=0&iv_load_policy=3" width="100%" height="100%" frameBorder="0"></iframe>
+            <iframe id="homeVid" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" src="https://www.youtube-nocookie.com/embed/N31pvPzqJAY?showinfo=0&amp;vq=hd1080&amp;autoplay=1&amp;mute=0&amp;loop=1&amp;color=%23000000&amp;modestbranding=1&amp;controls=0&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3" width="100%" height="100%" frameBorder="0"></iframe>
           </div>
         </main>
         <footer>
