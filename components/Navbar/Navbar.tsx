@@ -33,7 +33,7 @@ const Navbar = () => {
                 </Link>
                 {MenuItems.map((item, index) => {
                     return(
-                        <Fragment>
+                        <Fragment key={index}>
                             <li className={navStyles.listItem + mobileNav} key={index}>
                                 <Link href={"/" + item.url}>
                                     <a  className={item.cName + ` ${navStyles.anchor}`} href={item.url}> {item.title} </a>

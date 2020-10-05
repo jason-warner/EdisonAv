@@ -4,6 +4,8 @@
       "./node_modules/@types"
     ],
     "target": "es5",
+    // "module": "CommonJS",
+        // "noImplicitAny": false,
     "lib": [
       "dom",
       "dom.iterable",
