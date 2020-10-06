@@ -4,14 +4,13 @@ import Navbar from '../components/Navbar/Navbar';
 import dynamic from 'next/dynamic';
 import {useState } from 'react';
 
-const DynamicComponentWithNoSSR = dynamic(
-    () => import('../components/AudioVisualizer/AudioVisualizer'),
-    { ssr: false }
-  );
 
 
 const Schedule = () => {
-
+    const DynamicComponentWithNoSSR = dynamic(
+        () => import('../components/AudioVisualizer/AudioVisualizer'),
+        { ssr: false }
+      );
     const [buttonClicked, buttonIs] = useState(false);
     const audioVisualizer = <DynamicComponentWithNoSSR />
 

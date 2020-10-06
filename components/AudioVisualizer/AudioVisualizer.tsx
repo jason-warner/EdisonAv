@@ -8,9 +8,10 @@ const AudioVisualizer = () => {
     const songRef = useRef(null);
     useEffect(() => {
     // window.onload = function() {
-        const song = songRef.current;
-        const audioViz = () => {
-          const audio = new Audio(song);
+          
+          const song = songRef.current;
+          const audioViz = () => {
+          const audio = new Audio(song.src);
           audio.load();
           const context = new AudioContext();
           const src = context.createMediaElementSource(audio);
@@ -72,15 +73,14 @@ const AudioVisualizer = () => {
       <div>
           <div className={styles.content}>
                 <canvas ref={canvasRef} className={styles.canvas}></canvas>
-                <audio controls className={styles.audio}>
-                    <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg"/>
+                <audio className={styles.audio}>
+                    <source src="/FLEXICUTIONEdisonAv.mp3" ref={songRef} type="audio/mpeg"/>
                     {/* <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/ogg" /> */}
                 </audio>
             </div>
       </div>
   )
 }
-
 export default AudioVisualizer;
 
 
