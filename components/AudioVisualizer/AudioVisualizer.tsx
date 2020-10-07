@@ -39,29 +39,36 @@ const AudioVisualizer = () => {
           var barHeight;
           let x = 0;
 
-          // alert("2");
-
           function renderFrame() {
-
+            ctx.fillStyle = "rgba(0,0,0,0)";
+            // ctx.fill();
             requestAnimationFrame(renderFrame);
             x = 0;
             analyser.getByteFrequencyData(dataArray);
-            ctx.fillStyle = "#000";
+            // ctx.fillStyle = "#000";
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
       
             for (let i = 0; i < bufferLength; i++) {
+              // ctx.clearRect(0, 0, WIDTH, HEIGHT)
               barHeight = dataArray[i];
               
               let r = barHeight + (25 * (i/bufferLength));
               let g = 250 * (i/bufferLength);
               let b = 50;
-      
               ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
               ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+
               x += barWidth + 1;
-              // console.log(i)
+              // canvas.height = 0;
+              const fadeOut = () => {
+                setTimeout(() => {
+                  ctx.clearRect(x, HEIGHT - barHeight, barWidth, barHeight)
+                  console.log('fire')
+                }, 100)
+              }
+              fadeOut();
+              // alert(i);
             }
-            // console.log("renderingFrame");
           }
           audio.play();
           return renderFrame();
