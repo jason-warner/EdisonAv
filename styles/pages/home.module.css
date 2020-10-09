@@ -1,11 +1,24 @@
-/* .mainVid {
-    overflow: hidden hidden;
-} */
+.splashPage {
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: white;
+    text-align: center;
+    z-index: 1;
+}
 
 .vidContainer {
     height: calc(100vh - 64px);
     width: 100vw;
 }
 .ytp-chrome-top, .ytp-chrome-bottom {
+    display: none;
+}
+
+.unSplash {
+    /* background: chartreuse; */
     display: none;
 }

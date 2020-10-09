@@ -2,14 +2,10 @@
 import navStyles from '../../styles/components/Navbar/Navbar.module.css';
 import MenuItems from './MenuItems';
 import { useState, Fragment } from 'react';
-import Link from 'next/link'
-
-
-
+import Link from 'next/link';
 
 const Navbar = () => {
-    // const [linkClicked, linkIs] = useState(false);
-    const [buttonClicked, buttonIs] =useState(false);
+    const [buttonClicked, buttonIs] = useState(false);
     const menuChange = ` ${buttonClicked && navStyles.change}`;
     const mobileNav = ` ${buttonClicked && navStyles.mobileNav}`;
 
