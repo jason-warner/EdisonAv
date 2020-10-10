@@ -1,4 +1,3 @@
-// import homeStyles from '../../styles/components/Home.module.css';
 import navStyles from '../../styles/components/Navbar/Navbar.module.css';
 import MenuItems from './MenuItems';
 import { useState, Fragment } from 'react';

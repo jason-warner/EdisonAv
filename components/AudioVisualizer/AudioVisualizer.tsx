@@ -6,8 +6,6 @@ const AudioVisualizer = () => {
     const canvasRef = useRef(null);
     const songRef = useRef(null);
     useEffect(() => {
-    // window.onload = function() {
-          
           const song = songRef.current;
           const audioViz = () => {
           const audio = new Audio(song.src);
@@ -59,7 +57,6 @@ const AudioVisualizer = () => {
                   ctx.clearRect(0, 0, WIDTH, HEIGHT)
                 }, 1)
               }
-
               fadeOut();
             }
           }
@@ -67,7 +64,6 @@ const AudioVisualizer = () => {
           return renderFrame();
         };
         return audioViz();
-      // };
     });
   return (
       <div>
@@ -75,7 +71,6 @@ const AudioVisualizer = () => {
                 <canvas ref={canvasRef} className={styles.canvas}></canvas>
                 <audio className={styles.audio}>
                     <source src="/FLEXICUTIONEdisonAv.mp3" ref={songRef} type="audio/mpeg"/>
-                    {/* <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/ogg" /> */}
                 </audio>
             </div>
       </div>

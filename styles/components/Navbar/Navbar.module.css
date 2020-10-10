@@ -139,6 +139,7 @@
     }
     .NavbarItems {
         position: fixed;
+        z-index: 0;
         top: 0;
         left: 0;
         background: linear-gradient(90deg, rgba(198, 0, 33, 1) 0%, rgba(0,0,0,1) 35%, gba(198, 0, 33, 1) 100%);
