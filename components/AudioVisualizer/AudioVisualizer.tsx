@@ -13,40 +13,36 @@ const AudioVisualizer = () => {
             const canvas = canvasRef.current;
             const audio = new Audio(song.src);
             const suresBtn = buttonRef.current;
-            // function unlockAudioContext(context) {
-            //   console.log("1.) " + context.state);
-            //   if (context.state !== 'suspended') return;
-            //   const b = document.body;
-            //   const events = ['touchstart','touchend', 'mousedown','keydown'];
-            //   events.forEach(e => b.addEventListener(e, unlock, false));
-            //   // function unlock() { context.resume().then(clean); }
-            //   function unlock() { context.resume() }
-            //   console.log('2.) ' + context.state)
-            //   function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
-            //   console.log("3.) " + context.state);
-            // }
+            function unlockAudioContext(context) {
+              if (context.state !== 'suspended') return alert("RUNNING");
+              alert("SUSPENDED");
+              const b = document.body;
+              const events = ['touchstart','touchend', 'mousedown','keydown'];
+              events.forEach(e => b.addEventListener(e, unlock, false));
+              function unlock() { context.resume().then(clean); }
+              function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
+            }
             suresBtn.onclick = function() {
               if(context.state === 'running') {
                 context.suspend()
-                // .then(function() {
-                //   suresBtn.textContent = 'Resume context';
-                // });
+                .then(function() {
+                  alert("SUSPEND: " + context.state);
+                });  
               } else if(context.state === 'suspended') {
                 context.resume()
-                // .then(function() {
-                //   suresBtn.textContent = 'Suspend context';
-                // });  
+                .then(function() {
+                  alert("RESUME: " + context.state);
+                });  
               }
             }
-            // audio.load();
+            audio.load();
             // let AudioContext = null;
-            // 'webAudioContext' in window ? AudioContext = window.webkitAudioContext : AudioContext = window.AudioContext;
-            const context = new (window.AudioContext || window.webkitAudioContext)();
-            
-            // unlockAudioContext(context);
+            'webAudioContext' in window ? AudioContext = window.webkitAudioContext : AudioContext = window.AudioContext;
+            // const context = new (window.AudioContext || window.webkitAudioContext)(); 
+            const context = new AudioContext;           
+            unlockAudioContext(context);
             const src = context.createMediaElementSource(audio);
             const analyser = context.createAnalyser();
-            // const canvas = canvasRef.current;
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             
@@ -92,6 +88,7 @@ const AudioVisualizer = () => {
             }
             setTimeout(() => {
               audio.play();
+              unlockAudioContext(context)
               return renderFrame();
             }, 1000);
         };
