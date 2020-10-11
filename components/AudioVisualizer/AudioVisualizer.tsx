@@ -11,21 +11,22 @@ const AudioVisualizer = () => {
           const AVLogic = () => {
             const song = songRef.current;
             const audio = new Audio(song.src);
-            
-            audio.load();
-            // const AudioContext = window.AudioContext || window.webkitAudioContext;
-          //   if('webkitAudioContext' in window) {
-
-          //     var myAudioContext = new window.webkitAudioContext();
-          
-          // }
-            let AudioContext = null;
-            'webAudioContext' in window ? AudioContext = window.webkitAudioContext : AudioContext = window.AudioContext;
-            const context = new AudioContext();
+            const unlockAudioContext = (context) => {
+              if (context.state !== 'suspended') return;
+              const b = document.body;
+              const events = ['touchstart','touchend', 'mousedown','keydown'];
+              events.forEach(e => b.addEventListener(e, unlock, false));
+              function unlock() { context.resume().then(clean); }
+              function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
+            }
+            // audio.load();
+            // let AudioContext = null;
+            // 'webAudioContext' in window ? AudioContext = window.webkitAudioContext : AudioContext = window.AudioContext;
+            const context = new (window.AudioContext || window.webkitAudioContext)();
+            unlockAudioContext(context);
             const src = context.createMediaElementSource(audio);
             const analyser = context.createAnalyser();
             const canvas = canvasRef.current;
-            
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             
@@ -84,7 +85,7 @@ const AudioVisualizer = () => {
       <div>
           <div className={styles.content}>
                 <canvas ref={canvasRef} className={styles.canvas}></canvas>
-                <audio className={styles.audio}>
+                <audio preload="auto" className={styles.audio}>
                     <source src="/FLEXICUTIONEdisonAv.mp3" ref={songRef} type="audio/mpeg"/>
                 </audio>
             </div>
