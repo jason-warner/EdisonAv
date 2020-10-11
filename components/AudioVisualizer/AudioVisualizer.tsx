@@ -11,7 +11,7 @@ const AudioVisualizer = () => {
             const audio = new Audio(song.src);
 
             audio.load();
-            
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
             const context = new AudioContext();
             const src = context.createMediaElementSource(audio);
             const analyser = context.createAnalyser();
