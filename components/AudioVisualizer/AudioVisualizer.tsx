@@ -3,13 +3,15 @@ import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.modu
 import React, {useEffect, useRef} from 'react';
 
 const AudioVisualizer = () => {
+
     const canvasRef = useRef(null);
     const songRef = useRef(null);
+
     useEffect(() => {
-          const audioViz = () => {
+          const AVLogic = () => {
             const song = songRef.current;
             const audio = new Audio(song.src);
-
+            
             audio.load();
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             const context = new AudioContext();
@@ -60,16 +62,16 @@ const AudioVisualizer = () => {
                 fadeOut();
               }
             }
-            audio.play();
-            return renderFrame();
-
+            setTimeout(() => {
+              audio.play();
+              return renderFrame();
+            }, 1000);
         };
         try {
-          return audioViz();
+          return AVLogic();
         } catch (error) {
           console.log("Audio Visualizer error: " + error);
         }
-        
     });
   return (
       <div>
