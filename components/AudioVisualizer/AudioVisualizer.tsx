@@ -6,27 +6,47 @@ const AudioVisualizer = () => {
 
     const canvasRef = useRef(null);
     const songRef = useRef(null);
-
+    const buttonRef = useRef(null)
     useEffect(() => {
           const AVLogic = () => {
             const song = songRef.current;
+            const canvas = canvasRef.current;
             const audio = new Audio(song.src);
-            const unlockAudioContext = (context) => {
-              if (context.state !== 'suspended') return;
-              const b = document.body;
-              const events = ['touchstart','touchend', 'mousedown','keydown'];
-              events.forEach(e => b.addEventListener(e, unlock, false));
-              function unlock() { context.resume().then(clean); }
-              function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
+            const suresBtn = buttonRef.current;
+            // function unlockAudioContext(context) {
+            //   console.log("1.) " + context.state);
+            //   if (context.state !== 'suspended') return;
+            //   const b = document.body;
+            //   const events = ['touchstart','touchend', 'mousedown','keydown'];
+            //   events.forEach(e => b.addEventListener(e, unlock, false));
+            //   // function unlock() { context.resume().then(clean); }
+            //   function unlock() { context.resume() }
+            //   console.log('2.) ' + context.state)
+            //   function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
+            //   console.log("3.) " + context.state);
+            // }
+            suresBtn.onclick = function() {
+              if(context.state === 'running') {
+                context.suspend()
+                // .then(function() {
+                //   suresBtn.textContent = 'Resume context';
+                // });
+              } else if(context.state === 'suspended') {
+                context.resume()
+                // .then(function() {
+                //   suresBtn.textContent = 'Suspend context';
+                // });  
+              }
             }
             // audio.load();
             // let AudioContext = null;
             // 'webAudioContext' in window ? AudioContext = window.webkitAudioContext : AudioContext = window.AudioContext;
             const context = new (window.AudioContext || window.webkitAudioContext)();
-            unlockAudioContext(context);
+            
+            // unlockAudioContext(context);
             const src = context.createMediaElementSource(audio);
             const analyser = context.createAnalyser();
-            const canvas = canvasRef.current;
+            // const canvas = canvasRef.current;
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             
@@ -84,6 +104,7 @@ const AudioVisualizer = () => {
   return (
       <div>
           <div className={styles.content}>
+            <button className={styles.contextButton} ref={buttonRef}></button>
                 <canvas ref={canvasRef} className={styles.canvas}></canvas>
                 <audio preload="auto" className={styles.audio}>
                     <source src="/FLEXICUTIONEdisonAv.mp3" ref={songRef} type="audio/mpeg"/>
