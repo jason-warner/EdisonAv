@@ -52,12 +52,12 @@ const AudioVisualizer = () => {
                 ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
                 x += barWidth + 1;
 
-                // const fadeOut = () => {
-                //   setTimeout(() => {
-                //     ctx.clearRect(0, 0, WIDTH, HEIGHT)
-                //   }, 1)
-                // }
-                // fadeOut();
+                const fadeOut = () => {
+                  setTimeout(() => {
+                    ctx.clearRect(0, 0, WIDTH, HEIGHT)
+                  }, 1)
+                }
+                fadeOut();
               }
             }
             audio.play();
