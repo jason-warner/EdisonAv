@@ -13,7 +13,14 @@ const AudioVisualizer = () => {
             const audio = new Audio(song.src);
             
             audio.load();
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            // const AudioContext = window.AudioContext || window.webkitAudioContext;
+          //   if('webkitAudioContext' in window) {
+
+          //     var myAudioContext = new window.webkitAudioContext();
+          
+          // }
+            let AudioContext = null;
+            'webAudioContext' in window ? AudioContext = window.webkitAudioContext : AudioContext = window.AudioContext;
             const context = new AudioContext();
             const src = context.createMediaElementSource(audio);
             const analyser = context.createAnalyser();
