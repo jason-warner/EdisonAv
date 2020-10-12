@@ -41,11 +41,14 @@ const AudioVisualizer = () => {
         audio.load();
         alert('AV #5');
         // let AudioContext = null;
-        'webAudioContext' in window ? AudioContext = window.webkitAudioContext : AudioContext = window.AudioContext;
-        alert('AV #6');
-        // const context = new (window.AudioContext || window.webkitAudioContext)(); 
-        const context = new AudioContext;           
-        alert('AV #7' + context.state);
+        // const context = new AudioContext;
+        let context = new (window.AudioContext || window.webkitAudioContext)(); 
+        alert('AV #6' + context.state);
+        if('webkitAudioContext' in window) {
+        alert("NEED WEBKIT");
+          context = new window.webkitAudioContext();
+        } else {alert('DONT NEED WEBKIT')}
+        alert('AV #7');
         unlockAudioContext(context);
         alert('AV #8'  + context.state);
         const src = context.createMediaElementSource(audio);
