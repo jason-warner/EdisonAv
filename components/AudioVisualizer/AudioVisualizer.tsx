@@ -25,10 +25,11 @@ const AudioVisualizer = (props) => {
           } else if(context.state === 'suspended') {
             alert("CONTEXT SUPENDED: " + context.state)
             context.resume()
-            audio.play()
             .then(function() {
               console.log("suspended and resumed: " + context.state);
-              alert("suspended and resumed: " + context.state);
+              audio.play()
+              .then(
+              alert("suspended and resumed: " + context.state));
             });  
           }
         }
