@@ -1,18 +1,18 @@
 import { Fragment } from "react";
 import Navbar from '../components/Navbar/Navbar';
 // import React, { useEffect } from 'react';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import {useState } from 'react';
 
 
 
 const Schedule = () => {
-    const DynamicComponentWithNoSSR = dynamic(
-        () => import('../components/AudioVisualizer/AudioVisualizer'),
-        { ssr: false }
-      );
+    // const DynamicComponentWithNoSSR = dynamic(
+    //     () => import('../components/AudioVisualizer/AudioVisualizer'),
+    //     { ssr: false }
+    //   );
     const [buttonClicked, buttonIs] = useState(false);
-    const audioVisualizer = <DynamicComponentWithNoSSR />
+    // const audioVisualizer = <DynamicComponentWithNoSSR {splash: apl} />
 
     return(
         <Fragment>
@@ -21,7 +21,7 @@ const Schedule = () => {
             <button onClick={()=> buttonIs(!buttonClicked)}>
                 Play
             </button>
-            { buttonClicked && audioVisualizer }
+            {/* { buttonClicked && audioVisualizer } */}
 
         </Fragment>
     );
