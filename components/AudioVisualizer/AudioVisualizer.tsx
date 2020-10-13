@@ -16,15 +16,19 @@ const AudioVisualizer = (props) => {
         const play = () => {
           console.log("context state: " + context.state);
           if(context.state === 'running') {
+            alert("CONTEXT RUNNING: " + context.state);
             audio.play()
             .then(function() {
               console.log(" running and playing: " + context.state);
+              alert(" running and playing: " + context.state);
             });  
           } else if(context.state === 'suspended') {
+            alert("CONTEXT SUPENDED: " + context.state)
             context.resume()
             audio.play()
             .then(function() {
               console.log("suspended and resumed: " + context.state);
+              alert("suspended and resumed: " + context.state);
             });  
           }
         }
