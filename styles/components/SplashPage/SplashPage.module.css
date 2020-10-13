@@ -13,3 +13,29 @@
 .unSplash {
   display: none;
 }
+
+.title {
+  font-size: 100px;
+}
+
+.splashButton {
+  font-family: 'StreakerFreaker';
+  font-weight: normal;
+  font-style: normal;
+  font-size: xx-large;
+  border-radius: 100px;
+  background: white;
+  color: black;
+  border-color: black;
+
+}
+.splashButton:hover {
+  background-color: black;
+  color: white;
+  border-color: white;
+}
+
+.disclaimer {
+  font-weight: lighter;
+  font-size: 50px;
+}
