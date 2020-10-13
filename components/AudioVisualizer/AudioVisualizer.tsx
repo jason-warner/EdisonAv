@@ -28,7 +28,7 @@ const AudioVisualizer = ({splash}) => {
             .then(function() {
               console.log("suspended and resumed: " + context.state);
               audio.play()
-              // .then(() => alert("suspended and resumed: " + context.state));
+              .then(() => alert("suspended and resumed: " + context.state));
             });  
           }
         }
