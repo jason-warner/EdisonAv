@@ -16,19 +16,21 @@ const AudioVisualizer = ({splash}) => {
         const play = () => {
           console.log("context state: " + context.state);
           if(context.state === 'running') {
-            // alert("CONTEXT RUNNING: " + context.state);
+            alert("CONTEXT RUNNING: " + context.state);
             audio.play()
-            .then(function() {
-              console.log(" running and playing: " + context.state);
-              // alert(" running and playing: " + context.state);
-            });  
+            // .then(function() {
+            //   console.log(" running and playing: " + context.state);
+            //   alert(" running and playing: " + context.state);
+            // });  
+            alert(" running and playing: " + context.state);
           } else if(context.state === 'suspended') {
-            // alert("CONTEXT SUPENDED: " + context.state)
+            alert("CONTEXT SUPENDED: " + context.state)
             context.resume()
             .then(function() {
               console.log("suspended and resumed: " + context.state);
               audio.play()
-              .then(() => alert("suspended and resumed: " + context.state));
+              // .then(() => alert("suspended and resumed: " + context.state));
+              alert("suspended and resumed: " + context.state);
             });  
           }
         }
@@ -55,7 +57,7 @@ const AudioVisualizer = ({splash}) => {
         }
 
         audio.load();
-        (splash == true) && setTimeout(() => { play() }, 1000);
+        (splash == true) && setTimeout(() => { play() }, 10);
 
         let context = null;
         'webkitAudioContext' in window ? context = new window.webkitAudioContext : context = new window.AudioContext;
