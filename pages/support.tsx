@@ -1,12 +1,17 @@
-import { Fragment } from "react";
 import Navbar from '../components/Navbar/Navbar';
+import {useState } from 'react';
 
 const Support = () => {
+    const [buttonClicked, buttonIs] = useState(false);
     return(
-        <Fragment>
+        <div>
             <Navbar/>
             <h1>Support</h1>
-        </Fragment>
+            <button onClick={()=> buttonIs(!buttonClicked)}>
+                Message
+            </button>
+            { buttonClicked && <h1>Coming soon!</h1>}
+        </div>
     );
 }
 
