@@ -2,7 +2,7 @@
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
 import React, {useEffect, useRef} from 'react';
 
-const AudioVisualizer = (props) => {
+const AudioVisualizer = ({splash}) => {
     const canvasRef = useRef(null);
     const songRef = useRef(null);
     const buttonRef = useRef(null)
@@ -16,19 +16,19 @@ const AudioVisualizer = (props) => {
         const play = () => {
           console.log("context state: " + context.state);
           if(context.state === 'running') {
-            alert("CONTEXT RUNNING: " + context.state);
+            // alert("CONTEXT RUNNING: " + context.state);
             audio.play()
             .then(function() {
               console.log(" running and playing: " + context.state);
-              alert(" running and playing: " + context.state);
+              // alert(" running and playing: " + context.state);
             });  
           } else if(context.state === 'suspended') {
-            alert("CONTEXT SUPENDED: " + context.state)
+            // alert("CONTEXT SUPENDED: " + context.state)
             context.resume()
             .then(function() {
               console.log("suspended and resumed: " + context.state);
               audio.play()
-              .then(() => alert("suspended and resumed: " + context.state));
+              // .then(() => alert("suspended and resumed: " + context.state));
             });  
           }
         }
@@ -47,28 +47,18 @@ const AudioVisualizer = (props) => {
           }
         }
 
-        console.log("props: " + props.splash)
- 
+        console.log("props: " + splash)
+
         suresBtn.onclick = () => {
           console.log("changing");
           togglePlay()
         }
-        
-        
+
         audio.load();
-        
-        (props.splash == true) && setTimeout(() => { play() }, 1000);
-
-        // setTimeout(() => {console.log("first" + context.state)}, 100);
-        // setTimeout(() => {audio.play(); console.log("second" + context.state)}, 1000 );
-        // audio.play();
-
+        (splash == true) && setTimeout(() => { play() }, 1000);
 
         let context = null;
-        console.log("context state null: " + context);
         'webkitAudioContext' in window ? context = new window.webkitAudioContext : context = new window.AudioContext;
-        console.log("context state declared: " + context.state);
-        console.log("context state played: " + context.state);
         // if('webkitAudioContext' in window) {
         //   context = new window.webkitAudioContext;
         //   console.log("NEED WEBKIT");
@@ -129,7 +119,7 @@ const AudioVisualizer = (props) => {
       } catch (error) {
         console.log("Audio Visualizer error: " + error);
       }
-    }, [props.splash]);
+    }, [splash]);
   return (
       <div>
           <div className={styles.content}>

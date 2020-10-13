@@ -17,6 +17,13 @@ const SplashPage = ({playVid}) => {
   const splashButton = () => {
     splashState(!splash);
     playVid(!splash);
+    let context = null;
+    'webkitAudioContext' in window ? context = new window.webkitAudioContext : context = new window.AudioContext;
+    alert("initial state: " + context.state)
+    if(context.state === 'suspended') {
+      alert("CONTEXT SUPENDED: " + context.state)
+      context.resume().then(() => alert("Should be resumed: " + context.state));
+    } else {alert("you're not on ios!: " + context.state)}
   }
   return(
       <div>
