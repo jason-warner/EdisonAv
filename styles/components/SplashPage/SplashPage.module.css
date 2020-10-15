@@ -7,7 +7,7 @@
   left: 0;
   color: white;
   text-align: center;
-  z-index: 1;
+  z-index: 3;
 }
 
 .unSplash {
@@ -16,6 +16,7 @@
 
 .title {
   font-size: 100px;
+  margin: 64px 0;
 }
 
 .splashButton {
@@ -38,4 +39,5 @@
 .disclaimer {
   font-weight: lighter;
   font-size: 50px;
+  margin: 32px 0;
 }
