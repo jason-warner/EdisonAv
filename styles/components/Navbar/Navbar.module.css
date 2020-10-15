@@ -1,5 +1,5 @@
 .NavbarItems {
-    background: linear-gradient(90deg, rgba(0,0,0,1) 13%, rgba(198, 0, 33, 1) 50%, rgba(0,0,0,1) 87%);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 13%,rgba(255, 71, 0, 1) 50%, rgba(0,0,0,1) 87%);
     height: 64px;
     width: 100%;
     margin: 0;
@@ -103,7 +103,7 @@
     .menu_1, .menu_2, .menu_3  {
         width: 32px;
         height: 5px;
-        background: rgba(198, 0, 33, 1);
+        background: rgba(255, 71, 0, 1);
         border-radius: 10px;
         transition: 333ms;
     }
