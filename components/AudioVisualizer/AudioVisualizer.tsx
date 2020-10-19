@@ -12,11 +12,11 @@ const AudioVisualizer = ({splash}) => {
       const song = songRef.current;
       const canvas = canvasRef.current;
       const audio = new Audio(song.src);
-      const muteToggle = buttonRef.current;
-      // const playButton = tempButton.current;
+      const muteButton = buttonRef.current;
+      const playButton = tempButton.current;
 
       //mute or play on click
-      muteToggle.onclick = () => {
+      const mutePlay = () => {
         context.state === 'running' ? 
         context.suspend()
         .then(() => console.log("changed to : " + context.state)) :
@@ -24,15 +24,14 @@ const AudioVisualizer = ({splash}) => {
         .then(() => console.log("changed to: " + context.state) );
       }
       
+      muteButton.onclick = () => mutePlay();
+      
       //on load resume context        
       // (splash == true) && setTimeout(() => { 
       //   context.state === 'running' ? audio.play() : context.resume();     
       //  }, 0);
-      audio.play();
-      // playButton.onclick = () => {
-      //   // context.state === 'running' ? audio.play() : context.resume(); 
-      //   audio.play();
-      // }
+      // audio.play();
+
 
       //config audio context
       let context = null;
@@ -40,6 +39,13 @@ const AudioVisualizer = ({splash}) => {
       const src = context.createMediaElementSource(audio);
       const analyser = context.createAnalyser();
 
+      playButton.onclick = () => {
+        // context.state === 'running' ? audio.play() : context.resume(); 
+        audio.play();
+        // .then(() => mutePlay())
+        // .then(() => mutePlay())
+        // .then(() => mutePlay());
+      }
       //config canvas
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -95,9 +101,9 @@ const AudioVisualizer = ({splash}) => {
     });
   return (
       <div>
-          {/* <button ref={tempButton} className={styles.tempButton}>
+          <button ref={tempButton} className={styles.tempButton}>
             visualize audio
-          </button> */}
+          </button>
           <div className={styles.content}>
             <button className={styles.contextButton} ref={buttonRef}></button>
                 <canvas ref={canvasRef} className={styles.canvas}></canvas>
