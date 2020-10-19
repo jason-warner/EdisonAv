@@ -41,10 +41,10 @@ const AudioVisualizer = ({splash}) => {
 
       playButton.onclick = () => {
         // context.state === 'running' ? audio.play() : context.resume(); 
-        audio.play();
-        // .then(() => mutePlay())
-        // .then(() => mutePlay())
-        // .then(() => mutePlay());
+        audio.play()
+        .then(() => mutePlay())
+        .then(() => mutePlay())
+        .then(() => mutePlay());
       }
       //config canvas
       canvas.width = window.innerWidth;
