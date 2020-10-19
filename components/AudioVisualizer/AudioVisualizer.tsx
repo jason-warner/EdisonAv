@@ -31,7 +31,9 @@ const AudioVisualizer = ({splash}) => {
       //   context.state === 'running' ? audio.play() : context.resume();     
       //  }, 0);
       // audio.play();
-
+      const test = () => {
+        context.state === 'running' ? audio.play() : context.resume(); 
+      }
 
       //config audio context
       let context = null;
@@ -40,8 +42,8 @@ const AudioVisualizer = ({splash}) => {
       const analyser = context.createAnalyser();
 
       playButton.onclick = () => {
-        context.state === 'running' ? audio.play() : context.resume(); 
-        // audio.play()
+        context.state === 'running' ? audio.play() : context.resume()
+        .then(()=> test())
       }
       //config canvas
       canvas.width = window.innerWidth;
