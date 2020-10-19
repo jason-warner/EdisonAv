@@ -94,7 +94,7 @@ const AudioVisualizer = ({splash}) => {
     });
   return (
       <div>
-          <button ref={tempButton}>
+          <button ref={tempButton} className={styles.tempButton}>
             visualize audio
           </button>
           <div className={styles.content}>
