@@ -13,7 +13,7 @@ const AudioVisualizer = ({splash}) => {
       const canvas = canvasRef.current;
       const audio = new Audio(song.src);
       const muteToggle = buttonRef.current;
-      const playButton = tempButton.current;
+      // const playButton = tempButton.current;
 
       //mute or play on click
       muteToggle.onclick = () => {
@@ -27,11 +27,12 @@ const AudioVisualizer = ({splash}) => {
       //on load resume context        
       // (splash == true) && setTimeout(() => { 
       //   context.state === 'running' ? audio.play() : context.resume();     
-      //  }, 1000);
-      playButton.onclick = () => {
-        // context.state === 'running' ? audio.play() : context.resume(); 
-        audio.play();
-      }
+      //  }, 0);
+      audio.play();
+      // playButton.onclick = () => {
+      //   // context.state === 'running' ? audio.play() : context.resume(); 
+      //   audio.play();
+      // }
 
       //config audio context
       let context = null;
@@ -94,9 +95,9 @@ const AudioVisualizer = ({splash}) => {
     });
   return (
       <div>
-          <button ref={tempButton} className={styles.tempButton}>
+          {/* <button ref={tempButton} className={styles.tempButton}>
             visualize audio
-          </button>
+          </button> */}
           <div className={styles.content}>
             <button className={styles.contextButton} ref={buttonRef}></button>
                 <canvas ref={canvasRef} className={styles.canvas}></canvas>
