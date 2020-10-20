@@ -46,10 +46,10 @@ const AudioVisualizer = ({splash}) => {
     const analyser = context.createAnalyser();
 
     playButton.onclick = () => {
-      alert("1 play button says: " + context.state);
+      // alert("1 play button says: " + context.state);
       context.state === 'running' ? audio.play() : context.resume()
       .then(()=> test())
-      .then(() => alert("1 play button says: " + context.state));
+      // .then(() => alert("1 play button says: " + context.state));
     }
     //config canvas
     canvas.width = window.innerWidth;
