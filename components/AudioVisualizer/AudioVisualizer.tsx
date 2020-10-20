@@ -44,11 +44,11 @@ const AudioVisualizer = ({splash}) => {
     'webkitAudioContext' in window ? iosDevice = true : null;
     console.log("iosDevice: " + iosDevice)
     
-    iosDevice ? alert('Still working on iOS compatibility! Press button twice to run.') : setTimeout(() => audio.play(), 1482) 
+    iosDevice ? alert('Still working on iOS compatibility! Press button twice to run.  ' + context) : setTimeout(() => audio.play(), 1482) 
     
     playButton.onclick = () => {
-      iosDevice ? audio.play() : context.resume()
-      .then(()=> test())
+      iosDevice && context.resume() && audio.play();
+      // .then(()=> test())
     } 
     
     const src = context.createMediaElementSource(audio);
