@@ -47,10 +47,8 @@ const AudioVisualizer = ({splash}) => {
     iosDevice ? alert('Still working on iOS compatibility! Press button twice to run.') : setTimeout(() => audio.play(), 1482) 
     
     playButton.onclick = () => {
-      alert("1 play button says: " + context.state);
       iosDevice ? audio.play() : context.resume()
       .then(()=> test())
-      .then(() => alert("1 play button says: " + context.state));
     } 
     
     const src = context.createMediaElementSource(audio);
