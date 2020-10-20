@@ -1,28 +1,27 @@
 // Accreditation and respect goes to Nick Jones. His original vanilla source: https://codepen.io/nfj525/pen/rVBaab
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 const AudioVisualizer = ({splash}) => {
-  const canvasRef = useRef(null);
-  const songRef = useRef(null);
-  const buttonRef = useRef(null);
-  const tempButton = useRef(null);
-
+  const songRef = useRef(null),
+        canvasRef = useRef(null),
+        buttonRef = useRef(null),
+        tempButton = useRef(null);
+  const [ios, iosState ] = useState(null);
   const AVLogic = () => {
-    const song = songRef.current;
-    const canvas = canvasRef.current;
-    const audio = new Audio(song.src);
-    const muteButton = buttonRef.current;
-    const playButton = tempButton.current;
+    const song = songRef.current,
+          canvas = canvasRef.current,
+          audio = new Audio(song.src),
+          muteButton = buttonRef.current,
+          playButton = tempButton.current;
 
     //mute or play on click
     const mutePlay = () => {
-      alert("mute button says context = " + context.state);
       context.state === 'running' ? 
       context.suspend()
-      .then(() => alert("changed to : " + context.state)) :
+      .then(() => console.log("changed to : " + context.state)) :
       context.resume()
-      .then(() => alert("changed to: " + context.state) );
+      .then(() => console.log("changed to: " + context.state) );
     }
     
     muteButton.onclick = () => mutePlay();
@@ -32,25 +31,31 @@ const AudioVisualizer = ({splash}) => {
     //   context.state === 'running' ? audio.play() : context.resume();     
     //  }, 0);
     // audio.play();
-    const test = () => {
-      context.state === 'running' ? audio.play() : context.resume(); 
-    }
+    const test = () => context.state === 'running' ? audio.play() : context.resume(); 
 
     //config audio context
     let context = null;
+    'webkitAudioContext' in window ? 
+    context = new window.webkitAudioContext
+    &&  alert('Still working on iOS compatibility! Press button twice to run.')
+    : context = new window.AudioContext;
+
+    //Create variable to identify if device is running iOS
     let iosDevice = null;
-    'webkitAudioContext' in window ? context = new window.webkitAudioContext : context = new window.AudioContext;
-    'webkitAudioContext' in window ? iosDevice = true : iosDevice = false;
-    alert("Ios Device?: " + iosDevice);
+    'webkitAudioContext' in window ? iosDevice = true : null;
+    console.log("iosDevice: " + iosDevice)
+
+    iosDevice ?
+    playButton.onclick = () => {
+      alert("1 play button says: " + context.state);
+      iosDevice ? audio.play() : context.resume()
+      .then(()=> test())
+      .then(() => alert("1 play button says: " + context.state));
+    }
+    : setTimeout(() => audio.play(), 1482)  
     const src = context.createMediaElementSource(audio);
     const analyser = context.createAnalyser();
 
-    playButton.onclick = () => {
-      // alert("1 play button says: " + context.state);
-      context.state === 'running' ? audio.play() : context.resume()
-      .then(()=> test())
-      // .then(() => alert("1 play button says: " + context.state));
-    }
     //config canvas
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
