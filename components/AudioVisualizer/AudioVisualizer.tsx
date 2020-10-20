@@ -37,22 +37,22 @@ const AudioVisualizer = ({splash}) => {
     let context = null;
     'webkitAudioContext' in window ? 
     context = new window.webkitAudioContext
-    &&  alert('Still working on iOS compatibility! Press button twice to run.')
     : context = new window.AudioContext;
 
     //Create variable to identify if device is running iOS
     let iosDevice = null;
     'webkitAudioContext' in window ? iosDevice = true : null;
     console.log("iosDevice: " + iosDevice)
-
-    iosDevice ?
+    
+    iosDevice ? alert('Still working on iOS compatibility! Press button twice to run.') : setTimeout(() => audio.play(), 1482) 
+    
     playButton.onclick = () => {
       alert("1 play button says: " + context.state);
       iosDevice ? audio.play() : context.resume()
       .then(()=> test())
       .then(() => alert("1 play button says: " + context.state));
-    }
-    : setTimeout(() => audio.play(), 1482)  
+    } 
+    
     const src = context.createMediaElementSource(audio);
     const analyser = context.createAnalyser();
 
