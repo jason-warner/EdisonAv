@@ -48,7 +48,8 @@ const AudioVisualizer = ({splash}) => {
     playButton.onclick = () => {
       alert("1.) play button says context state = " + context.state)
       context.state === 'running' ? audio.play() : context.resume()
-      .then(()=> test())
+      // .then(()=> test())
+      .then(()=> audio.play())
       .then(() => alert("2.) play button says context state = " + context.state))
     }
     //config canvas
