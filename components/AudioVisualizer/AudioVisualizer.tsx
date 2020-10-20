@@ -48,6 +48,13 @@ const AudioVisualizer = ({splash}) => {
     playButton.onclick = () => {
       alert("1.) play button says context state = " + context.state)
       context.state === 'running' ? audio.play() : context.resume()
+      if(context.state === 'running') {
+        audio.play();
+      } else {
+        context.resume()
+        .then(() => splash && audio.play())
+        .then(() => alert("resumed context attempt: " + context.state))
+      }
       // .then(()=> test())
       // .then(() => alert("2.) play button says context state = " + context.state))
       // .then(context.state === 'running' ? audio.play() : context.resume())
