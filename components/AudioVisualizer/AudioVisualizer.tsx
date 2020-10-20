@@ -20,9 +20,9 @@ const AudioVisualizer = ({splash}) => {
       alert("mute button says context = " + context.state);
       context.state === 'running' ? 
       context.suspend()
-      .then(() => alert("1.) changed to : " + context.state)) :
+      .then(() => alert("changed to : " + context.state)) :
       context.resume()
-      .then(() => alert("2.) changed to: " + context.state) );
+      .then(() => alert("changed to: " + context.state) );
     }
     
     muteButton.onclick = () => mutePlay();
@@ -46,19 +46,10 @@ const AudioVisualizer = ({splash}) => {
     const analyser = context.createAnalyser();
 
     playButton.onclick = () => {
-      alert("1.) play button says context state = " + context.state)
+      alert("1 play button says: " + context.state);
       context.state === 'running' ? audio.play() : context.resume()
-      if(context.state === 'running') {
-        audio.play();
-      } else {
-        context.resume()
-        .then(() => splash && audio.play())
-        .then(() => alert("resumed context attempt: " + context.state))
-      }
-      // .then(()=> test())
-      // .then(() => alert("2.) play button says context state = " + context.state))
-      // .then(context.state === 'running' ? audio.play() : context.resume())
-      // .then(() => alert("3.) play button says context state = " + context.state))
+      // .then(()=> test());
+      .then(() => alert("1 play button says: " + context.state));
     }
     //config canvas
     canvas.width = window.innerWidth;
@@ -101,8 +92,7 @@ const AudioVisualizer = ({splash}) => {
         }, 1);
       }
     }
-      context.state === 'running' ? audio.play() : context.resume();
-      alert("First context state: " + context.state);
+      console.log("initial context state: " + context.state);
       return renderFrame();
   };
 
