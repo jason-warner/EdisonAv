@@ -49,9 +49,9 @@ const AudioVisualizer = ({splash}) => {
       alert("1.) play button says context state = " + context.state)
       context.state === 'running' ? audio.play() : context.resume()
       // .then(()=> test())
-      .then(() => alert("2.) play button says context state = " + context.state))
-      .then(setTimeout(() => audio.play(), 10))
-      .then(() => alert("3.) play button says context state = " + context.state))
+      // .then(() => alert("2.) play button says context state = " + context.state))
+      .then(setTimeout(() => context.state === 'running' ? audio.play() : context.resume(), 100))
+      // .then(() => alert("3.) play button says context state = " + context.state))
     }
     //config canvas
     canvas.width = window.innerWidth;
