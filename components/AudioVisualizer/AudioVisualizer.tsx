@@ -50,7 +50,7 @@ const AudioVisualizer = ({splash}) => {
       context.state === 'running' ? audio.play() : context.resume()
       // .then(()=> test())
       // .then(() => alert("2.) play button says context state = " + context.state))
-      .then(setTimeout(() => context.state === 'running' ? audio.play() : context.resume(), 100))
+      // .then(context.state === 'running' ? audio.play() : context.resume())
       // .then(() => alert("3.) play button says context state = " + context.state))
     }
     //config canvas
@@ -94,6 +94,7 @@ const AudioVisualizer = ({splash}) => {
         }, 1);
       }
     }
+      context.state === 'running' ? audio.play() : context.resume();
       alert("First context state: " + context.state);
       return renderFrame();
   };
