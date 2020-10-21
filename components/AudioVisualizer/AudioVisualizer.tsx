@@ -45,7 +45,7 @@ const AudioVisualizer = () => {
     'webkitAudioContext' in window ? iosDevice = true : null;
     console.log("iosDevice: " + iosDevice)
 
-    iosDevice ? alert('Still working on iOS compatibility! Press button twice to run.  ' + context) : setTimeout(() => audio.play(), 1482)
+    iosDevice ? alert('Still working on iOS compatibility! Press button to run.  ' + context) : setTimeout(() => audio.play(), 1482)
 
     playButton.onclick = () => {
       iosDevice && context.resume() && audio.play();
