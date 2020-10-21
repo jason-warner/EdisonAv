@@ -1,32 +1,32 @@
 import styles from '../../styles/components/SplashPage/SplashPage.module.css';
-import {useState} from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 
-const SplashPage = ({playVid}) => {
+const SplashPage = ({ playVid }) => {
   const DynamicComponentWithNoSSR = dynamic(
     () => import('../../components/AudioVisualizer/AudioVisualizer'),
-    { ssr: false }  
+    { ssr: false }
   );
   const [splash, splashState] = useState(false);
   const unsplash = ` ${splash && styles.unSplash}`;
-  const audioVisualizer = <DynamicComponentWithNoSSR splash={splash}/>
+  const audioVisualizer = <DynamicComponentWithNoSSR splash={splash} />
   const splashButton = () => {
     splashState(!splash);
     playVid(!splash);
   }
-  return(
-      <div>      
-        <div className={styles.splashPage + unsplash}>
-          <h1 className={styles.title}>Edison Av</h1>
-          <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
-          <button className={styles.splashButton} onClick={() => splashButton() } >Enter</button>
-          {console.log(splash)}
-        </div>
-        <ErrorHandler>
-          {splash && audioVisualizer}
-        </ErrorHandler>
+  return (
+    <div>
+      <div className={styles.splashPage + unsplash}>
+        <h1 className={styles.title}>Edison Av</h1>
+        <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
+        <button className={styles.splashButton} onClick={() => splashButton()} >Enter</button>
+        {console.log(splash)}
       </div>
+      <ErrorHandler>
+        {splash && audioVisualizer}
+      </ErrorHandler>
+    </div>
   );
 }
 

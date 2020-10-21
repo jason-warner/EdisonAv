@@ -1,56 +1,59 @@
 // Accreditation and respect goes to Nick Jones. His original vanilla source: https://codepen.io/nfj525/pen/rVBaab
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
-import React, {useEffect, useRef, useState} from 'react';
-
+import React, { useEffect, useRef } from 'react';
+//{ splash }
 const AudioVisualizer = ({splash}) => {
   const songRef = useRef(null),
-        canvasRef = useRef(null),
-        buttonRef = useRef(null),
-        tempButton = useRef(null);
-  const [ios, iosState ] = useState(null);
+    canvasRef = useRef(null),
+    buttonRef = useRef(null),
+    tempButton = useRef(null);
+  // const [ios, iosState] = useState(null);
   const AVLogic = () => {
     const song = songRef.current,
-          canvas = canvasRef.current,
-          audio = new Audio(song.src),
-          muteButton = buttonRef.current,
-          playButton = tempButton.current;
+      canvas = canvasRef.current,
+      audio = new Audio(song.src),
+      muteButton = buttonRef.current,
+      playButton = tempButton.current;
 
     //mute or play on click
     const mutePlay = () => {
-      context.state === 'running' ? 
-      context.suspend()
-      .then(() => console.log("changed to : " + context.state)) :
-      context.resume()
-      .then(() => console.log("changed to: " + context.state) );
+      context.state === 'running' ?
+        context.suspend()
+          .then(() => console.log("changed to : " + context.state))
+        : context.resume()
+          .then(() => console.log("changed to: " + context.state));
     }
-    
+
     muteButton.onclick = () => mutePlay();
-    
+
     //on load resume context        
     // (splash == true) && setTimeout(() => { 
     //   context.state === 'running' ? audio.play() : context.resume();     
     //  }, 0);
     // audio.play();
-    const test = () => context.state === 'running' ? audio.play() : context.resume(); 
+    
+    // const test = () => context.state === 'running' ? audio.play() : context.resume();
 
     //config audio context
     let context = null;
-    'webkitAudioContext' in window ? 
-    context = new window.webkitAudioContext
-    : context = new window.AudioContext;
+    'webkitAudioContext' in window ?
+      context = new window.webkitAudioContext
+      : context = new window.AudioContext;
 
     //Create variable to identify if device is running iOS
     let iosDevice = null;
     'webkitAudioContext' in window ? iosDevice = true : null;
     console.log("iosDevice: " + iosDevice)
-    
-    iosDevice ? alert('Still working on iOS compatibility! Press button twice to run.  ' + context) : setTimeout(() => audio.play(), 1482) 
-    
-    playButton.onclick = () => {
-      iosDevice && context.resume() && audio.play();
-      // .then(()=> test())
-    } 
-    
+
+    iosDevice ? alert('Still working on iOS compatibility! Press button twice to run.  ' + context) : setTimeout(() => audio.play(), 1482)
+
+    // playButton.onclick = () => {
+    //   iosDevice && context.resume() && audio.play();
+    //   // .then(()=> test())
+    // }
+
+    splash && iosDevice && context.resume() && audio.play();
+
     const src = context.createMediaElementSource(audio);
     const analyser = context.createAnalyser();
 
@@ -58,7 +61,7 @@ const AudioVisualizer = ({splash}) => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext("2d");
-    
+
     //config audio analyzer
     src.connect(analyser);
     analyser.connect(context.destination);
@@ -82,10 +85,10 @@ const AudioVisualizer = ({splash}) => {
       for (let i = 0; i < bufferLength; i++) {
         barHeight = dataArray[i];
 
-        let r = barHeight + (22 * (i/bufferLength));
-        let g = 333 * (i/bufferLength);
+        let r = barHeight + (22 * (i / bufferLength));
+        let g = 333 * (i / bufferLength);
         let b = 47;
-        
+
         ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
         ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
         x += barWidth + 1;
@@ -95,8 +98,8 @@ const AudioVisualizer = ({splash}) => {
         }, 1);
       }
     }
-      console.log("initial context state: " + context.state);
-      return renderFrame();
+    console.log("initial context state: " + context.state);
+    return renderFrame();
   };
 
 
@@ -109,18 +112,18 @@ const AudioVisualizer = ({splash}) => {
     }
   });
   return (
-      <div>
-          <button ref={tempButton} className={styles.tempButton}>
-            visualize audio
-          </button>
-          <div className={styles.content}>
-            <button className={styles.contextButton} ref={buttonRef}></button>
-                <canvas ref={canvasRef} className={styles.canvas}></canvas>
-                <audio preload="auto" className={styles.audio}>
-                    <source src="/FLEXICUTIONEdisonAv.mp3" ref={songRef} type="audio/mpeg"/>
-                </audio>
-            </div>
+    <div>
+      <button ref={tempButton} className={styles.tempButton}>
+        visualize audio
+      </button>
+      <div className={styles.content}>
+        <button className={styles.contextButton} ref={buttonRef}></button>
+        <canvas ref={canvasRef} className={styles.canvas}></canvas>
+        <audio preload="auto" className={styles.audio}>
+          <source src="/FLEXICUTIONEdisonAv.mp3" ref={songRef} type="audio/mpeg" />
+        </audio>
       </div>
+    </div>
   )
 }
 export default AudioVisualizer;
