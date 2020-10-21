@@ -2,7 +2,7 @@
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
 import React, { useEffect, useRef } from 'react';
 //{ splash }
-const AudioVisualizer = ({splash}) => {
+const AudioVisualizer = () => {
   const songRef = useRef(null),
     canvasRef = useRef(null),
     buttonRef = useRef(null),
@@ -47,12 +47,12 @@ const AudioVisualizer = ({splash}) => {
 
     iosDevice ? alert('Still working on iOS compatibility! Press button twice to run.  ' + context) : setTimeout(() => audio.play(), 1482)
 
-    // playButton.onclick = () => {
-    //   iosDevice && context.resume() && audio.play();
-    //   // .then(()=> test())
-    // }
+    playButton.onclick = () => {
+      iosDevice && context.resume() && audio.play();
+      // .then(()=> test())
+    }
 
-    splash && iosDevice && context.resume() && audio.play();
+    // splash && iosDevice && context.resume() && audio.play();
 
     const src = context.createMediaElementSource(audio);
     const analyser = context.createAnalyser();
