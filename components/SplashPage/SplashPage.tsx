@@ -49,7 +49,7 @@ const SplashPage = ({ playVid }) => {
       </div>
 
       <ErrorHandler>
-        {splash && <DynamicComponentWithNoSSR splash={splash} splashContext={splashContext} splashAudio={audio} />}
+        {splash && <DynamicComponentWithNoSSR splashContext={splashContext} splashAudio={audio} />}
       </ErrorHandler>
 
     </div>
