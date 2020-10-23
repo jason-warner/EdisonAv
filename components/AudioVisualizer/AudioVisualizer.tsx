@@ -14,8 +14,8 @@ const AudioVisualizer = ({splashContext, splashAudio }) => {
     
   const AVLogic = () => {
     console.log(" audio context " + splashAudio);
-    const song = songRef.current,
-      canvas = canvasRef.current,
+    // const song = songRef.current,
+    const canvas = canvasRef.current,
       muteButton = buttonRef.current,
       playButton = tempButton.current;
       // let audio = null;

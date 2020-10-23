@@ -26,13 +26,13 @@ const SplashPage = ({ playVid }) => {
     'webkitAudioContext' in window ?
       context = new window.webkitAudioContext
       : context = new window.AudioContext;
-
       setSplashConext(context);
       setAudio(audio);
       console.log("audio test " + audio);
-    let iosDevice = null;
-    'webkitAudioContext' in window ? iosDevice = true : null;
-    return iosDevice && context.resume() && audio.play();
+    // let iosDevice = null;
+    // 'webkitAudioContext' in window ? iosDevice = true : null;
+    // return iosDevice && context.resume() && audio.play();
+    return context.resume() && audio.play();
   }
   return (
     <div>
