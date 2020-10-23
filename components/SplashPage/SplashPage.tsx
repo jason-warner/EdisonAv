@@ -17,15 +17,15 @@ const SplashPage = ({ playVid }) => {
   const splashButton = () => {
     splashState(!splash);
     playVid(!splash);
-    //ios fix attempt
+    //ios fix attempt -- don't know how to pass audio and context value as props to AudioVisualizer
     const song = songRef.current;
     const audio = new Audio(song.src);
-    let  context = null;
+    let context = null;
     'webkitAudioContext' in window ?
-    context = new window.webkitAudioContext
-    : context = new window.AudioContext;
-  let iosDevice = null;
-  'webkitAudioContext' in window ? iosDevice = true : null;
+      context = new window.webkitAudioContext
+      : context = new window.AudioContext;
+    let iosDevice = null;
+    'webkitAudioContext' in window ? iosDevice = true : null;
     return iosDevice && context.resume() && audio.play();
   }
   return (
@@ -36,7 +36,7 @@ const SplashPage = ({ playVid }) => {
         <button className={styles.splashButton} onClick={() => splashButton()} >
           ENTER
           <audio preload="auto" className={styles.audio}>
-            <source ref={songRef}  src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
+            <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
           </audio>
         </button>
         {console.log(splash)}
