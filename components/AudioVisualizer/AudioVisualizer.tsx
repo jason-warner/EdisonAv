@@ -5,14 +5,14 @@ import React, { useEffect, useRef } from 'react';
 const AudioVisualizer = () => {
   const songRef = useRef(null),
     canvasRef = useRef(null),
-    buttonRef = useRef(null);
-    // tempButton = useRef(null);
+    buttonRef = useRef(null),
+    tempButton = useRef(null);
   const AVLogic = () => {
     const song = songRef.current,
       canvas = canvasRef.current,
       audio = new Audio(song.src),
-      muteButton = buttonRef.current
-      // playButton = tempButton.current;
+      muteButton = buttonRef.current,
+      playButton = tempButton.current;
 
     //mute or play on click
     const mutePlay = () => {
@@ -35,11 +35,11 @@ const AudioVisualizer = () => {
     'webkitAudioContext' in window ? iosDevice = true : null;
     console.log("iosDevice: " + iosDevice)
 
-    iosDevice ? alert('Still working on iOS compatibility! Press button to run.  ' + context) : setTimeout(() => audio.play(), 1482)
+    iosDevice ? alert('Still working on iOS compatibility! Press button to run.  ' + context.state) : setTimeout(() => audio.play(), 1482)
 
-    // playButton.onclick = () => {
-    //   iosDevice && context.resume() && audio.play();
-    // }
+    playButton.onclick = () => {
+      iosDevice && context.resume() && audio.play();
+    }
 
     const src = context.createMediaElementSource(audio);
     const analyser = context.createAnalyser();
@@ -100,9 +100,9 @@ const AudioVisualizer = () => {
   });
   return (
     <div>
-      {/* <button ref={tempButton} className={styles.tempButton}>
+      <button ref={tempButton} className={styles.tempButton}>
         visualize audio
-      </button> */}
+      </button>
       <div className={styles.content}>
         <button className={styles.contextButton} ref={buttonRef}></button>
         <canvas ref={canvasRef} className={styles.canvas}></canvas>

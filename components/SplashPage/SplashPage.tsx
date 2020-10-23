@@ -3,26 +3,30 @@ import { useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 
+
+
 const SplashPage = ({ playVid }) => {
   const DynamicComponentWithNoSSR = dynamic(
-    () => import('../../components/AudioVisualizer/AudioVisualizer'),
+    () => import('../AudioVisualizer/AudioVisualizer'),
     { ssr: false }
   );
   const [splash, splashState] = useState(false);
   const unsplash = ` ${splash && styles.unSplash}`;
-  const songRef = useRef(null)
+
+  const songRef = useRef(null);
   const splashButton = () => {
     splashState(!splash);
     playVid(!splash);
-    const song = songRef.current,
-      audio = new Audio(song.src);
-    let context = null;
+    //ios fix attempt
+    const song = songRef.current;
+    const audio = new Audio(song.src);
+    let  context = null;
     'webkitAudioContext' in window ?
-      context = new window.webkitAudioContext
-      : context = new window.AudioContext;
-    let iosDevice = null;
-    'webkitAudioContext' in window ? iosDevice = true : null;
-    iosDevice && context.resume() && audio.play();
+    context = new window.webkitAudioContext
+    : context = new window.AudioContext;
+  let iosDevice = null;
+  'webkitAudioContext' in window ? iosDevice = true : null;
+    return iosDevice && context.resume() && audio.play();
   }
   return (
     <div>
@@ -32,7 +36,7 @@ const SplashPage = ({ playVid }) => {
         <button className={styles.splashButton} onClick={() => splashButton()} >
           ENTER
           <audio preload="auto" className={styles.audio}>
-            <source src="/FLEXICUTIONEdisonAv.mp3" ref={songRef} type="audio/mpeg" />
+            <source ref={songRef}  src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
           </audio>
         </button>
         {console.log(splash)}
