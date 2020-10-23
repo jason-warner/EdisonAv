@@ -1,14 +1,15 @@
 import styles from '../../styles/components/SplashPage/SplashPage.module.css';
 import { useState, useRef } from 'react';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
+import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 
 
 const SplashPage = ({ playVid }) => {
-  const DynamicComponentWithNoSSR = dynamic(
-    () => import('../AudioVisualizer/AudioVisualizer'),
-    { ssr: false }
-  );
+  // const DynamicComponentWithNoSSR = dynamic(
+  //   () => import('../AudioVisualizer/AudioVisualizer'),
+  //   { ssr: false }
+  // );
   const
     [splash, splashState] = useState(false),
     [splashContext, setSplashConext] = useState(null),
@@ -28,9 +29,6 @@ const SplashPage = ({ playVid }) => {
       : context = new window.AudioContext;
     setSplashConext(context);
     setAudio(audio);
-    // let iosDevice = null;
-    // 'webkitAudioContext' in window ? iosDevice = true : null;
-    // return iosDevice && context.resume() && audio.play();
     return context.resume() && audio.play();
   }
   return (
@@ -47,7 +45,7 @@ const SplashPage = ({ playVid }) => {
       </div>
 
       <ErrorHandler>
-        {splash && <DynamicComponentWithNoSSR splashContext={splashContext} splashAudio={audio} />}
+        {splash && <AudioVisualizer splashContext={splashContext} splashAudio={audio} />}
       </ErrorHandler>
 
     </div>
@@ -56,3 +54,12 @@ const SplashPage = ({ playVid }) => {
 }
 
 export default SplashPage;
+
+    // let iosDevice = null;
+    // 'webkitAudioContext' in window ? iosDevice = true : null;
+    // return iosDevice && context.resume() && audio.play();
+
+
+
+
+    // {splash && <DynamicComponentWithNoSSR splashContext={splashContext} splashAudio={audio} />}
