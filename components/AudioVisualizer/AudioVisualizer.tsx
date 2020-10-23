@@ -2,7 +2,7 @@
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
 import React, { useEffect, useRef } from 'react';
 //{ splash }
-const AudioVisualizer = ({splashContext, splashAudio, splash }) => {
+const AudioVisualizer = ({splashContext, splashAudio }) => {
   const songRef = useRef(null),
     canvasRef = useRef(null),
     buttonRef = useRef(null),
@@ -24,10 +24,10 @@ const AudioVisualizer = ({splashContext, splashAudio, splash }) => {
       // : new Audio(song.src);
       //audio = new Audio(song.src),
     //on load resume context        
-    (splash == true) && setTimeout(() => { 
-      context.state === 'running' ? audio.play() : context.resume();     
-     }, 0);
-    audio.play();
+    // (splash == true) && setTimeout(() => { 
+    //   context.state === 'running' ? audio.play() : context.resume();     
+    //  }, 0);
+    // audio.play();
 
 
     //mute or play on click
@@ -51,7 +51,7 @@ const AudioVisualizer = ({splashContext, splashAudio, splash }) => {
     'webkitAudioContext' in window ? iosDevice = true : null;
     console.log("iosDevice: " + iosDevice)
 
-    iosDevice ? alert('Still working on iOS compatibility! Press button to run.  ' + context.state) : setTimeout(() => audio.play(), 1482)
+    // iosDevice ? alert('Still working on iOS compatibility! Press button to run.  ' + context.state) : setTimeout(() => audio.play(), 1482)
 
     playButton.onclick = () => {
       iosDevice && context.resume() && audio.play();
