@@ -2,17 +2,33 @@
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
 import React, { useEffect, useRef } from 'react';
 //{ splash }
-const AudioVisualizer = () => {
+const AudioVisualizer = ({splashContext, splashAudio, splash }) => {
   const songRef = useRef(null),
     canvasRef = useRef(null),
     buttonRef = useRef(null),
     tempButton = useRef(null);
+    
+    let context = splashContext;
+    let audio = splashAudio;
+
+    
   const AVLogic = () => {
+    console.log(" audio context " + splashAudio);
     const song = songRef.current,
       canvas = canvasRef.current,
-      audio = new Audio(song.src),
       muteButton = buttonRef.current,
       playButton = tempButton.current;
+      // let audio = null;
+      // 'webkitAudioContext' in window ?
+      // audio = splashAudio
+      // : new Audio(song.src);
+      //audio = new Audio(song.src),
+    //on load resume context        
+    (splash == true) && setTimeout(() => { 
+      context.state === 'running' ? audio.play() : context.resume();     
+     }, 0);
+    audio.play();
+
 
     //mute or play on click
     const mutePlay = () => {
@@ -25,10 +41,10 @@ const AudioVisualizer = () => {
 
     muteButton.onclick = () => mutePlay();
 
-    let context = null;
-    'webkitAudioContext' in window ?
-      context = new window.webkitAudioContext
-      : context = new window.AudioContext;
+    // let context = null;
+    // 'webkitAudioContext' in window ?
+    //   context = new window.webkitAudioContext
+    //   : context = new window.AudioContext;
 
     //Create variable to identify if device is running iOS
     let iosDevice = null;

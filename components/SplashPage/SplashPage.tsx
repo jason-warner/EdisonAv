@@ -4,17 +4,19 @@ import dynamic from 'next/dynamic';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 
 
-
 const SplashPage = ({ playVid }) => {
   const DynamicComponentWithNoSSR = dynamic(
     () => import('../AudioVisualizer/AudioVisualizer'),
     { ssr: false }
   );
   const [splash, splashState] = useState(false);
+  const [splashContext, setSplashConext] = useState(null);
+  const [audio, setAudio] = useState(null);
   const unsplash = ` ${splash && styles.unSplash}`;
 
   const songRef = useRef(null);
-  const splashButton = () => {
+
+    const splashButton = () => {
     splashState(!splash);
     playVid(!splash);
     //ios fix attempt -- don't know how to pass audio and context value as props to AudioVisualizer
@@ -24,6 +26,10 @@ const SplashPage = ({ playVid }) => {
     'webkitAudioContext' in window ?
       context = new window.webkitAudioContext
       : context = new window.AudioContext;
+
+      setSplashConext(context);
+      setAudio(audio);
+      console.log("audio test " + audio);
     let iosDevice = null;
     'webkitAudioContext' in window ? iosDevice = true : null;
     return iosDevice && context.resume() && audio.play();
@@ -43,7 +49,7 @@ const SplashPage = ({ playVid }) => {
       </div>
 
       <ErrorHandler>
-        {splash && <DynamicComponentWithNoSSR />}
+        {splash && <DynamicComponentWithNoSSR splash={splash} splashContext={splashContext} splashAudio={audio} />}
       </ErrorHandler>
 
     </div>
