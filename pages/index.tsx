@@ -19,6 +19,7 @@ export default function Home() {
     playerVars: {
       autoplay: 1 as 1,
       mute: 1 as 1,
+      controls: 0 as 0,
     }
   };
   console.log(opts)
@@ -38,13 +39,13 @@ export default function Home() {
         <main className={homeStyles.mainVid}>
           <div className={homeStyles.vidContainer}>
             {/* {play && addAutoPlay()} */}
-            <YouTube className={homeStyles.format}
-              videoId={"N31pvPzqJAY"}
-              opts={opts}
-            />
+            {play &&
+              <YouTube className={homeStyles.format}
+                videoId={"N31pvPzqJAY"}
+                opts={opts}
+              />
+            }
             {console.log(play)}
-            {/* <iframe ref={vidRef} src="https://www.youtube-nocookie.com/embed/N31pvPzqJAY?showinfo=0&amp;vq=hd1080&amp;mute=1&amp;loop=1&amp;color=%23000000&amp;modestbranding=1&amp;controls=0&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=31&amp;" width="100%" height="100%" frameBorder="0"></iframe> */}
-
           </div>
         </main>
       </section>
@@ -52,6 +53,10 @@ export default function Home() {
   )
 }
 
+
+
+
+{/* <iframe ref={vidRef} src="https://www.youtube-nocookie.com/embed/N31pvPzqJAY?showinfo=0&amp;vq=hd1080&amp;mute=1&amp;loop=1&amp;color=%23000000&amp;modestbranding=1&amp;controls=0&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=31&amp;" width="100%" height="100%" frameBorder="0"></iframe> */ }
 
 // import Head from 'next/head';
 // import Navbar from '../components/Navbar/Navbar';
