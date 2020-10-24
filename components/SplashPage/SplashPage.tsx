@@ -10,21 +10,24 @@ const SplashPage = ({ playVid }) => {
     [splash, splashState] = useState(false),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
+    [button, setButton] =useState(null),
     unsplash = ` ${splash && styles.unSplash}`,
-    songRef = useRef(null);
-
+    songRef = useRef(null),
+    buttonRef = useRef(null);
   const splashButton = () => {
     splashState(!splash);
     playVid(!splash);
     const
       song = songRef.current,
-      audio = new Audio(song.src);
+      audio = new Audio(song.src),
+      button = buttonRef.current;
     let context = null;
     'webkitAudioContext' in window ?
       context = new window.webkitAudioContext
       : context = new window.AudioContext;
     setSplashConext(context);
     setAudio(audio);
+    setButton(button);
     return context.resume() && audio.play();
   }
   return (
@@ -32,7 +35,8 @@ const SplashPage = ({ playVid }) => {
       <div className={styles.splashPage + unsplash}>
         <h1 className={styles.title}>Edison Av</h1>
         <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
-        <button className={styles.splashButton} onClick={() => splashButton()} >
+        { console.log("splashbutton 1 : " + button)}
+        <button ref={buttonRef} className={styles.splashButton} onClick={() => splashButton()} >
           ENTER
           <audio preload="auto" className={styles.audio}>
             <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
@@ -40,7 +44,7 @@ const SplashPage = ({ playVid }) => {
         </button>
       </div>
       <ErrorHandler>
-        {splash && <Video />}
+        {splash && <Video splashButton={button} />}
         {splash && <AudioVisualizer splashContext={splashContext} splashAudio={audio} />}
       </ErrorHandler>
 
