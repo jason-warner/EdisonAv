@@ -28,14 +28,13 @@ const SplashPage = ({ playVid }) => {
     setSplashConext(context);
     setAudio(audio);
     setButton(button);
-    return context.resume() && audio.play();
+    return context.resume() && setTimeout(() => audio.play(), 1500 );
   }
   return (
     <>
       <div className={styles.splashPage + unsplash}>
         <h1 className={styles.title}>Edison Av</h1>
         <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
-        { console.log("splashbutton 1 : " + button)}
         <button ref={buttonRef} className={styles.splashButton} onClick={() => splashButton()} >
           ENTER
           <audio preload="auto" className={styles.audio}>

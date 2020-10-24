@@ -10,7 +10,7 @@ const Video = ({ splashButton }) => {
 
     const opts = {
         playerVars: {
-            // autoplay: 1 as 1,
+            autoplay: 1 as 1,
             mute: 1 as 1,
             controls: 0 as 0,
         }
@@ -22,9 +22,11 @@ const Video = ({ splashButton }) => {
     //     setTimeout(() => Event.target.playVideo(), 100);
     //   }
 
-    const onReady = splashButton.onclick = (Event) => {
-        Event.target.playVideo();
-        // setTimeout(() => Event.target.playVideo(), 100);
+
+    const onReady = splashButton.onclick = (e) => {
+        e.target.pauseVideo();
+        e.target.playVideo();
+        // setTimeout(() => e.target.playVideo());
     }
 
 
