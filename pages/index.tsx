@@ -22,7 +22,12 @@ export default function Home() {
       controls: 0 as 0,
     }
   };
-  console.log(opts)
+  const onReady=(Event: { target: any }) => {
+    // access to player in all event handlers via event.target
+    Event.target.pauseVideo();
+    console.log(Event.target.pauseVideo());
+    setTimeout(() => Event.target.playVideo(), 100);
+  }
   // console.log(indexVid.src);
   return (
     <div>
@@ -43,6 +48,7 @@ export default function Home() {
               <YouTube className={homeStyles.format}
                 videoId={"N31pvPzqJAY"}
                 opts={opts}
+                onReady={onReady}
               />
             }
             {console.log(play)}
