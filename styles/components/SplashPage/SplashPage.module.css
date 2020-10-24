@@ -50,3 +50,27 @@
     font-size: 40px;
   }
 }
+
+
+
+/* Video */
+
+.vidContainer {
+  height: calc(100vh - 64px);
+  width: 100vw;
+}
+
+.format {
+  height: calc(100vh - 64px);
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 64px;
+}
+
+@media only screen and (max-width: 768px) {
+  .vidContainer {
+      margin-top: 64px;
+  }
+}
+

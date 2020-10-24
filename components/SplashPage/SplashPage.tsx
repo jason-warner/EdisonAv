@@ -2,7 +2,8 @@ import styles from '../../styles/components/SplashPage/SplashPage.module.css';
 import { useState, useRef } from 'react';
 import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
-
+import React from 'react';
+import Video from '../Video/Video';
 
 const SplashPage = ({ playVid }) => {
   const
@@ -27,7 +28,7 @@ const SplashPage = ({ playVid }) => {
     return context.resume() && audio.play();
   }
   return (
-    <div>
+    <>
       <div className={styles.splashPage + unsplash}>
         <h1 className={styles.title}>Edison Av</h1>
         <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
@@ -38,17 +39,39 @@ const SplashPage = ({ playVid }) => {
           </audio>
         </button>
       </div>
-
       <ErrorHandler>
+        {splash && <Video />}
         {splash && <AudioVisualizer splashContext={splashContext} splashAudio={audio} />}
       </ErrorHandler>
 
-    </div>
+    </>
 
   );
 }
 
 export default SplashPage;
+
+
+// import YouTube from 'react-youtube';
+
+
+  // const opts = {
+  //   height: '100%',
+  //   width: '100%',
+  //   playerVars: {
+  //     autoplay: 1 as 1,
+  //     mute: 1 as 1,
+  //     controls: 0 as 0,
+  //   }
+  // };
+  // const onReady = (Event: { target: any }) => {
+  //   // access to player in all event handlers via event.target
+  //   Event.target.pauseVideo();
+  //   console.log(Event.target.pauseVideo());
+  //   setTimeout(() => Event.target.playVideo(), 100);
+  // }
+
+    //{play && addAutoPlay()}
 
     // let iosDevice = null;
     // 'webkitAudioContext' in window ? iosDevice = true : null;

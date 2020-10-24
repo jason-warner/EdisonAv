@@ -75,7 +75,6 @@ const AudioVisualizer = ({ splashContext, splashAudio }) => {
         }, 1);
       }
     }
-    console.log("initial context state: " + context.state);
     return renderFrame();
   };
 
@@ -89,7 +88,7 @@ const AudioVisualizer = ({ splashContext, splashAudio }) => {
     }
   });
   return (
-    <div>
+    <>
       <div className={styles.content}>
         <button className={styles.contextButton} ref={buttonRef}></button>
         <canvas ref={canvasRef} className={styles.canvas}></canvas>
@@ -97,7 +96,7 @@ const AudioVisualizer = ({ splashContext, splashAudio }) => {
           <source src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
         </audio>
       </div>
-    </div>
+    </>
   )
 }
 export default AudioVisualizer;
