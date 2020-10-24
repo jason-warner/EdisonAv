@@ -1,15 +1,10 @@
 import styles from '../../styles/components/SplashPage/SplashPage.module.css';
 import { useState, useRef } from 'react';
-// import dynamic from 'next/dynamic';
 import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 
 
 const SplashPage = ({ playVid }) => {
-  // const DynamicComponentWithNoSSR = dynamic(
-  //   () => import('../AudioVisualizer/AudioVisualizer'),
-  //   { ssr: false }
-  // );
   const
     [splash, splashState] = useState(false),
     [splashContext, setSplashConext] = useState(null),
@@ -58,8 +53,3 @@ export default SplashPage;
     // let iosDevice = null;
     // 'webkitAudioContext' in window ? iosDevice = true : null;
     // return iosDevice && context.resume() && audio.play();
-
-
-
-
-    // {splash && <DynamicComponentWithNoSSR splashContext={splashContext} splashAudio={audio} />}
