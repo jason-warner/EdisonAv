@@ -48,7 +48,7 @@ const SplashPage = ({ playVid }) => {
       </div>
       <ErrorHandler>
         {/* splashButton={button} */}
-        {splash && <Video iosDevice={iosDevice} />}
+        <Video iosDevice={iosDevice} />
         {splash && <AudioVisualizer splashContext={splashContext} splashAudio={audio} iosDevice={iosDevice} />}
       </ErrorHandler>
       {console.log("iosDevice: " + iosDevice)}

@@ -12,7 +12,7 @@ const Video = ({ iosDevice }) => {
         buttonRef = useRef(null),
         opts = {
             playerVars: {
-                autoplay: 1 as 1,
+                // autoplay: 1 as 1,
                 mute: 1 as 1,
                 controls: 0 as 0,
                 enablejsapi: 1 as 1,
@@ -28,44 +28,42 @@ const Video = ({ iosDevice }) => {
     const playVid = (Event: { target: any }) => {
         const button = buttonRef.current;
         setButton(button);
-        button.addEventListener("click", () => {
-            Event.target.playVideo();
-        });
-        // device && button.onclick(() => {
-        //     Event.target.playVideo();
-        // });
-        // access to player in all event handlers via event.target
-    }
+        button.onclick = () => Event.target.playVideo()
+    };
+    // device && button.onclick(() => {
+    //     Event.target.playVideo();
+    // });
+    // access to player in all event handlers via event.target
 
-    console.log(device);
+console.log(device);
 
-    // const onReady = () => {
-    //     playVid;
-    // }
-    // const playVid = (Event: { target: any }) => {
-    //     const button = buttonRef.current;
-    //     setButton(button);
-    //     button.addEventListener("click", () => {
-    //         console.log(Event.target)
-    //         Event.target.pauseVideo();
-    //     });
-    // }
+// const onReady = () => {
+//     playVid;
+// }
+// const playVid = (Event: { target: any }) => {
+//     const button = buttonRef.current;
+//     setButton(button);
+//     button.addEventListener("click", () => {
+//         console.log(Event.target)
+//         Event.target.pauseVideo();
+//     });
+// }
 
 
-    return (
-        <main className={styles.vidContainer}>
-            <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
-                Play Video
+return (
+    <main className={styles.vidContainer}>
+        <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
+            Play Video
             </button>
-            <YouTube
-                className={styles.format}
-                videoId={"N31pvPzqJAY"}
-                opts={opts}
-                onReady={onReady}
-            />
+        <YouTube
+            className={styles.format}
+            videoId={"N31pvPzqJAY"}
+            opts={opts}
+            onReady={onReady}
+        />
 
-        </main>
-    )
+    </main>
+)
 }
 
 export default Video;
