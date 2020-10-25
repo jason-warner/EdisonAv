@@ -3,12 +3,12 @@ import styles from '../../styles/components/Video/Video.module.css';
 import { useRef, useState } from 'react';
 import YouTube from 'react-youtube';
 
-
-const Video = ({ splashButton }) => {
-
-    console.log(splashButton)
+// splashButton,
+const Video = ({ iosDevice }) => {
+    // console.log("sb " + splashButton)
+    let device = iosDevice;
     const
-        // [button, setButton] = useState(null),
+        [button, setButton] = useState(null),
         buttonRef = useRef(null),
         opts = {
             playerVars: {
@@ -22,20 +22,20 @@ const Video = ({ splashButton }) => {
 
     const onReady = (Event: { target: any }) => {
         // access to player in all event handlers via event.target
-        console.log(Event.target)
         Event.target.pauseVideo();
-        playVid(Event);
-      }
-    const playVid = (splashButton) => {
-        // const button = buttonRef.current;
-        // setButton(button);
-        // splashButton.addEventListener("click", () => {
-        //     console.log(Event.target)
-        //     setTimeout(() => {alert("fire");Event.target.playVideo()}, 100)
+        device && playVid(Event);
+    }
+    const playVid = (Event: { target: any }) => {
+        const button = buttonRef.current;
+        setButton(button);
+        // button.addEventListener("click", () => {
+        //     Event.target.playVideo();
         // });
-        splashButton.target.playVideo();
+        button.onclick = () => {
+            Event.target.playVideo();
+        };
         // access to player in all event handlers via event.target
-      }
+    }
 
     // console.log(button);
 
@@ -54,9 +54,9 @@ const Video = ({ splashButton }) => {
 
     return (
         <main className={styles.vidContainer}>
-            <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
+            {device && <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
                 Play Video
-            </button>
+            </button>}
             <YouTube
                 className={styles.format}
                 videoId={"N31pvPzqJAY"}

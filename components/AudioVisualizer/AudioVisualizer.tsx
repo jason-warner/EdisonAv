@@ -2,18 +2,18 @@
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
 import React, { useEffect, useRef } from 'react';
 //{ splash }
-const AudioVisualizer = ({ splashContext, splashAudio }) => {
+const AudioVisualizer = ({ splashContext, splashAudio, iosDevice }) => {
   const
     canvasRef = useRef(null),
     buttonRef = useRef(null);
 
   let
     context = splashContext,
-    audio = splashAudio;
-
+    audio = splashAudio,
+    device = iosDevice;
 
   const AVLogic = () => {
-
+    console.log("device" + device);
     const
       canvas = canvasRef.current,
       muteButton = buttonRef.current;
