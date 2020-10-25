@@ -22,7 +22,7 @@ const Video = ({ iosDevice }) => {
 
     const onReady = (Event: { target: any }) => {
         // access to player in all event handlers via event.target
-        Event.target.pauseVideo();
+        // Event.target.pauseVideo();
         playVid(Event);
     }
     const playVid = (Event: { target: any }) => {
@@ -37,7 +37,7 @@ const Video = ({ iosDevice }) => {
         // access to player in all event handlers via event.target
     }
 
-    // console.log(button);
+    console.log(device);
 
     // const onReady = () => {
     //     playVid;
@@ -54,9 +54,9 @@ const Video = ({ iosDevice }) => {
 
     return (
         <main className={styles.vidContainer}>
-            {device && <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
+            <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
                 Play Video
-            </button>}
+            </button>
             <YouTube
                 className={styles.format}
                 videoId={"N31pvPzqJAY"}
