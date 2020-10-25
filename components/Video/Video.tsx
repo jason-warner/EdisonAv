@@ -14,7 +14,8 @@ const Video = ({ splashButton }) => {
             playerVars: {
                 mute: 1 as 1,
                 controls: 0 as 0,
-                enablejsapi: 1 as 1
+                enablejsapi: 1 as 1,
+                fs: 0 as 0
             }
         };
 
