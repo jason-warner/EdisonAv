@@ -1,43 +1,65 @@
 import styles from '../../styles/components/Video/Video.module.css';
 // import { useState, useRef } from 'react';
-import React from 'react';
+import { useRef, useState } from 'react';
 import YouTube from 'react-youtube';
 
 
 const Video = ({ splashButton }) => {
 
     console.log(splashButton)
-
-    const opts = {
-        playerVars: {
-            autoplay: 1 as 1,
-            mute: 1 as 1,
-            controls: 0 as 0,
-        }
-    };
+    const
+        [button, setButton] = useState(null),
+        buttonRef = useRef(null),
+        opts = {
+            playerVars: {
+                mute: 1 as 1,
+                controls: 0 as 0,
+                enablejsapi: 1 as 1
+            }
+        };
 
     // const onReady = (Event: { target: any }) => {
     //     // access to player in all event handlers via event.target
-    //     Event.target.pauseVideo();
-    //     setTimeout(() => Event.target.playVideo(), 100);
+    //     console.log(Event.target)
+    //     Event.target.playVideo();
     //   }
+    const playVid = (Event: { target: any }) => {
+        const button = buttonRef.current;
+        setButton(button);
+        button.addEventListener("click", () => {
+            console.log(Event.target)
+            Event.target.playVideo();
+        });
+        // access to player in all event handlers via event.target
+      }
 
+    // console.log(button);
 
-    const onReady = splashButton.onclick = (e) => {
-        e.target.pauseVideo();
-        e.target.playVideo();
-        // setTimeout(() => e.target.playVideo());
-    }
-
+    // const onReady = () => {
+    //     playVid;
+    // }
+    // const playVid = (Event: { target: any }) => {
+    //     const button = buttonRef.current;
+    //     setButton(button);
+    //     button.addEventListener("click", () => {
+    //         console.log(Event.target)
+    //         Event.target.pauseVideo();
+    //     });
+    // }
 
 
     return (
         <main className={styles.vidContainer}>
-            <YouTube className={styles.format}
+            <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
+                Play Video
+            </button>
+            <YouTube
+                className={styles.format}
                 videoId={"N31pvPzqJAY"}
                 opts={opts}
-                onReady={onReady}
+                onReady={playVid}
             />
+
         </main>
     )
 }

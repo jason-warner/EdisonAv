@@ -16,5 +16,10 @@
         margin-top: 64px;
     }
   }
+
+  .playButton {
+      position: absolute;
+      z-index: 4;
+  }
   
   
