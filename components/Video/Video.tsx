@@ -11,7 +11,7 @@ const Video = ({ iosDevice }) => {
         buttonRef = useRef(null),
         opts = {
             playerVars: {
-                autoplay: 1 as 1,
+                // autoplay: 1 as 1,
                 mute: 1 as 1,
                 controls: 0 as 0,
                 enablejsapi: 1 as 1,
@@ -26,19 +26,17 @@ const Video = ({ iosDevice }) => {
     const playVid = (Event: { target: any }) => {
         const button = buttonRef.current;
         setButton(button);
-        device && button.onclick(() => Event.target.playVideo());
-    }
+        button.onclick = () => Event.target.playVideo();
+    };
 
     console.log(device);
 
 
     return (
         <main className={styles.vidContainer}>
-            { device &&
-                <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
-                    Play Video
-                </button>
-            }
+            <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
+                Play Video
+            </button>
             <YouTube
                 className={styles.format}
                 videoId={"N31pvPzqJAY"}
