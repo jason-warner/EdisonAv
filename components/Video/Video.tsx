@@ -8,10 +8,11 @@ const Video = ({ splashButton }) => {
 
     console.log(splashButton)
     const
-        [button, setButton] = useState(null),
+        // [button, setButton] = useState(null),
         buttonRef = useRef(null),
         opts = {
             playerVars: {
+                autoplay: 1 as 1,
                 mute: 1 as 1,
                 controls: 0 as 0,
                 enablejsapi: 1 as 1,
@@ -22,16 +23,17 @@ const Video = ({ splashButton }) => {
     const onReady = (Event: { target: any }) => {
         // access to player in all event handlers via event.target
         console.log(Event.target)
-        Event.target.playVideo();
+        Event.target.pauseVideo();
         playVid(Event);
       }
-    const playVid = (Event: { target: any }) => {
-        const button = buttonRef.current;
-        setButton(button);
-        button.addEventListener("click", () => {
-            console.log(Event.target)
-            Event.target.pauseVideo();
-        });
+    const playVid = (splashButton) => {
+        // const button = buttonRef.current;
+        // setButton(button);
+        // splashButton.addEventListener("click", () => {
+        //     console.log(Event.target)
+        //     setTimeout(() => {alert("fire");Event.target.playVideo()}, 100)
+        // });
+        splashButton.target.playVideo();
         // access to player in all event handlers via event.target
       }
 

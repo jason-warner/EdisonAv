@@ -14,20 +14,22 @@ const SplashPage = ({ playVid }) => {
     unsplash = ` ${splash && styles.unSplash}`,
     songRef = useRef(null),
     buttonRef = useRef(null);
-  const splashButton = () => {
+  const splashButton = (e) => {
     splashState(!splash);
     playVid(!splash);
     const
       song = songRef.current,
-      audio = new Audio(song.src),
-      button = buttonRef.current;
+      audio = new Audio(song.src);
+      // button = buttonRef.current;
     let context = null;
     'webkitAudioContext' in window ?
       context = new window.webkitAudioContext
       : context = new window.AudioContext;
     setSplashConext(context);
     setAudio(audio);
-    setButton(button);
+    setButton(e);
+    console.log(e);
+    console.log(button);
     return context.resume() && setTimeout(() => audio.play(), 1500 );
   }
   return (
@@ -35,7 +37,7 @@ const SplashPage = ({ playVid }) => {
       <div className={styles.splashPage + unsplash}>
         <h1 className={styles.title}>Edison Av</h1>
         <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
-        <button ref={buttonRef} className={styles.splashButton} onClick={() => splashButton()} >
+        <button ref={buttonRef} className={styles.splashButton} onClick={(e) => splashButton(e)} >
           ENTER
           <audio preload="auto" className={styles.audio}>
             <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
