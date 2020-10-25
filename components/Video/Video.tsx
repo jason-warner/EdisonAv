@@ -19,17 +19,18 @@ const Video = ({ splashButton }) => {
             }
         };
 
-    // const onReady = (Event: { target: any }) => {
-    //     // access to player in all event handlers via event.target
-    //     console.log(Event.target)
-    //     Event.target.playVideo();
-    //   }
+    const onReady = (Event: { target: any }) => {
+        // access to player in all event handlers via event.target
+        console.log(Event.target)
+        Event.target.playVideo();
+        playVid(Event);
+      }
     const playVid = (Event: { target: any }) => {
         const button = buttonRef.current;
         setButton(button);
         button.addEventListener("click", () => {
             console.log(Event.target)
-            Event.target.playVideo();
+            Event.target.pauseVideo();
         });
         // access to player in all event handlers via event.target
       }
@@ -58,7 +59,7 @@ const Video = ({ splashButton }) => {
                 className={styles.format}
                 videoId={"N31pvPzqJAY"}
                 opts={opts}
-                onReady={playVid}
+                onReady={onReady}
             />
 
         </main>
