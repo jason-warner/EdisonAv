@@ -28,12 +28,12 @@ const Video = ({ iosDevice }) => {
     const playVid = (Event: { target: any }) => {
         const button = buttonRef.current;
         setButton(button);
-        // button.addEventListener("click", () => {
-        //     Event.target.playVideo();
-        // });
-        device && button.onclick(() => {
+        button.addEventListener("click", () => {
             Event.target.playVideo();
         });
+        // device && button.onclick(() => {
+        //     Event.target.playVideo();
+        // });
         // access to player in all event handlers via event.target
     }
 
