@@ -23,7 +23,7 @@ const Video = ({ iosDevice }) => {
     const onReady = (Event: { target: any }) => {
         // access to player in all event handlers via event.target
         Event.target.pauseVideo();
-        device && playVid(Event);
+        playVid(Event);
     }
     const playVid = (Event: { target: any }) => {
         const button = buttonRef.current;
@@ -31,9 +31,9 @@ const Video = ({ iosDevice }) => {
         // button.addEventListener("click", () => {
         //     Event.target.playVideo();
         // });
-        button.onclick = () => {
+        device && button.onclick(() => {
             Event.target.playVideo();
-        };
+        });
         // access to player in all event handlers via event.target
     }
 
