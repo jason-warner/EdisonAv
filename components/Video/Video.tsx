@@ -21,6 +21,7 @@ const Video = ({ iosDevice }) => {
 
     const onReady = (Event: { target: any }) => {
         // access to player in all event handlers via event.target
+        Event.target.playVideo();
         playVid(Event);
     }
     const playVid = (Event: { target: any }) => {

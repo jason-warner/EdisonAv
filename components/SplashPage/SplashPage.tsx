@@ -11,10 +11,11 @@ const SplashPage = ({ playVid }) => {
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
     [iosDevice, setDevice] = useState(null),
-    [button, setButton] =useState(null),
+    [button, setButton] = useState(null),
     unsplash = ` ${splash && styles.unSplash}`,
     songRef = useRef(null),
     buttonRef = useRef(null);
+
   const splashButton = () => {
     splashState(!splash);
     playVid(!splash);
@@ -28,12 +29,14 @@ const SplashPage = ({ playVid }) => {
       : context = new window.AudioContext;
     let iosDevice = null;
     'webkitAudioContext' in window ? iosDevice = true : null;
-    setSplashConext(context);
     setAudio(audio);
     setButton(button);
     setDevice(iosDevice);
+    setSplashConext(context);
+    console.log('playing audio: ' + audio);
     return context.resume() && audio.play();
   }
+
   return (
     <>
       <div className={styles.splashPage + unsplash}>
@@ -47,7 +50,6 @@ const SplashPage = ({ playVid }) => {
         </button>
       </div>
       <ErrorHandler>
-        {/* splashButton={button} */}
         <Video iosDevice={iosDevice} />
         {splash && <AudioVisualizer splashContext={splashContext} splashAudio={audio} iosDevice={iosDevice} />}
       </ErrorHandler>

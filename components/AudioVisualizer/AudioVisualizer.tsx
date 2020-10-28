@@ -6,7 +6,6 @@ const AudioVisualizer = ({ splashContext, splashAudio, iosDevice }) => {
   const
     canvasRef = useRef(null),
     buttonRef = useRef(null);
-
   let
     context = splashContext,
     audio = splashAudio,
@@ -29,14 +28,14 @@ const AudioVisualizer = ({ splashContext, splashAudio, iosDevice }) => {
     muteButton.onclick = () => mutePlay();
 
     //config canvas
-    const
-      src = context.createMediaElementSource(audio),
-      analyser = context.createAnalyser();
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext("2d");
 
     //config audio analyzer
+    const
+      src = context.createMediaElementSource(audio),
+      analyser = context.createAnalyser();
     src.connect(analyser);
     analyser.connect(context.destination);
     analyser.fftSize = 256;
@@ -48,7 +47,7 @@ const AudioVisualizer = ({ splashContext, splashAudio, iosDevice }) => {
       barWidth = (WIDTH / bufferLength) * 2.5;
     let 
       barHeight = null,
-      x = 0;
+      x = null;
 
     //execute audio visualization
     const renderFrame = () => {
@@ -72,14 +71,14 @@ const AudioVisualizer = ({ splashContext, splashAudio, iosDevice }) => {
 
         setTimeout(() => {
           ctx.clearRect(0, 0, WIDTH, HEIGHT)
-        }, 1);
+        }, 10);
       }
     }
     return renderFrame();
   };
 
 
-  //connect audio visualizer logic to DOM
+  //connect audio visualizer logic to DOM and execute logic 
   useEffect(() => {
     try {
       return AVLogic();
