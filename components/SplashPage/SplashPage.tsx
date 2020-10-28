@@ -33,7 +33,6 @@ const SplashPage = ({ playVid }) => {
     setButton(button);
     setDevice(iosDevice);
     setSplashConext(context);
-    console.log('playing audio: ' + audio);
     return context.resume() && audio.play();
   }
 
@@ -50,7 +49,7 @@ const SplashPage = ({ playVid }) => {
         </button>
       </div>
       <ErrorHandler>
-        <Video iosDevice={iosDevice} />
+        <Video iosDevice={iosDevice} splash={splash}  />
         {splash && <AudioVisualizer splashContext={splashContext} splashAudio={audio} iosDevice={iosDevice} />}
       </ErrorHandler>
       {console.log("iosDevice: " + iosDevice)}
@@ -60,29 +59,3 @@ const SplashPage = ({ playVid }) => {
 }
 
 export default SplashPage;
-
-
-// import YouTube from 'react-youtube';
-
-
-  // const opts = {
-  //   height: '100%',
-  //   width: '100%',
-  //   playerVars: {
-  //     autoplay: 1 as 1,
-  //     mute: 1 as 1,
-  //     controls: 0 as 0,
-  //   }
-  // };
-  // const onReady = (Event: { target: any }) => {
-  //   // access to player in all event handlers via event.target
-  //   Event.target.pauseVideo();
-  //   console.log(Event.target.pauseVideo());
-  //   setTimeout(() => Event.target.playVideo(), 100);
-  // }
-
-    //{play && addAutoPlay()}
-
-    // let iosDevice = null;
-    // 'webkitAudioContext' in window ? iosDevice = true : null;
-    // return iosDevice && context.resume() && audio.play();

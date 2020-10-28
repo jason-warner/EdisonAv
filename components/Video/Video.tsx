@@ -4,14 +4,14 @@ import { useRef, useState } from 'react';
 import YouTube from 'react-youtube';
 
 // splashButton,
-const Video = ({ iosDevice }) => {
+const Video = ({ iosDevice, splash }) => {
     let device = iosDevice;
     const
         [button, setButton] = useState(null),
         buttonRef = useRef(null),
         opts = {
             playerVars: {
-                // autoplay: 1 as 1,
+                autoplay: 1 as 1,
                 mute: 1 as 1,
                 controls: 0 as 0,
                 enablejsapi: 1 as 1,
@@ -21,23 +21,28 @@ const Video = ({ iosDevice }) => {
 
     const onReady = (Event: { target: any }) => {
         // access to player in all event handlers via event.target
-        Event.target.playVideo();
+        setTimeout(() => Event.target.playVideo(), 5000);
         playVid(Event);
     }
     const playVid = (Event: { target: any }) => {
-        const button = buttonRef.current;
+        let button = null;
+       const iosPlayVid = () => {
         setButton(button);
+        buttonRef.current
         button.onclick = () => Event.target.playVideo();
+       }
+       device ? iosPlayVid() : null;
     };
 
-    console.log(device);
 
 
     return (
         <main className={styles.vidContainer}>
-            <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
-                Play Video
-            </button>
+            {device &&
+                <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
+                    Play Video
+                </button>
+            }
             <YouTube
                 className={styles.format}
                 videoId={"N31pvPzqJAY"}
