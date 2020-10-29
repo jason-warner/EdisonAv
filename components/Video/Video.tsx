@@ -4,10 +4,11 @@ import { useRef, useState } from 'react';
 import YouTube from 'react-youtube';
 
 // splashButton,
-const Video = ({ iosDevice }) => {
+const Video = ({ splash, iosDevice, setAudioVideo }) => {
     let device = iosDevice;
     const
         [button, setButton] = useState(null),
+        [audio, setAudio] = useState(null),
         buttonRef = useRef(null),
         opts = {
             playerVars: {
@@ -29,7 +30,9 @@ const Video = ({ iosDevice }) => {
         setButton(button);
         button.onclick = () => Event.target.playVideo();
     };
-
+    const onPlay = () => {
+        setAudioVideo(true);
+    }
 
 
     return (
@@ -42,6 +45,7 @@ const Video = ({ iosDevice }) => {
                 videoId={"N31pvPzqJAY"}
                 opts={opts}
                 onReady={onReady}
+                onPlay={onPlay}
             />
 
         </main>

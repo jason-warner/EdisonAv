@@ -2,15 +2,17 @@
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
 import React, { useEffect, useRef } from 'react';
 //{ splash }
-const AudioVisualizer = ({ splashContext, splashAudio, iosDevice }) => {
+const AudioVisualizer = ({ splashContext, splashAudio, iosDevice, audioVideo }) => {
   const
     canvasRef = useRef(null),
     buttonRef = useRef(null);
   let
     context = splashContext,
     audio = splashAudio,
-    device = iosDevice;
+    device = iosDevice,
+    video = audioVideo;
 
+  console.log("video " + video);
   const AVLogic = () => {
     console.log("device" + device);
     const
@@ -74,7 +76,9 @@ const AudioVisualizer = ({ splashContext, splashAudio, iosDevice }) => {
         }, 10);
       }
     }
-    return renderFrame();
+    // return renderFrame();
+    renderFrame();
+    audioVideo ? context.resume() && audio.play() : null;
   };
 
 
