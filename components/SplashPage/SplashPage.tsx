@@ -8,11 +8,8 @@ import Video from '../Video/Video';
 const SplashPage = ({ playVid }) => {
   const
     [splash, splashState] = useState(false),
-    // [splashContext, setSplashConext] = useState(null),
-    // [audio, setAudio] = useState(null),
     [audioVideo, setAudioVideo] = useState(null),
     [iosDevice, setDevice] = useState(null),
-    // [button, setButton] = useState(null),
     unsplash = ` ${splash && styles.unSplash}`,
     songRef = useRef(null),
     buttonRef = useRef(null);
@@ -20,21 +17,9 @@ const SplashPage = ({ playVid }) => {
   const splashButton = () => {
     splashState(!splash);
     playVid(!splash);
-    // const
-    //   song = songRef.current,
-    //   audio = new Audio(song.src),
-    //   button = buttonRef.current;
-    // let context = null;
-    // 'webkitAudioContext' in window ?
-    //   context = new window.webkitAudioContext
-    //   : context = new window.AudioContext;
     let iosDevice = null;
     'webkitAudioContext' in window ? iosDevice = true : null;
-    // setAudio(audio);
-    // setButton(button);
     setDevice(iosDevice);
-    // setSplashConext(context);
-    // return context.resume() && audio.play();
   }
 
   return (
@@ -57,8 +42,6 @@ const SplashPage = ({ playVid }) => {
           />}
         {splash &&
           <AudioVisualizer
-            // splashContext={splashContext}
-            // splashAudio={audio}
             iosDevice={iosDevice}
             audioVideo={audioVideo}
           />}
@@ -70,3 +53,26 @@ const SplashPage = ({ playVid }) => {
 }
 
 export default SplashPage;
+
+
+    // [splashContext, setSplashConext] = useState(null),
+    // [audio, setAudio] = useState(null),
+    // [button, setButton] = useState(null),
+
+        // const
+    //   song = songRef.current,
+    //   audio = new Audio(song.src),
+    //   button = buttonRef.current;
+    // let context = null;
+    // 'webkitAudioContext' in window ?
+    //   context = new window.webkitAudioContext
+    //   : context = new window.AudioContext;
+
+        // setAudio(audio);
+    // setButton(button);
+    // setSplashConext(context);
+    // return context.resume() && audio.play();
+
+                // splashContext={splashContext}
+            // splashAudio={audio}
+

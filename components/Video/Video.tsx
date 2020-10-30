@@ -1,17 +1,16 @@
 import styles from '../../styles/components/Video/Video.module.css';
 // import { useState, useRef } from 'react';
-import { useRef, useState } from 'react';
+// import { useRef, useState } from 'react';
 import YouTube from 'react-youtube';
 
 // splashButton,
 const Video = ({ iosDevice, setAudioVideo }) => {
     let ios = iosDevice;
     const
-        [button, setButton] = useState(null),
-        buttonRef = useRef(null),
+        // [button, setButton] = useState(null),
+        // buttonRef = useRef(null),
         opts = {
             playerVars: {
-                // autoplay: 1 as 1,
                 mute: 1 as 1,
                 controls: 0 as 0,
                 enablejsapi: 1 as 1,
@@ -22,13 +21,13 @@ const Video = ({ iosDevice, setAudioVideo }) => {
     const onReady = (Event: { target: any }) => {
         // access to player in all event handlers via event.target
         Event.target.playVideo();
-        playVid(Event);
+        // playVid(Event);
     }
-    const playVid = (Event: { target: any }) => {
-        const button = buttonRef.current;
-        setButton(button);
-        button.onclick = () => Event.target.playVideo();
-    };
+    // const playVid = (Event: { target: any }) => {
+    //     const button = buttonRef.current;
+    //     setButton(button);
+    //     button.onclick = () => Event.target.playVideo();
+    // };
     const onPlay = () => {
         setAudioVideo(true);
     }
@@ -36,9 +35,9 @@ const Video = ({ iosDevice, setAudioVideo }) => {
 
     return (
         <main className={styles.vidContainer}>
-            <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
+            {/* <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
                 Play Video
-            </button>
+            </button> */}
             <YouTube
                 className={styles.format}
                 videoId={"N31pvPzqJAY"}
