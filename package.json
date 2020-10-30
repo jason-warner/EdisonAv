@@ -8,9 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@types/react-youtube": "^7.6.2",
-    "@types/youtube": "0.0.38",
-    "next": "^9.5.5",
+    "next": "^10.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-youtube": "^7.12.0"

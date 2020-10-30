@@ -2,22 +2,34 @@
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
 import React, { useEffect, useRef } from 'react';
 //{ splash }
-const AudioVisualizer = ({ splashContext, splashAudio, iosDevice, audioVideo }) => {
+//splashContext, splashAudio,
+const AudioVisualizer = ({iosDevice, audioVideo }) => {
   const
     canvasRef = useRef(null),
-    buttonRef = useRef(null);
+    buttonRef = useRef(null),
+    songRef = useRef(null); 
   let
-    context = splashContext,
-    audio = splashAudio,
+    // context = splashContext,
+    // audio = splashAudio,
     device = iosDevice,
     video = audioVideo;
 
   console.log("video " + video);
   const AVLogic = () => {
+    const
+    song = songRef.current,
+    audio = new Audio(song.src);
+    // button = buttonRef.current;
+  let context = null;
+  'webkitAudioContext' in window ?
+    context = new window.webkitAudioContext
+    : context = new window.AudioContext;
+
     console.log("device" + device);
     const
       canvas = canvasRef.current,
       muteButton = buttonRef.current;
+      // audio = songRef.current;
 
     //mute or play on click
     const mutePlay = () => {
@@ -76,9 +88,8 @@ const AudioVisualizer = ({ splashContext, splashAudio, iosDevice, audioVideo }) 
         }, 10);
       }
     }
-    // return renderFrame();
     renderFrame();
-    audioVideo ? context.resume() && audio.play() : null;
+    audioVideo ? context.resume() && audio.play() : undefined;
   };
 
 
@@ -96,7 +107,7 @@ const AudioVisualizer = ({ splashContext, splashAudio, iosDevice, audioVideo }) 
         <button className={styles.contextButton} ref={buttonRef}></button>
         <canvas ref={canvasRef} className={styles.canvas}></canvas>
         <audio preload="auto" className={styles.audio}>
-          <source src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
+          <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
         </audio>
       </div>
     </>

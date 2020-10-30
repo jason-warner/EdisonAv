@@ -4,11 +4,10 @@ import { useRef, useState } from 'react';
 import YouTube from 'react-youtube';
 
 // splashButton,
-const Video = ({ splash, iosDevice, setAudioVideo }) => {
-    let device = iosDevice;
+const Video = ({ iosDevice, setAudioVideo }) => {
+    let ios = iosDevice;
     const
         [button, setButton] = useState(null),
-        [audio, setAudio] = useState(null),
         buttonRef = useRef(null),
         opts = {
             playerVars: {
