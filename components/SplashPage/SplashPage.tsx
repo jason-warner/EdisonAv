@@ -35,17 +35,14 @@ const SplashPage = () => {
         </button>
       </div>
       <ErrorHandler>
-        {/* {splash && */}
-          <Video
-            iosDevice={iosDevice}
-            setAudioVideo={setAudioVideo}
-          />
-          {/* } */}
-        {splash &&
-          <AudioVisualizer
-            iosDevice={iosDevice}
-            audioVideo={audioVideo}
-          />}
+        {splash && <Video
+          iosDevice={iosDevice}
+          setAudioVideo={setAudioVideo}
+        />}
+        {splash && <AudioVisualizer
+          iosDevice={iosDevice}
+          audioVideo={audioVideo}
+        />}
       </ErrorHandler>
       {console.log("iosDevice: " + iosDevice)}
     </>
