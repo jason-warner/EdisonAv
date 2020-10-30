@@ -4,8 +4,8 @@ import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 import React from 'react';
 import Video from '../Video/Video';
-
-const SplashPage = ({ playVid }) => {
+//{ playVid }
+const SplashPage = () => {
   const
     [splash, splashState] = useState(false),
     [audioVideo, setAudioVideo] = useState(null),
@@ -16,7 +16,7 @@ const SplashPage = ({ playVid }) => {
 
   const splashButton = () => {
     splashState(!splash);
-    playVid(!splash);
+    // playVid(!splash);
     let iosDevice = null;
     'webkitAudioContext' in window ? iosDevice = true : null;
     setDevice(iosDevice);

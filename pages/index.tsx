@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import Navbar from '../components/Navbar/Navbar';
 import SplashPage from '../components/SplashPage/SplashPage';
-import { useState } from 'react';
+// import { useState } from 'react';
 import React from 'react';
 
 export default function Home() {
-  const [play, playState] = useState(false);
+  // const [play, playState] = useState(false);
   return (
     <>
       <Head>
@@ -16,9 +16,9 @@ export default function Home() {
 
       <Navbar />
       
-      <SplashPage playVid={splashClick => playState(splashClick)} />
+      <SplashPage />
       
-      {console.log(play)}
+      {/* {console.log(play)} */}
     </>
   )
 }
