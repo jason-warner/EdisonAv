@@ -16,7 +16,6 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) 
     
     let audio = null;
     iosDevice ? audio = splashAudio : audio = new Audio(song.src);
-    iosDevice ? alert(audio) : null;
 
     const
       canvas = canvasRef.current,
@@ -41,17 +40,7 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) 
     const
       src = context.createMediaElementSource(audio),
       analyser = context.createAnalyser();
-    // let
-    //   src = null,
-    //   analyser = null;
-    //   console.log("IOS DEVICE: " + iosDevice)
-    // if (iosDevice) {
-    //   src = iosContext.createMediaElementSource(audio);
-    //   analyser = iosContext.createAnalyser();
-    // } else {
-    //   src = context.createMediaElementSource(audio);
-    //   analyser = context.createAnalyser();
-    // }
+
     src.connect(analyser);
     analyser.connect(context.destination);
     analyser.fftSize = 256;
@@ -91,7 +80,9 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) 
       }
     }
     renderFrame();
-    videoReady ? context.resume() && audio.play() : undefined;
+    if(!iosDevice) {
+      videoReady ? context.resume() && audio.play() : undefined;
+    }
   };
 
 
