@@ -45,10 +45,11 @@ const SplashPage = () => {
         <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
         <button ref={buttonRef} className={styles.splashButton} onClick={() => splashButton()} >
           ENTER
-          {iosDevice &&
+          {/* {iosDevice && */}
             <audio preload="auto" className={styles.audio}>
               <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
-            </audio>}
+            </audio>
+            {/* } */}
         </button>
       </div>
       <ErrorHandler>
