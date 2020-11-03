@@ -19,11 +19,14 @@ const SplashPage = () => {
 
   const splashButton = () => {
     splashState(!splash);
-    let iosDevice = null;
+
     let context = null;
-      'webkitAudioContext' in window ?
-        context = new window.webkitAudioContext
-        : context = new window.AudioContext;
+    'webkitAudioContext' in window ?
+      context = new window.webkitAudioContext
+      : context = new window.AudioContext;
+    setSplashConext(context);
+
+    let iosDevice = null;
     if ('webkitAudioContext' in window) {
       iosDevice = true
       setDevice(iosDevice);
@@ -35,7 +38,7 @@ const SplashPage = () => {
       // setButton(button);
       return context.resume() && iosAudio.play();
     }
-    setSplashConext(context);
+
   }
 
   return (
@@ -46,10 +49,10 @@ const SplashPage = () => {
         <button ref={buttonRef} className={styles.splashButton} onClick={() => splashButton()} >
           ENTER
           {/* {iosDevice && */}
-            <audio preload="auto" className={styles.audio}>
-              <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
-            </audio>
-            {/* } */}
+          <audio preload="auto" className={styles.audio}>
+            <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
+          </audio>
+          {/* } */}
         </button>
       </div>
       <ErrorHandler>
