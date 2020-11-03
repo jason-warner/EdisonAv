@@ -10,16 +10,32 @@ const SplashPage = () => {
     [splash, splashState] = useState(false),
     [audioVideo, setAudioVideo] = useState(null),
     [iosDevice, setDevice] = useState(null),
+    [splashContext, setSplashConext] = useState(null),
+    [audio, setAudio] = useState(null),
+    // [button, setButton] = useState(null),
     unsplash = ` ${splash && styles.unSplash}`,
     songRef = useRef(null),
     buttonRef = useRef(null);
 
   const splashButton = () => {
     splashState(!splash);
-    // playVid(!splash);
     let iosDevice = null;
-    'webkitAudioContext' in window ? iosDevice = true : null;
-    setDevice(iosDevice);
+    let context = null;
+      'webkitAudioContext' in window ?
+        context = new window.webkitAudioContext
+        : context = new window.AudioContext;
+    if ('webkitAudioContext' in window) {
+      iosDevice = true
+      setDevice(iosDevice);
+      const
+        iosSong = songRef.current,
+        iosAudio = new Audio(iosSong.src);
+      // button = buttonRef.current;
+      setAudio(iosAudio);
+      // setButton(button);
+      return context.resume() && iosAudio.play();
+    }
+    setSplashConext(context);
   }
 
   return (
@@ -29,9 +45,10 @@ const SplashPage = () => {
         <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
         <button ref={buttonRef} className={styles.splashButton} onClick={() => splashButton()} >
           ENTER
-          <audio preload="auto" className={styles.audio}>
-            <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
-          </audio>
+          {iosDevice &&
+            <audio preload="auto" className={styles.audio}>
+              <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
+            </audio>}
         </button>
       </div>
       <ErrorHandler>
@@ -42,6 +59,7 @@ const SplashPage = () => {
         {splash && <AudioVisualizer
           iosDevice={iosDevice}
           audioVideo={audioVideo}
+          splashContext={splashContext}
         />}
       </ErrorHandler>
       {console.log("iosDevice: " + iosDevice)}
@@ -51,26 +69,3 @@ const SplashPage = () => {
 }
 
 export default SplashPage;
-
-
-    // [splashContext, setSplashConext] = useState(null),
-    // [audio, setAudio] = useState(null),
-    // [button, setButton] = useState(null),
-
-        // const
-    //   song = songRef.current,
-    //   audio = new Audio(song.src),
-    //   button = buttonRef.current;
-    // let context = null;
-    // 'webkitAudioContext' in window ?
-    //   context = new window.webkitAudioContext
-    //   : context = new window.AudioContext;
-
-        // setAudio(audio);
-    // setButton(button);
-    // setSplashConext(context);
-    // return context.resume() && audio.play();
-
-                // splashContext={splashContext}
-            // splashAudio={audio}
-

@@ -2,34 +2,29 @@
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
 import React, { useEffect, useRef } from 'react';
 //{ splash }
-//splashContext, splashAudio,
-const AudioVisualizer = ({iosDevice, audioVideo }) => {
+
+const AudioVisualizer = ({ iosDevice, audioVideo, splashContext }) => {
   const
     canvasRef = useRef(null),
     buttonRef = useRef(null),
-    songRef = useRef(null); 
+    songRef = useRef(null);
   let
-    // context = splashContext,
-    // audio = splashAudio,
     device = iosDevice,
     video = audioVideo;
 
   console.log("video " + video);
   const AVLogic = () => {
     const
-    song = songRef.current,
-    audio = new Audio(song.src);
-    // button = buttonRef.current;
-  let context = null;
-  'webkitAudioContext' in window ?
-    context = new window.webkitAudioContext
-    : context = new window.AudioContext;
+      song = songRef.current,
+      audio = new Audio(song.src),
+      context = splashContext,
+      iosContext = splashContext;
+
 
     console.log("device" + device);
     const
       canvas = canvasRef.current,
       muteButton = buttonRef.current;
-      // audio = songRef.current;
 
     //mute or play on click
     const mutePlay = () => {
@@ -47,23 +42,34 @@ const AudioVisualizer = ({iosDevice, audioVideo }) => {
     const ctx = canvas.getContext("2d");
 
     //config audio analyzer
-    const
-      src = context.createMediaElementSource(audio),
+    // const
+    //   src = context.createMediaElementSource(audio),
+    //   analyser = context.createAnalyser();
+    let
+      src = null,
+      analyser = null;
+      console.log("IOS DEVICE: " + iosDevice)
+    if (iosDevice) {
+      src = iosContext.createMediaElementSource(audio);
+      analyser = iosContext.createAnalyser();
+    } else {
+      src = context.createMediaElementSource(audio);
       analyser = context.createAnalyser();
+    }
     src.connect(analyser);
     analyser.connect(context.destination);
     analyser.fftSize = 256;
-    const 
+    const
       bufferLength = analyser.frequencyBinCount,
       dataArray = new Uint8Array(bufferLength),
       WIDTH = canvas.width,
       HEIGHT = canvas.height,
       barWidth = (WIDTH / bufferLength) * 2.5;
-    let 
+    let
       barHeight = null,
       x = null;
 
-    //execute audio visualization
+    //core logic for the visualizer
     const renderFrame = () => {
       ctx.fillStyle = "rgba(0,0,0,0)";
       requestAnimationFrame(renderFrame);
