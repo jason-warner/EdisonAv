@@ -8,7 +8,7 @@ import Video from '../Video/Video';
 const SplashPage = () => {
   const
     [splash, splashState] = useState(false),
-    [audioVideo, setAudioVideo] = useState(null),
+    [videoReady, setVideoReady] = useState(null),
     [iosDevice, setDevice] = useState(null),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
@@ -54,12 +54,13 @@ const SplashPage = () => {
       <ErrorHandler>
         {splash && <Video
           iosDevice={iosDevice}
-          setAudioVideo={setAudioVideo}
+          setVideoReady={setVideoReady}
         />}
         {splash && <AudioVisualizer
           iosDevice={iosDevice}
-          audioVideo={audioVideo}
+          videoReady={videoReady}
           splashContext={splashContext}
+          splashAudio={audio}
         />}
       </ErrorHandler>
       {console.log("iosDevice: " + iosDevice)}

@@ -4,7 +4,7 @@ import styles from '../../styles/components/Video/Video.module.css';
 import YouTube from 'react-youtube';
 
 // splashButton,
-const Video = ({ iosDevice, setAudioVideo }) => {
+const Video = ({ iosDevice, setVideoReady }) => {
     let ios = iosDevice;
     const
         // [button, setButton] = useState(null),
@@ -29,7 +29,7 @@ const Video = ({ iosDevice, setAudioVideo }) => {
     //     button.onclick = () => Event.target.playVideo();
     // };
     const onPlay = () => {
-        setAudioVideo(true);
+        setVideoReady(true);
     }
 
 
