@@ -80,9 +80,9 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) 
       }
     }
     renderFrame();
-    if(!iosDevice) {
+    // if(!iosDevice) {
       videoReady ? context.resume() && audio.play() : undefined;
-    }
+    // }
   };
 
 

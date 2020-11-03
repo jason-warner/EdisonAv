@@ -4,7 +4,7 @@ import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 import React from 'react';
 import Video from '../Video/Video';
-//{ playVid }
+
 const SplashPage = () => {
   const
     [splash, splashState] = useState(false),
@@ -12,11 +12,10 @@ const SplashPage = () => {
     [iosDevice, setDevice] = useState(null),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
-    // [button, setButton] = useState(null),
     unsplash = ` ${splash && styles.unSplash}`,
     songRef = useRef(null),
     buttonRef = useRef(null);
-
+    
   const splashButton = () => {
     splashState(!splash);
 
@@ -33,10 +32,10 @@ const SplashPage = () => {
       const
         iosSong = songRef.current,
         iosAudio = new Audio(iosSong.src);
-      // button = buttonRef.current;
       setAudio(iosAudio);
-      // setButton(button);
-      return context.resume() && iosAudio.play();
+      // return context.resume() && iosAudio.play();
+      context.resume() && iosAudio.play();
+      return context.suspend();
     }
 
   }
@@ -74,3 +73,10 @@ const SplashPage = () => {
 }
 
 export default SplashPage;
+
+
+
+
+      // [button, setButton] = useState(null),
+      // button = buttonRef.current;
+      // setButton(button);
