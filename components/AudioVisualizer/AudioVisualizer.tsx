@@ -15,7 +15,8 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) 
       context = splashContext;
     if(iosDevice) {
       alert("CONTEXT 1: " + context.state);
-      context.suspend();
+      context.suspend()
+      .then(() => alert("CONTEXT 2: " + context.state))
     } 
 
     let audio = null;
@@ -85,7 +86,7 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) 
     }
     renderFrame();
     videoReady ? context.resume() && audio.play() : undefined;
-    setTimeout(() => alert("CONTEXT 2: " + context.state), 10000)
+    setTimeout(() => alert("CONTEXT 3: " + context.state), 10000)
   };
 
 
