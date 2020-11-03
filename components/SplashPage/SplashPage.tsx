@@ -34,8 +34,7 @@ const SplashPage = () => {
         iosAudio = new Audio(iosSong.src);
       setAudio(iosAudio);
       // return context.resume() && iosAudio.play();
-      context.resume() && iosAudio.play();
-      return context.suspend();
+      return context.resume() && iosAudio.play();
     }
 
   }

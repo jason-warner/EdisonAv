@@ -13,7 +13,12 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) 
     const
       song = songRef.current,
       context = splashContext;
-    
+    if(iosDevice) {
+      alert("CONTEXT 1: " + context);
+      context.suspend();
+      alert("CONTEXT 2: " + context);
+    } 
+
     let audio = null;
     iosDevice ? audio = splashAudio : audio = new Audio(song.src);
 
@@ -80,9 +85,7 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) 
       }
     }
     renderFrame();
-    // if(!iosDevice) {
-      videoReady ? context.resume() && audio.play() : undefined;
-    // }
+    !iosDevice && videoReady ? context.resume() && audio.play() : undefined;
   };
 
 
