@@ -12,13 +12,15 @@ const SplashPage = () => {
     [iosDevice, setDevice] = useState(null),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
+    [iosButton, setButton] = useState(null),
     unsplash = ` ${splash && styles.unSplash}`,
     songRef = useRef(null),
     buttonRef = useRef(null);
-    
+
   const splashButton = () => {
     splashState(!splash);
-
+    const iosButton = buttonRef.current;
+    setButton(iosButton);
     let context = null;
     'webkitAudioContext' in window ?
       context = new window.webkitAudioContext
@@ -63,6 +65,7 @@ const SplashPage = () => {
           videoReady={videoReady}
           splashContext={splashContext}
           splashAudio={audio}
+          iosButton={iosButton}
         />}
       </ErrorHandler>
       {console.log("iosDevice: " + iosDevice)}
@@ -72,10 +75,3 @@ const SplashPage = () => {
 }
 
 export default SplashPage;
-
-
-
-
-      // [button, setButton] = useState(null),
-      // button = buttonRef.current;
-      // setButton(button);
