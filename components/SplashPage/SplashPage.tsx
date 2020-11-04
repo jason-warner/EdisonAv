@@ -16,7 +16,7 @@ const SplashPage = () => {
     unsplash = ` ${splash && styles.unSplash}`,
     songRef = useRef(null),
     buttonRef = useRef(null);
-  
+
   const splashButton = () => {
     splashState(!splash);
     // const iosButton = buttonRef.current;
@@ -26,9 +26,9 @@ const SplashPage = () => {
       context = new window.webkitAudioContext
       : context = new window.AudioContext;
     setSplashConext(context);
-    // const turnOnContext = async () => {
-    //   context.state === "suspended" ? context.resume() : null;
-    // }
+    const turnOnContext = async () => {
+      context.state === "suspended" ? context.resume() : null;
+    }
     let iosDevice = null;
     if ('webkitAudioContext' in window) {
       iosDevice = true
@@ -38,8 +38,10 @@ const SplashPage = () => {
         iosAudio = new Audio(iosSong.src);
       setAudio(iosAudio);
       // !iosDevice && videoReady ? audio.play() : undefined;
-      
-      return videoReady && context.resume() && iosAudio.play();
+
+      // return videoReady && context.resume() && iosAudio.play();
+      return turnOnContext()
+        .then(() => videoReady && iosAudio.play());
     }
 
   }
@@ -68,7 +70,7 @@ const SplashPage = () => {
           videoReady={videoReady}
           splashContext={splashContext}
           splashAudio={audio}
-          // iosButton={iosButton}
+        // iosButton={iosButton}
         />}
       </ErrorHandler>
       {console.log("iosDevice: " + iosDevice)}
