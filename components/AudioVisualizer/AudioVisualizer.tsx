@@ -3,7 +3,7 @@ import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.modu
 import React, { useEffect, useRef } from 'react';
 //{ splash }
 
-const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio, iosButton }) => {
+const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) => {
   const
     canvasRef = useRef(null),
     buttonRef = useRef(null),
@@ -13,14 +13,14 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio, io
     const
       song = songRef.current,
       context = splashContext;
-    const turnOnContext = async () => {
-      context.state === "suspended" ? context.resume() : null;
-    }
-    if(iosDevice) {
-      alert("CONTEXT 1: " + context.state);
-      turnOnContext()
-      .then(() => alert("CONTEXT 2: " + context.state))
-    } 
+    // const turnOnContext = async () => {
+    //   context.state === "suspended" ? context.resume() : null;
+    // }
+    // if(iosDevice) {
+    //   alert("CONTEXT 1: " + context.state);
+    //   turnOnContext()
+    //   .then(() => alert("CONTEXT 2: " + context.state))
+    // } 
 
     let audio = null;
     iosDevice ? audio = splashAudio : audio = new Audio(song.src);
@@ -88,11 +88,9 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio, io
       }
     }
     renderFrame();
-    turnOnContext()
-    .then(() => {
-      videoReady ? audio.play() : undefined;
-    })
-    setTimeout(() => alert("CONTEXT 3: " + context.state), 10000)
+    !iosDevice && videoReady ? audio.play() : undefined;
+
+    setTimeout(() => alert("CONTEXT 4: " + context.state), 10000)
   };
 
 
