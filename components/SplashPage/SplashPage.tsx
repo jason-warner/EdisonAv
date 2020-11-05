@@ -65,7 +65,7 @@ const SplashPage = () => {
         iosAudio = new Audio(iosSong.src);
       setAudio(iosAudio);
       // !iosDevice && videoReady ? audio.play() : undefined;
-      return iosAudio.play();
+      return context.resume() && iosAudio.play();
     }
   }
   // videoReady && alert("video ready");
