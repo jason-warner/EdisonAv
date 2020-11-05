@@ -28,6 +28,8 @@ const SplashPage = () => {
   };
   
   const onReady = (Event: { target: any }) => {
+    Event.target.playVideo()
+    setTimeout(() => Event.target.pauseVideo(), 100);
     // access to player in all event handlers via event.target
     setVideoReady(true);
     // splash && Event.target.playVideo()
@@ -65,7 +67,7 @@ const SplashPage = () => {
         iosAudio = new Audio(iosSong.src);
       setAudio(iosAudio);
       // !iosDevice && videoReady ? audio.play() : undefined;
-      return getVid ? context.resume() && iosAudio.play() : undefined;
+      return context.resume() && iosAudio.play();
     }
   }
   // videoReady && alert("video ready");
