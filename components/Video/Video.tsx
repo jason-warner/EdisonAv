@@ -1,10 +1,11 @@
 import styles from '../../styles/components/Video/Video.module.css';
-// import { useState, useRef } from 'react';
+// import useEffect from 'react';
 // import { useRef, useState } from 'react';
 import YouTube from 'react-youtube';
+import { useEffect } from 'react';
 
 // splashButton,
-const Video = ({ iosDevice, setVideoReady }) => {
+const Video = ({ iosDevice, setVideoReady, splash }) => {
     let ios = iosDevice;
     const
         // [button, setButton] = useState(null),
@@ -20,16 +21,11 @@ const Video = ({ iosDevice, setVideoReady }) => {
 
     const onReady = (Event: { target: any }) => {
         // access to player in all event handlers via event.target
-        Event.target.playVideo();
-        // playVid(Event);
-    }
-    // const playVid = (Event: { target: any }) => {
-    //     const button = buttonRef.current;
-    //     setButton(button);
-    //     button.onclick = () => Event.target.playVideo();
-    // };
-    const onPlay = () => {
         setVideoReady(true);
+        Event.target.playVideo()
+    }
+    const onPlay = () => {
+        // setVideoReady(true);
     }
 
 

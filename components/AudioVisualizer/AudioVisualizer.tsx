@@ -2,8 +2,8 @@
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
 import React, { useEffect, useRef } from 'react';
 //{ splash }
-
-const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) => {
+//videoReady
+const AudioVisualizer = ({ iosDevice, getVid, splashContext, splashAudio }) => {
   const
     canvasRef = useRef(null),
     buttonRef = useRef(null),
@@ -88,8 +88,8 @@ const AudioVisualizer = ({ iosDevice, videoReady, splashContext, splashAudio }) 
       }
     }
     renderFrame();
-    !iosDevice && videoReady ? audio.play() : undefined;
-    setTimeout(() => alert("CONTEXT 4: " + context.state), 10000)
+    !iosDevice && getVid ? audio.play() : undefined;
+    // setTimeout(() => alert("CONTEXT 4: " + context.state), 10000)
   };
 
 

@@ -1,3 +1,77 @@
+/* SPINNER START */
+
+.loaderPage {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 4;
+  background-color: black;
+}
+.showThePage {
+  display: none;
+}
+
+.wrapper {
+  --simple_load_spinner-size:      64px;
+  --simple_load_spinner-thickness: 5px;
+  
+  --simple_load_spinner-bg-color: rgba(255, 71, 0, 1);
+  --simple_load_spinner-fg-color: black;
+  
+  --simple_load_spinner-anim-delay:           initial;
+  --simple_load_spinner-anim-duration:        1s;
+  --simple_load_spinner-anim-direction:       initial;
+  --simple_load_spinner-anim-fill-mode:       initial;
+  --simple_load_spinner-anim-iteration-count: infinite;
+  --simple_load_spinner-anim-play-state:      initial;
+  --simple_load_spinner-anim-timing-function: linear;
+  
+  --simple_load_spinner-transform-deg: 315deg;
+}
+
+.simple_load_spinner {
+  display:            inline-block;
+  position:           relative;
+  width:              var(--simple_load_spinner-size);
+  height:             var(--simple_load_spinner-size);
+  border:             var(--simple_load_spinner-thickness) solid var(--simple_load_spinner-bg-color);
+  border-right-color: var(--simple_load_spinner-fg-color);
+  border-radius:      100%;
+  box-sizing:         border-box;
+  transform:          rotate(-45deg);
+  
+  animation-name:            simple_load_spinner;
+  animation-delay:           var(--simple_load_spinner-anim-delay);
+  animation-direction:       var(--simple_load_spinner-anim-direction);
+  animation-duration:        var(--simple_load_spinner-anim-duration);
+  animation-fill-mode:       var(--simple_load_spinner-anim-fill-mode);
+  animation-iteration-count: var(--simple_load_spinner-anim-iteration-count);
+  animation-play-state:      var(--simple_load_spinner-anim-play-state);
+  animation-timing-function: var(--simple_load_spinner-anim-timing-function);
+}
+
+@keyframes simple_load_spinner {
+  100% {
+    transform: rotate(var(--simple_load_spinner-transform-deg));
+  }
+}
+
+.wrapper {
+  --_postion: calc(var(--simple_load_spinner-size) / 2);
+  position: absolute;
+  top:      calc(50% - var(--_postion));
+  left:     calc(50% - var(--_postion));
+  z-index: 5;
+}
+
+
+
+/* SPINNER END */
+
+
+
+
+
 .splashPage {
   height: 100vh;
   width: 100vw;
