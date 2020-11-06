@@ -31,12 +31,12 @@ const SplashPage = () => {
     if ('webkitAudioContext' in window) {
       iosDevice = true
       setDevice(iosDevice);
-      const
-        iosSong = songRef.current,
-        iosAudio = new Audio(iosSong.src);
-      setAudio(iosAudio);
+      // const
+      //   iosSong = songRef.current,
+      //   iosAudio = new Audio(iosSong.src);
+      // setAudio(iosAudio);
       // return iosDevice && getVid ? iosAudio.play() : undefined;
-      return context.resume() && setTimeout(() => iosAudio.play(), 1000);
+      // return context.resume() && setTimeout(() => iosAudio.play(), 1000);
 
     }
   }
@@ -46,7 +46,14 @@ const SplashPage = () => {
     const iosPlayVid = () => {
       button = buttonRef.current
       setButton(button);
-      button.onclick = () => (Event.target.playVideo());
+      const
+        iosSong = songRef.current,
+        iosAudio = new Audio(iosSong.src);
+      setAudio(iosAudio);
+      button.onclick = () => {
+        Event.target.playVideo();
+        iosDevice && iosAudio.play();
+      };
     }
     return iosPlayVid()
   };
