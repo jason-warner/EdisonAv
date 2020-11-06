@@ -62,7 +62,14 @@ const SplashPage = () => {
         iosSong = songRef.current,
         iosAudio = new Audio(iosSong.src);
       setAudio(iosAudio);
-      getVid && context.resume() && iosAudio.play();
+      let button = null;
+      const iosPlayVid = () => {
+        button = buttonRef.current
+        setButton(button);
+        getVid && button.onclick(() => context.resume() && iosAudio.play());
+      }
+      return iosPlayVid()
+
       // return context.resume() && setTimeout(() => iosAudio.play(), 1000);
     }
   }, [getVid])
