@@ -53,7 +53,7 @@ const SplashPage = () => {
   return (
     <>
       <div className={styles.loaderPage + showThePage}>
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper + showThePage}>
           <div className={styles.simple_load_spinner + showThePage}></div>
         </div>
       </div>
