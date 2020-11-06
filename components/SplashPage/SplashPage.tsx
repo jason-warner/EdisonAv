@@ -4,7 +4,8 @@ import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 import React from 'react';
 // import Video from '../Video/Video';
-import YouTube from 'react-youtube';
+// import YouTube from 'react-youtube';
+import Video from '../Video/Video';
 
 const SplashPage = () => {
   const
@@ -14,43 +15,11 @@ const SplashPage = () => {
     [iosDevice, setDevice] = useState(null),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
-    [button, setButton] = useState(null),
-    unsplash = ` ${splash && styles.unSplash}`,
+    [,setButton] = useState(null),
     songRef = useRef(null),
-    buttonRef = useRef(null);
-  const opts = {
-    playerVars: {
-      mute: 1 as 1,
-      controls: 0 as 0,
-      enablejsapi: 1 as 1,
-      playsinline: 1 as 1
-    }
-  };
-  
-  const onReady = (Event: { target: any }) => {
-    Event.target.playVideo()
-    setTimeout(() => Event.target.pauseVideo(), 100);
-    // access to player in all event handlers via event.target
-    setVideoReady(true);
-    // splash && Event.target.playVideo()
-    // setTimeout(() => Event.target.playVideo(), 5000);
-    playVid(Event);
+    buttonRef = useRef(null),
+    unsplash = ` ${splash && styles.unSplash}`;
 
-  }
-
-  const playVid = (Event: { target: any }) => {
-    let button = null;
-    const iosPlayVid = () => {
-      button = buttonRef.current
-      setButton(button);
-      button.onclick = () => Event.target.playVideo();
-    }
-   return iosPlayVid()
-  };
-  const onPlay = () => {
-    // setVideoReady(true);
-    setdaVid(true);
-  }
   const splashButton = () => {
     splashState(!splash);
     let context = null;
@@ -72,6 +41,16 @@ const SplashPage = () => {
   }
   // videoReady && alert("video ready");
   const showThePage = ` ${videoReady && styles.showThePage}`
+
+  const playVid = (Event: { target: any }) => {
+    let button = null;
+    const iosPlayVid = () => {
+      button = buttonRef.current
+      setButton(button);
+      button.onclick = () => Event.target.playVideo();
+    }
+    return iosPlayVid()
+  };
   return (
     <>
       <div className={styles.loaderPage + showThePage}>
@@ -93,39 +72,61 @@ const SplashPage = () => {
         </button>
       </div>
       <ErrorHandler>
-        {/* {splash &&  */}
-        {/* <Video
-          splash={splash}
-          iosDevice={iosDevice}
-          setVideoReady={setVideoReady}
-        />
-        } */}
+
         <main className={styles.vidContainer}>
-          {/* <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
-                Play Video
-            </button> */}
-          <YouTube
-            className={styles.format}
-            videoId={"N31pvPzqJAY"}
-            opts={opts}
-            onReady={onReady}
-            onPlay={onPlay}
+          <Video
+            setVideoReady={setVideoReady}
+            setdaVid={setdaVid}
+            playVid={playVid}
           />
 
         </main>
-        {splash && <AudioVisualizer
-          iosDevice={iosDevice}
-          // videoReady={videoReady}
-          getVid={getVid}
-          splashContext={splashContext}
-          splashAudio={audio}
-        // iosButton={iosButton}
-        />}
+        {splash &&
+          <AudioVisualizer
+            iosDevice={iosDevice}
+            getVid={getVid}
+            splashContext={splashContext}
+            splashAudio={audio}
+          />
+        }
       </ErrorHandler>
-      {console.log("iosDevice: " + iosDevice)}
     </>
 
   );
 }
 
 export default SplashPage;
+
+{/* <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
+                Play Video
+            </button> */}
+{/* <YouTube
+            className={styles.format}
+            videoId={"N31pvPzqJAY"}
+            opts={opts}
+            onReady={onReady}
+            onPlay={onPlay}
+          /> */}
+
+  // const opts = {
+  //   playerVars: {
+  //     mute: 1 as 1,
+  //     controls: 0 as 0,
+  //     enablejsapi: 1 as 1,
+  //     playsinline: 1 as 1
+  //   }
+  // };
+
+  // const onReady = (Event: { target: any }) => {
+  //   Event.target.playVideo()
+  //   setTimeout(() => Event.target.pauseVideo(), 100);
+  //   setVideoReady(true);
+  //   playVid(Event);
+
+  // }
+
+
+  // const onPlay = () => {
+  //   // setVideoReady(true);
+  //   setdaVid(true);
+  // }
