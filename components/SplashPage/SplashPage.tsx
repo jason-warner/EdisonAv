@@ -1,5 +1,5 @@
 import styles from '../../styles/components/SplashPage/SplashPage.module.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 import React from 'react';
@@ -15,30 +15,25 @@ const SplashPage = () => {
     [iosDevice, setDevice] = useState(null),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
-    [,setButton] = useState(null),
+    [, setButton] = useState(null),
     songRef = useRef(null),
     buttonRef = useRef(null),
     unsplash = ` ${splash && styles.unSplash}`;
 
-  const splashButton = () => {
+  const splashButton = (e) => {
+    e.preventDefault();
     splashState(!splash);
-    let context = null;
-    'webkitAudioContext' in window ?
-      context = new window.webkitAudioContext
-      : context = new window.AudioContext;
-    setSplashConext(context);
-    let iosDevice = null;
-    if ('webkitAudioContext' in window) {
-      iosDevice = true
-      setDevice(iosDevice);
-      const
-        iosSong = songRef.current,
-        iosAudio = new Audio(iosSong.src);
-      setAudio(iosAudio);
-      return iosDevice && getVid ? iosAudio.play() : undefined;
-      // return context.resume() && setTimeout(() => iosAudio.play(), 1000);
-
-    }
+    // let iosDevice = null;
+    // if ('webkitAudioContext' in window) {
+    //   iosDevice = true
+    //   setDevice(iosDevice);
+    //   const
+    //     iosSong = songRef.current,
+    //     iosAudio = new Audio(iosSong.src);
+    //   setAudio(iosAudio);
+    //   return iosDevice && getVid ? iosAudio.play() : undefined;
+    //   // return context.resume() && setTimeout(() => iosAudio.play(), 1000);
+    // }
   }
   // videoReady && alert("video ready");
   const showThePage = ` ${videoReady && styles.showThePage}`
@@ -52,6 +47,25 @@ const SplashPage = () => {
     }
     return iosPlayVid()
   };
+
+  useEffect(() => {
+    let context = null;
+    'webkitAudioContext' in window ?
+      context = new window.webkitAudioContext
+      : context = new window.AudioContext;
+    setSplashConext(context);
+    let iosDevice = null;
+    if ('webkitAudioContext' in window) {
+      iosDevice = true
+      setDevice(iosDevice);
+      const
+        iosSong = songRef.current,
+        iosAudio = new Audio(iosSong.src);
+      setAudio(iosAudio);
+      getVid && context.resume() && iosAudio.play();
+      // return context.resume() && setTimeout(() => iosAudio.play(), 1000);
+    }
+  }, [getVid])
   return (
     <>
       <div className={styles.loaderPage + showThePage}>
@@ -63,7 +77,7 @@ const SplashPage = () => {
       <div className={styles.splashPage + unsplash}>
         <h1 className={styles.title}>Edison Av</h1>
         <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
-        <button ref={buttonRef} className={styles.splashButton} onClick={() => splashButton()} >
+        <button ref={buttonRef} className={styles.splashButton} onClick={splashButton} >
           ENTER
           {/* {iosDevice && */}
           <audio preload="auto" className={styles.audio}>
