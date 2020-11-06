@@ -18,6 +18,8 @@ const SplashPage = () => {
     buttonRef = useRef(null),
     unsplash = ` ${splash && styles.unSplash}`;
 
+  const showThePage = ` ${videoReady && styles.showThePage}`
+
   const splashButton = () => {
     splashState(!splash);
     let context = null;
@@ -38,7 +40,6 @@ const SplashPage = () => {
 
     }
   }
-  const showThePage = ` ${videoReady && styles.showThePage}`
 
   const playVid = (Event: { target: any }) => {
     let button = null;
@@ -96,14 +97,14 @@ const SplashPage = () => {
 export default SplashPage;
 
 
-  // useEffect(() => {
-  //   const iosPlay = () => {
-  //     const
-  //       iosSong = songRef.current,
-  //       iosAudio = new Audio(iosSong.src);
-  //     return getVid && iosAudio.play();
-  //   }
-  // }, [getVid])
+// useEffect(() => {
+//   const iosPlay = () => {
+//     const
+//       iosSong = songRef.current,
+//       iosAudio = new Audio(iosSong.src);
+//     return getVid && iosAudio.play();
+//   }
+// }, [getVid])
 
 
 

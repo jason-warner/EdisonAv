@@ -12,10 +12,9 @@ const Video = ({ setVideoReady, setdaVid, playVid }) => {
     };
 
     const onReady = (Event: { target: any }) => {
-        Event.target.playVideo()
-        setTimeout(() => Event.target.pauseVideo(), 100);
         setVideoReady(true);
         playVid(Event);
+        Event.target.playVideo();
     }
 
     const onPlay = () => {
