@@ -13,11 +13,15 @@ const Video = ({ setVideoReady, setdaVid, playVid }) => {
 
     const onReady = (Event: { target: any }) => {
         setVideoReady(true);
-        playVid(Event);
+        return playVid(Event);
     }
 
     const onPlay = () => {
-        setdaVid(true);
+        return setdaVid(true);
+    }
+
+    const onStateChange = (Event: { target: any }) => {
+        console.log(Event.target.getPlayerState())
     }
 
     return (
@@ -29,6 +33,7 @@ const Video = ({ setVideoReady, setdaVid, playVid }) => {
                 opts={opts}
                 onReady={onReady}
                 onPlay={onPlay}
+                onStateChange={onStateChange}
             />
 
         </main>
