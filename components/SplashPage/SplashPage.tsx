@@ -3,8 +3,6 @@ import { useState, useRef, useEffect } from 'react';
 import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 import React from 'react';
-// import Video from '../Video/Video';
-// import YouTube from 'react-youtube';
 import Video from '../Video/Video';
 
 const SplashPage = () => {
@@ -20,35 +18,8 @@ const SplashPage = () => {
     buttonRef = useRef(null),
     unsplash = ` ${splash && styles.unSplash}`;
 
-  const splashButton = (e) => {
-    e.preventDefault();
+  const splashButton = () => {
     splashState(!splash);
-    // let iosDevice = null;
-    // if ('webkitAudioContext' in window) {
-    //   iosDevice = true
-    //   setDevice(iosDevice);
-    //   const
-    //     iosSong = songRef.current,
-    //     iosAudio = new Audio(iosSong.src);
-    //   setAudio(iosAudio);
-    //   return iosDevice && getVid ? iosAudio.play() : undefined;
-    //   // return context.resume() && setTimeout(() => iosAudio.play(), 1000);
-    // }
-  }
-  // videoReady && alert("video ready");
-  const showThePage = ` ${videoReady && styles.showThePage}`
-
-  const playVid = (Event: { target: any }) => {
-    let button = null;
-    const iosPlayVid = () => {
-      button = buttonRef.current
-      setButton(button);
-      button.onclick = () => Event.target.playVideo();
-    }
-    return iosPlayVid()
-  };
-
-  useEffect(() => {
     let context = null;
     'webkitAudioContext' in window ?
       context = new window.webkitAudioContext
@@ -62,17 +33,22 @@ const SplashPage = () => {
         iosSong = songRef.current,
         iosAudio = new Audio(iosSong.src);
       setAudio(iosAudio);
-      let button = null;
-      const iosPlayVid = () => {
-        button = buttonRef.current
-        setButton(button);
-        getVid && button.onclick(() => context.resume() && iosAudio.play());
-      }
-      return iosPlayVid()
+      // return iosDevice && getVid ? iosAudio.play() : undefined;
+      return context.resume() && iosAudio.play();
 
-      // return context.resume() && setTimeout(() => iosAudio.play(), 1000);
     }
-  }, [getVid])
+  }
+  const showThePage = ` ${videoReady && styles.showThePage}`
+
+  const playVid = (Event: { target: any }) => {
+    let button = null;
+    const iosPlayVid = () => {
+      button = buttonRef.current
+      setButton(button);
+      button.onclick = () => Event.target.playVideo();
+    }
+    return iosPlayVid()
+  };
   return (
     <>
       <div className={styles.loaderPage + showThePage}>
@@ -118,6 +94,22 @@ const SplashPage = () => {
 }
 
 export default SplashPage;
+
+
+  // useEffect(() => {
+  //   const iosPlay = () => {
+  //     const
+  //       iosSong = songRef.current,
+  //       iosAudio = new Audio(iosSong.src);
+  //     return getVid && iosAudio.play();
+  //   }
+  // }, [getVid])
+
+
+
+
+
+
 
 {/* <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
                 Play Video
