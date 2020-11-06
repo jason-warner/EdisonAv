@@ -14,7 +14,6 @@ const Video = ({ setVideoReady, setdaVid, playVid }) => {
     const onReady = (Event: { target: any }) => {
         setVideoReady(true);
         playVid(Event);
-        Event.target.playVideo();
     }
 
     const onPlay = () => {

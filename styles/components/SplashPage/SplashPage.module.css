@@ -104,6 +104,7 @@
   background: white;
   color: black;
   border-color: black;
+  cursor: pointer;
 
 }
 .splashButton:hover {
