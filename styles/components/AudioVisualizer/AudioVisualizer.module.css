@@ -7,12 +7,12 @@
     z-index: 1;
   }
   
-.audio {
+/* .audio {
     position: fixed;
     left: 10px;
     bottom: 10px;
     width: calc(100% - 20px);
-  }
+  } */
 
 .contextButton {
   position: absolute;
