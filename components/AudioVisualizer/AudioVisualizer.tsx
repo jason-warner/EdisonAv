@@ -13,6 +13,7 @@ const AudioVisualizer = ({ iosDevice, getVid, splashContext, splashAudio }) => {
     const
       song = songRef.current,
       context = splashContext;
+
     // const turnOnContext = async () => {
     //   context.state === "suspended" ? context.resume() : null;
     // }
@@ -102,14 +103,14 @@ const AudioVisualizer = ({ iosDevice, getVid, splashContext, splashAudio }) => {
   });
   return (
     <>
-      <div className={styles.content}>
-        <button className={styles.contextButton} ref={buttonRef}></button>
-        <canvas ref={canvasRef} className={styles.canvas}></canvas>
-        <audio preload="auto" className={styles.audio}>
-          <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
-        </audio>
-      </div>
+      <button className={styles.contextButton} ref={buttonRef}></button>
+      <canvas ref={canvasRef} className={styles.canvas}></canvas>
+      <audio preload="auto" className={styles.audio}>
+        <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
+      </audio>
     </>
   )
 }
+
+
 export default AudioVisualizer;
