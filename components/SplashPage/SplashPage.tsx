@@ -36,8 +36,7 @@ const SplashPage = () => {
         iosAudio = new Audio(iosSong.src);
       setAudio(iosAudio);
       // return iosDevice && getVid ? iosAudio.play() : undefined;
-      return context.resume() && iosAudio.play();
-
+      return context.resume() && setTimeout(() => iosAudio.play(), 1000);
     }
   }
 
@@ -46,15 +45,15 @@ const SplashPage = () => {
     const iosPlayVid = () => {
       button = buttonRef.current
       setButton(button);
-      button.onclick = () => (Event.target.playVideo());
+      button.onclick = () => Event.target.playVideo();
     }
     return iosPlayVid()
   };
   return (
     <>
       <div className={styles.loaderPage + showThePage}>
-        <div className={styles.wrapper + showThePage}>
-          <div className={styles.simple_load_spinner + showThePage}></div>
+        <div className={styles.wrapper}>
+          <div className={styles.simple_load_spinner}></div>
         </div>
       </div>
 
