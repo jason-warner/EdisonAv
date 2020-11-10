@@ -103,8 +103,13 @@ const AudioVisualizer = ({ iosDevice, getVid, splashContext, splashAudio }) => {
   });
   return (
     <>
-      <button className={styles.contextButton} ref={buttonRef}></button>
-      <canvas ref={canvasRef} className={styles.canvas}></canvas>
+      <main className={styles.main}>
+        <button className={styles.contextButton} ref={buttonRef}>
+          <canvas ref={canvasRef} className={styles.canvas}></canvas>
+        </button>
+      </main>
+
+
       <audio preload="auto" className={styles.audio}>
         <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
       </audio>
