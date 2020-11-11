@@ -11,18 +11,19 @@ const Video = ({ setVideoReady, setdaVid, playVid }) => {
         }
     };
 
-    const onReady = (Event: { target: any }) => {
-        setVideoReady(true);
-        return playVid(Event);
-    }
+    const
+        onReady = (Event: { target: any }) => {
+            setVideoReady(true);
+            return playVid(Event);
+        },
 
-    const onPlay = () => {
-        return setdaVid(true);
-    }
+        onPlay = () => {
+            return setdaVid(true);
+        },
 
-    const onStateChange = (Event: { target: any }) => {
-        console.log(Event.target.getPlayerState())
-    }
+        onStateChange = (Event: { target: any }) => {
+            console.log(Event.target.getPlayerState())
+        };
 
     return (
         <main className={styles.vidContainer}>

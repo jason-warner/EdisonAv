@@ -22,11 +22,13 @@ const SplashPage = () => {
 
   const splashButton = () => {
     splashState(!splash);
+
     let context = null;
     'webkitAudioContext' in window ?
       context = new window.webkitAudioContext
       : context = new window.AudioContext;
     setSplashConext(context);
+
     let iosDevice = null;
     if ('webkitAudioContext' in window) {
       iosDevice = true
@@ -47,7 +49,7 @@ const SplashPage = () => {
       setButton(button);
       button.onclick = () => Event.target.playVideo();
     }
-    return iosPlayVid()
+    return iosPlayVid();
   };
   return (
     <>
