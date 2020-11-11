@@ -1,9 +1,11 @@
 import styles from '../../styles/components/SplashPage/SplashPage.module.css';
-import { useState, useRef, useEffect } from 'react';
 import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
-import React from 'react';
+import { useState, useRef } from 'react';
+import Navbar from '../Navbar/Navbar';
 import Video from '../Video/Video';
+import React from 'react';
+
 
 const SplashPage = () => {
   const
@@ -71,8 +73,12 @@ const SplashPage = () => {
           {/* } */}
         </button>
       </div>
-      <ErrorHandler>
+      <Navbar 
+        audio={audio}
+        context={splashContext}
 
+      />
+      <ErrorHandler>
         <main className={styles.vidContainer}>
           <Video
             setVideoReady={setVideoReady}
@@ -90,8 +96,8 @@ const SplashPage = () => {
           />
         }
       </ErrorHandler>
+      {console.log(audio)}
     </>
-
   );
 }
 

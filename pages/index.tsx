@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Navbar from '../components/Navbar/Navbar';
 import SplashPage from '../components/SplashPage/SplashPage';
 import React from 'react';
 
@@ -11,8 +10,6 @@ export default function Home() {
         <link rel="icon" href="/ediHome.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
       </Head>
-
-      <Navbar />
       
       <SplashPage />
       

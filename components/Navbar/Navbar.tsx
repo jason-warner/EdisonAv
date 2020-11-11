@@ -3,13 +3,16 @@ import MenuItems from './MenuItems';
 import { useState, Fragment } from 'react';
 import Link from 'next/link';
 
-const Navbar = () => {
+const Navbar = ({context}) => {
     const [buttonClicked, buttonIs] = useState(false),
         menuChange = ` ${buttonClicked && navStyles.change}`,
         mobileNav = ` ${buttonClicked && navStyles.mobileNav}`;
+    const closeContext = () => {
+        context? context.close() : null;
+    }
 
     return (
-        <nav className={navStyles.NavbarItems + mobileNav}>
+        <nav className={navStyles.NavbarItems + mobileNav} onClick={closeContext}>
             <ul className={navStyles.listGroup + mobileNav} >
                 <div className={navStyles.ediHome}>
                     <Link href="/">
