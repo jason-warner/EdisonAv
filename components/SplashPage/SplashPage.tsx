@@ -74,7 +74,6 @@ const SplashPage = () => {
         </button>
       </div>
       <Navbar 
-        audio={audio}
         context={splashContext}
 
       />
