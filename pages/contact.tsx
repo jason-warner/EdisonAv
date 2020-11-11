@@ -5,7 +5,7 @@ const Contact = () => {
     const [buttonClicked, buttonIs] = useState(false);
     return(
         <div>
-            <Navbar/>
+            <Navbar context={null} />
             <main className={styles.navMargin}>
                 <h1>Contact</h1>
                 <button onClick={()=> buttonIs(!buttonClicked)}>
