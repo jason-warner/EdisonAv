@@ -9,9 +9,9 @@ const Navbar = ({ context }) => {
         menuChange = ` ${buttonClicked && navStyles.change}`,
         mobileNav = ` ${buttonClicked && navStyles.mobileNav}`;
     const closeContext = () => {
-        alert('clicked' + context.state);
-        context ? context.close()
-        .then(() => alert("context: " + context.state)) : null;
+        // alert('clicked: ' + context.state);
+        context ? context.close() : null;
+        // .then(() => alert("context: " + context.state)) : null;
     }
 
     return (

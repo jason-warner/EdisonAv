@@ -15,22 +15,24 @@ const SplashPage = () => {
     [iosDevice, setDevice] = useState(null),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
+    // [regAudio, setRegAudio] = useState(null),
     [, setButton] = useState(null),
     songRef = useRef(null),
-    buttonRef = useRef(null),
-    unsplash = ` ${splash && styles.unSplash}`;
+    buttonRef = useRef(null);
 
-  const showThePage = ` ${videoReady && styles.showThePage}`
+  const unsplash = ` ${splash && styles.unSplash}`;
+
+  const showThePage = ` ${videoReady && styles.showThePage}`;
 
   const splashButton = () => {
-    splashState(!splash);
-
     let context = null;
     'webkitAudioContext' in window ?
       context = new window.webkitAudioContext
       : context = new window.AudioContext;
     setSplashConext(context);
 
+    splashState(!splash);
+    
     let iosDevice = null;
     if ('webkitAudioContext' in window) {
       iosDevice = true
@@ -42,6 +44,7 @@ const SplashPage = () => {
       // return iosDevice && getVid ? iosAudio.play() : undefined;
       return context.resume() && setTimeout(() => iosAudio.play(), 1000);
     }
+
   }
 
   const playVid = (Event: { target: any }) => {
@@ -73,10 +76,9 @@ const SplashPage = () => {
           {/* } */}
         </button>
       </div>
-      <Navbar 
-        context={splashContext}
 
-      />
+      { splash && <Navbar context={splashContext} />}
+
       <ErrorHandler>
         <main className={styles.vidContainer}>
           <Video
