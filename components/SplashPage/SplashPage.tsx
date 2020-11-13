@@ -34,13 +34,14 @@ const SplashPage = () => {
     splashState(!splash);
     
     let iosDevice = null;
-    if ('webkitAudioContext' in window) {
-      iosDevice = true
-      setDevice(iosDevice);
-      const
+    const
         iosSong = songRef.current,
         iosAudio = new Audio(iosSong.src);
       setAudio(iosAudio);
+    if ('webkitAudioContext' in window) {
+      iosDevice = true
+      setDevice(iosDevice);
+      
       // return iosDevice && getVid ? iosAudio.play() : undefined;
       return context.resume() && setTimeout(() => iosAudio.play(), 1000);
     }
@@ -77,7 +78,11 @@ const SplashPage = () => {
         </button>
       </div>
 
-      { splash && <Navbar context={splashContext} />}
+      { splash && 
+        <Navbar 
+        context={splashContext}
+        audio= {audio} />
+      }
 
       <ErrorHandler>
         <main className={styles.vidContainer}>

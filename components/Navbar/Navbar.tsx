@@ -3,13 +3,15 @@ import MenuItems from './MenuItems';
 import { useState, Fragment } from 'react';
 import Link from 'next/link';
 
-const Navbar = ({ context }) => {
+const Navbar = ({ context, audio }) => {
     const
         [buttonClicked, buttonIs] = useState(false),
         menuChange = ` ${buttonClicked && navStyles.change}`,
         mobileNav = ` ${buttonClicked && navStyles.mobileNav}`;
     const closeContext = () => {
         // alert('clicked: ' + context.state);
+        audio ? audio.pause() : null;
+        // .then(() => context.close())
         context ? context.close() : null;
         // .then(() => alert("context: " + context.state)) : null;
     }
