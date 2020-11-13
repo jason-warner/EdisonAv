@@ -1,0 +1,37 @@
+.music {
+    overflow: scroll;
+}
+.title {
+    text-align: center;
+    color: white;
+}
+
+.main {
+    margin-top: 64px;
+    text-emphasis: center;
+    height: 100vh;
+    /* overflow: scroll; */
+}
+
+
+.albumGrid {
+    height: 100%;
+}
+.albumGrid > ul {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 1rem;
+}
+
+.albumGrid > ul > li {
+    width: 320px;
+    height: 420px;
+    display: block;
+    text-align: center;
+}
+
+.tracklist {
+    display: block;
+    margin: 0 auto;
+}

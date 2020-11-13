@@ -12,7 +12,7 @@ const Navbar = ({ context, audio }) => {
         // alert('clicked: ' + context.state);
         audio ? audio.pause() : null;
         // .then(() => context.close())
-        context ? context.close() : null;
+        context ? context.suspend() : null;
         // .then(() => alert("context: " + context.state)) : null;
     }
 

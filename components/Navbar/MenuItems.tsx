@@ -1,10 +1,5 @@
 const MenuItems = [
     {
-        title: 'Schedule',
-        url: 'schedule',
-        cName: 'nav-links'
-    },
-    {
         title: 'Music',
         url: 'music',
         cName: 'nav-links'
@@ -19,7 +14,13 @@ const MenuItems = [
         title: 'Support',
         url: 'support',
         cName: 'nav-links'
-    }
+    },
 ]
 
 export default MenuItems;
+
+// {
+//     title: 'Schedule',
+//     url: 'schedule',
+//     cName: 'nav-links'
+// },
