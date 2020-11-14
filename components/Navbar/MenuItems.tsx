@@ -11,6 +11,11 @@ const MenuItems = [
         cName: 'nav-links'
     },
     {
+        title: 'Merch',
+        url: 'merch',
+        cName: 'nav-links'
+    },
+    {
         title: 'Support',
         url: 'support',
         cName: 'nav-links'
@@ -19,8 +24,3 @@ const MenuItems = [
 
 export default MenuItems;
 
-// {
-//     title: 'Schedule',
-//     url: 'schedule',
-//     cName: 'nav-links'
-// },

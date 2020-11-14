@@ -1,8 +1,7 @@
-// Accreditation goes to Nick Jones. His original vanilla source: https://codepen.io/nfj525/pen/rVBaab
+// Accreditation goes to Nick Jones, his original vanilla source: https://codepen.io/nfj525/pen/rVBaab
 import styles from '../../styles/components/AudioVisualizer/AudioVisualizer.module.css';
 import React, { useEffect, useRef } from 'react';
-//{ splash }
-//videoReady
+
 const AudioVisualizer = ({ iosDevice, getVid, splashContext, splashAudio }) => {
   const
     canvasRef = useRef(null),
@@ -13,15 +12,6 @@ const AudioVisualizer = ({ iosDevice, getVid, splashContext, splashAudio }) => {
     const
       song = songRef.current,
       context = splashContext;
-
-    // const turnOnContext = async () => {
-    //   context.state === "suspended" ? context.resume() : null;
-    // }
-    // if(iosDevice) {
-    //   alert("CONTEXT 1: " + context.state);
-    //   turnOnContext()
-    //   .then(() => alert("CONTEXT 2: " + context.state))
-    // } 
 
     let audio = null;
     iosDevice ? audio = splashAudio : audio = new Audio(song.src);

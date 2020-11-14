@@ -9,11 +9,8 @@ const Navbar = ({ context, audio }) => {
         menuChange = ` ${buttonClicked && navStyles.change}`,
         mobileNav = ` ${buttonClicked && navStyles.mobileNav}`;
     const closeContext = () => {
-        // alert('clicked: ' + context.state);
         audio ? audio.pause() : null;
-        // .then(() => context.close())
         context ? context.suspend() : null;
-        // .then(() => alert("context: " + context.state)) : null;
     }
 
     return (

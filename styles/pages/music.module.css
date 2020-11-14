@@ -1,5 +1,5 @@
 .music {
-    overflow: scroll;
+    overflow: hidden hidden;
 }
 .title {
     text-align: center;
@@ -9,19 +9,19 @@
 .main {
     /* margin-top: 64px; */
     text-emphasis: center;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 
 .albumGrid {
     height: 100%;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 .albumGrid > ul {
     height: 100%;
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-gap: 1rem;
     margin: 0 auto;
     /* margin-bottom: 250px; */

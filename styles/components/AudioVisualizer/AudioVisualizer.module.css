@@ -2,6 +2,8 @@
   background: transparent;
   border: none;
   padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .main {
@@ -10,4 +12,10 @@
   left: 0;
   height: calc(100vh - 64px);
   width: 100vw;
+  overflow: hidden hidden;
+}
+
+.canvas {
+  height: 100%;
+  width: 100.4%;
 }
