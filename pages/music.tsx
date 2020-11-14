@@ -32,6 +32,7 @@ const Music = () => {
                                 <a href="https://edisonav.bandcamp.com/album/lucid-dreams">Lucid Dreams by Edison Av</a>
                             </iframe>
                         </li>
+                        
                         <li>
                             <button className={styles.tracklist} onClick={() => buttonIs(!buttonClicked)}>
                                 Tracklist
@@ -45,6 +46,7 @@ const Music = () => {
                                 <a href="https://edisonav.bandcamp.com/album/lucid-dreams">Lucid Dreams by Edison Av</a>
                             </iframe>
                         </li>
+
                         <li>
                             <button className={styles.tracklist} onClick={() => buttonIs(!buttonClicked)}>
                                 Tracklist
@@ -58,6 +60,7 @@ const Music = () => {
                                 <a href="https://edisonav.bandcamp.com/album/lucid-dreams">Lucid Dreams by Edison Av</a>
                             </iframe>
                         </li>
+
                         <li>
                             <button className={styles.tracklist} onClick={() => buttonIs(!buttonClicked)}>
                                 Tracklist
@@ -71,6 +74,7 @@ const Music = () => {
                                 <a href="https://edisonav.bandcamp.com/album/lucid-dreams">Lucid Dreams by Edison Av</a>
                             </iframe>
                         </li>
+
                         <li>
                             <button className={styles.tracklist} onClick={() => buttonIs(!buttonClicked)}>
                                 Tracklist
@@ -84,6 +88,7 @@ const Music = () => {
                                 <a href="https://edisonav.bandcamp.com/album/lucid-dreams">Lucid Dreams by Edison Av</a>
                             </iframe>
                         </li>
+
                         <li>
                             <button className={styles.tracklist} onClick={() => buttonIs(!buttonClicked)}>
                                 Tracklist
