@@ -7,7 +7,7 @@
 }
 
 .main {
-    margin-top: 64px;
+    /* margin-top: 64px; */
     text-emphasis: center;
     height: 100vh;
     /* overflow: scroll; */
@@ -15,23 +15,37 @@
 
 
 .albumGrid {
-    height: 100%;
+    /* height: 100%; */
+    margin-bottom: 250px;
+    box-sizing: border-box;
 }
 .albumGrid > ul {
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 1rem;
+    margin: 0 auto;
+    /* margin-bottom: 250px; */
 }
 
 .albumGrid > ul > li {
-    width: 320px;
-    height: 420px;
+    width: 100%;
+    height: 100%;
     display: block;
     text-align: center;
+    margin: 0 auto;
 }
 
 .tracklist {
     display: block;
     margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .title {
+        margin-top: calc(64px + 0.67em);
+        padding: 10px;
+    }
+
 }
