@@ -34,9 +34,6 @@ const Music = () => {
                             url = urlStart + album + urlMiddle + tracklist + urlEnd;
                             return (
                                 <li key={index} >
-                                    <button key={index} className={styles.tracklist} onClick={() => buttonIs(!buttonClicked)}>
-                                        Tracklist
-                                    </button>
                                     <iframe
                                         className={styles.player1}
                                         src={url}
@@ -44,6 +41,9 @@ const Music = () => {
                                         height={height}
                                     >
                                     </iframe>
+                                    <button key={index} className={styles.tracklist} onClick={() => buttonIs(!buttonClicked)}>
+                                        Tracklist
+                                    </button>
                                 </li>
                             );
                         })}

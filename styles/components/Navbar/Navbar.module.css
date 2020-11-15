@@ -152,7 +152,7 @@
     .listGroup.mobileNav {
         display: grid;
         grid-template-columns: none;
-        grid-template-rows: repeat(6, 1fr);
+        grid-template-rows: repeat(7, 1fr);
         row-gap: 5vh;
 
     }
