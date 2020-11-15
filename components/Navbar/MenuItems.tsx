@@ -6,13 +6,13 @@ const MenuItems = [
 
     },
     {
-        title: 'Contact',
-        url: 'contact',
+        title: 'Merch',
+        url: 'merch',
         cName: 'nav-links'
     },
     {
-        title: 'Merch',
-        url: 'merch',
+        title: 'Contact',
+        url: 'contact',
         cName: 'nav-links'
     },
     {

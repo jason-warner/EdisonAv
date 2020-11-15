@@ -1,21 +1,22 @@
 .music {
     overflow: hidden hidden;
+    background-image: linear-gradient(0deg, #ff8a00,#e52e71,#f84500 );
 }
 .title {
     text-align: center;
     color: white;
+    background: rgba(0,0,0,.5);
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: 10px;
 }
 
 .main {
-    /* margin-top: 64px; */
     text-emphasis: center;
-    /* overflow: scroll; */
 }
-
 
 .albumGrid {
     height: 100%;
-    /* box-sizing: border-box; */
 }
 .albumGrid > ul {
     height: 100%;
@@ -24,8 +25,6 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-gap: 1rem;
     margin: 0 auto;
-    /* margin-bottom: 250px; */
-    /* margin-bottom: 250px; */
 }
 
 .albumGrid > ul > li {
@@ -40,12 +39,16 @@
     display: block;
     margin: 0 auto;
 }
+.player1 {
+    border-radius: 20px;
+}
 
 @media only screen and (max-width: 768px) {
 
     .title {
         margin-top: calc(64px + 0.67em);
         padding: 10px;
+        padding-bottom: 15px;
     }
 
 }
