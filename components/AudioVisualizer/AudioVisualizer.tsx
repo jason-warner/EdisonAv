@@ -24,9 +24,9 @@ const AudioVisualizer = ({ iosDevice, getVid, splashContext, splashAudio }) => {
     const mutePlay = () => {
       context.state === 'running' ?
         context.suspend()
-          .then(() => console.log("changed to : " + context.state))
+          .then(() => audio.pause())
         : context.resume()
-          .then(() => console.log("changed to: " + context.state));
+          .then(() => audio.play());
     }
     muteButton.onclick = () => mutePlay();
 

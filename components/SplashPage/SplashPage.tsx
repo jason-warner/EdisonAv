@@ -45,7 +45,6 @@ const SplashPage = () => {
       // return iosDevice && getVid ? iosAudio.play() : undefined;
       return context.resume() && setTimeout(() => iosAudio.play(), 1000);
     }
-
   }
 
   const playVid = (Event: { target: any }) => {
@@ -102,7 +101,6 @@ const SplashPage = () => {
           />
         }
       </ErrorHandler>
-      {console.log(audio)}
     </>
   );
 }

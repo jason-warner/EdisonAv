@@ -16,10 +16,8 @@
 .wrapper {
   --simple_load_spinner-size:      64px;
   --simple_load_spinner-thickness: 5px;
-  
   --simple_load_spinner-bg-color: rgba(255, 71, 0, 1);
   --simple_load_spinner-fg-color: black;
-  
   --simple_load_spinner-anim-delay:           initial;
   --simple_load_spinner-anim-duration:        1s;
   --simple_load_spinner-anim-direction:       initial;
