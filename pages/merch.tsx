@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar/Navbar';
 import styles from '../styles/pages/merch.module.css';
-import Merchandise from './merchandise';
+import Merchandise from '../components/Merchandise';
 import { useState } from 'react';
 const Schedule = () => {
 const [cartClicked, setCart] = useState(null);
