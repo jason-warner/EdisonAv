@@ -14,8 +14,8 @@ const Navbar = ({ context, audio }) => {
     }
 
     return (
-        <nav className={navStyles.NavbarItems + mobileNav} onClick={closeContext}>
-            <ul className={navStyles.listGroup + mobileNav} >
+        <nav className={navStyles.NavbarItems + mobileNav + menuChange} onClick={closeContext}>
+            <ul className={navStyles.listGroup + mobileNav + menuChange} >
                 <div className={navStyles.ediHome}>
                     <Link href="/">
                         <img className={navStyles.imgEffect1} src="../../ediHome.png" title="Home" alt="Home" />
