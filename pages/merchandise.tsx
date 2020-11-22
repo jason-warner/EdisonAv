@@ -1,4 +1,4 @@
-const merchandise = [
+const Merchandise = [
     {
         title: 'Egg',
         price: '$2.00'
@@ -32,4 +32,4 @@ img: 'https://freesvg.org/img/gitaLink-Blank-T-Shirt-1.png'    }
 
 ]
 
-export default merchandise;
+export default Merchandise;

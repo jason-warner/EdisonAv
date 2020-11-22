@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar/Navbar';
 import styles from '../styles/pages/merch.module.css';
-import merchandise from './merchandise';
+import Merchandise from './merchandise';
 import { useState } from 'react';
 const Schedule = () => {
 const [cartClicked, setCart] = useState(null);
@@ -20,7 +20,7 @@ const handleClick = () => {
             
             <main className={styles.main}>
                 <ul className={styles.grid}>
-                    {merchandise.map((item, index) => {
+                    {Merchandise.map((item, index) => {
                         return (
                             <li key={index}>
                                 <img src={item.img} />

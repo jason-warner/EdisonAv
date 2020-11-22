@@ -3,7 +3,7 @@
 // const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
 
 
-export default () => {
+const Checkout = () => {
     return (
         <div>
             <h1>Checkout</h1>
@@ -14,3 +14,4 @@ export default () => {
         </div>
     )
 }
+export default Checkout;
