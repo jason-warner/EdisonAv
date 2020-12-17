@@ -1,7 +1,7 @@
 import styles from '../../styles/components/SplashPage/SplashPage.module.css';
 import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Video from '../Video/Video';
 import React from 'react';
@@ -15,13 +15,14 @@ const SplashPage = () => {
     [iosDevice, setDevice] = useState(null),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
-    // [regAudio, setRegAudio] = useState(null),
+    [charzarr, updateCharzarr] = useState([]),
     [, setButton] = useState(null),
+    [iterate, setIterator] = useState(null),
     songRef = useRef(null),
-    buttonRef = useRef(null);
+    buttonRef = useRef(null),
+    charRef = useRef(null);
 
   const unsplash = ` ${splash && styles.unSplash}`;
-
   const showThePage = ` ${videoReady && styles.showThePage}`;
 
   const splashButton = () => {
@@ -30,20 +31,18 @@ const SplashPage = () => {
       context = new window.webkitAudioContext
       : context = new window.AudioContext;
     setSplashConext(context);
-
     splashState(!splash);
-    
+
     let iosDevice = null;
     const
-        iosSong = songRef.current,
-        iosAudio = new Audio(iosSong.src);
-      setAudio(iosAudio);
+      iosSong = songRef.current,
+      iosAudio = new Audio(iosSong.src);
+    setAudio(iosAudio);
     if ('webkitAudioContext' in window) {
       iosDevice = true
       setDevice(iosDevice);
-      
       // return iosDevice && getVid ? iosAudio.play() : undefined;
-      return context.resume() && setTimeout(() => iosAudio.play(), 1000);
+      return context.resume() && setTimeout(() => iosAudio.play(), 100);
     }
   }
 
@@ -56,53 +55,105 @@ const SplashPage = () => {
     }
     return iosPlayVid();
   };
-  return (
-    <>
-      <div className={styles.loaderPage + showThePage}>
-        <div className={styles.wrapper}>
-          <div className={styles.simple_load_spinner}></div>
-        </div>
-      </div>
 
-      <div className={styles.splashPage + unsplash}>
-        <h1 className={styles.title}>Edison Av</h1>
-        <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
-        <button ref={buttonRef} className={styles.splashButton} onClick={splashButton} >
-          ENTER
-          {/* {iosDevice && */}
-          <audio preload="auto" className={styles.audio}>
-            <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
-          </audio>
-          {/* } */}
-        </button>
-      </div>
-
-      { splash && 
-        <Navbar 
-        context={splashContext}
-        audio= {audio} />
+  const iterator = () => {
+    alert('1 ITERATOR START');
+    for (let i = 33; i < 126; i++) {
+      alert('2 FOR LOOP START. i = ' + (i - 32));
+      let char = String.fromCharCode(i).toString();
+      console.log(charRef.current.childNodes.length);
+      if (charRef.current.childNodes.length < 1 ) {
+        alert('3 ADD A CHAR');
+        updateCharzarr(arr => [...arr, char])
+        alert(charRef.current.childNodes.length);
+        setIterator(true);
+        alert(charRef.current.childNodes.length);
+      } else if (charRef.current.childNodes.length > 0) {
+        alert('4 REMOVE A CHAR');
+        charRef.current.removeChild(charRef.current.childNodes[0]);
+        setIterator(!iterator);
       }
+    }
+    setTimeout(() => console.log(charRef.current.childNodes), 5000);
+  }
+  // useEffect(() => {
+  //   window.onload = () => iterator();
+  // });
+  const didMountRef = useRef(false)
+  useEffect(() => {
+    if (didMountRef.current) {
+      return iterator();
+    } else didMountRef.current = true
+  });
 
-      <ErrorHandler>
-        <main className={styles.vidContainer}>
-          <Video
-            setVideoReady={setVideoReady}
-            setdaVid={setdaVid}
-            playVid={playVid}
-          />
+return (
+  <>
+    <div className={styles.loaderPage + showThePage}>
+      <div className={"wrapper " + styles.wrapper2}>
+        <div className="simple_load_spinner"></div>
+      </div>
+    </div>
 
-        </main>
-        {splash &&
-          <AudioVisualizer
-            iosDevice={iosDevice}
-            getVid={getVid}
-            splashContext={splashContext}
-            splashAudio={audio}
-          />
+    <div className={styles.splashPage + unsplash}>
+      <div ref={charRef} className={styles.charzarr}>
+        {
+          charzarr.map((char, zar) => {
+            return (
+              <h1 className={styles.title} key={zar}>
+                {char}
+              </h1>
+            );
+          })
         }
-      </ErrorHandler>
-    </>
-  );
+      </div>
+      <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
+      <div className={styles.icons}>
+        <span>&#128266;</span>
+        <span>&#127909;</span>
+        <span>&#127850;</span>
+      </div>
+      <button
+        ref={buttonRef}
+        className={styles.splashButton}
+        onClick={splashButton}
+      >
+        ENTER
+          {/* {iosDevice && */}
+        <audio preload="auto" className={styles.audio}>
+          <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
+        </audio>
+        {/* } */}
+      </button>
+    </div>
+
+    {
+      splash &&
+      <Navbar
+        context={splashContext}
+        audio={audio}
+      />
+    }
+
+    <ErrorHandler>
+      <main className={styles.vidContainer}>
+        <Video
+          setVideoReady={setVideoReady}
+          setdaVid={setdaVid}
+          playVid={playVid}
+        />
+
+      </main>
+      {splash &&
+        <AudioVisualizer
+          iosDevice={iosDevice}
+          getVid={getVid}
+          splashContext={splashContext}
+          splashAudio={audio}
+        />
+      }
+    </ErrorHandler>
+  </>
+);
 }
 
 export default SplashPage;

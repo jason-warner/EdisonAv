@@ -1,0 +1,50 @@
+.addedBox {
+    width: 100%;
+    z-index: 2;
+    position: relative;
+    padding: 0;
+}
+
+.ulOne {
+    list-style: none;
+    padding: 0;
+    margin: 0 5vw;
+}
+
+.cartItems {
+    display: flex;
+    margin: 1em 0;
+}
+
+.itemDetail {
+    display: inline-flex;
+    width: 80%;
+}
+
+.itemDeets {
+    flex-direction: column;
+}
+
+.itemDeets > p {
+    font-size: .7em;
+    padding: 0 .5em;
+}
+
+.itemPrice {
+    display: inline-flex;
+    width: 20%;
+}
+
+.itemPrice > h3 {
+    width: 100%;
+    padding: 1em 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .addedItem {
+        display: flex;
+    }
+    .itemDetail>img {
+        width: 8em;
+    }
+}

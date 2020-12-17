@@ -1,11 +1,12 @@
 .NavbarItems {
-    background: linear-gradient(90deg, rgba(0,0,0,1) 13%,rgba(255, 71, 0, 1) 50%, rgba(0,0,0,1) 87%);
+    /* background: linear-gradient(90deg, rgba(0, 0, 0, 1) 13%, rgba(255, 92, 0, 1) 50%, rgba(0, 0, 0, 1) 87%); */
+    background-color: black;
     height: 64px;
     width: 100%;
     margin: 0;
-    -webkit-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    /* -webkit-box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.75); */
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
     min-width: 320px;
     transition: 123ms ease-in-out;
     position: relative;
@@ -13,6 +14,14 @@
 
 .ediTitleContainer {
     display: none;
+    height: 64px;
+}
+
+h1.ediTitle {
+    margin: 0;
+    line-height: 64px;
+    font-family: var(--title-font);
+    color: var(--light-color)
 }
 
 .listGroup {
@@ -53,17 +62,12 @@
     height: 100%;
     width: 100%;
     transition: .3s;
-    font-family: 'StreakerFreaker';
-    font-weight: normal;
-    font-style: normal;
-    font-size: x-large;
-
 }
 
 .listItem:hover {
-    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75), -5px 5px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75), -5px 5px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75), -5px 5px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 5px 5px 5px 0px#ff5c00, -5px 5px 5px 0px#ff5c00;
+    -moz-box-shadow: 5px 5px 5px 0px#ff5c00, -5px 5px 5px 0px#ff5c00;
+    box-shadow: 5px 5px 5px 0px#ff5c00, -5px 5px 5px 0px#ff5c00;
 }
 
 .anchor {
@@ -77,17 +81,19 @@
     color: white;
 }
 
-
-
-
-
-  /* MEDIA QUERIES */
+/* MEDIA QUERIES */
 
 @media only screen and (max-width: 768px) {
     .listGroup {
         grid-template-columns: min-content repeat(1, 1fr);
         height: 100%;
         width: 100%;
+    }
+    .change.ediTitle {
+        color: white;
+    }
+    .ediTitle {
+        cursor: pointer;
     }
     .change.listGroup {
         height: 100vh;
@@ -96,6 +102,7 @@
         position: fixed;
         top: 0;
         left: 0;
+        background: linear-gradient(1800deg, rgba(0, 0, 0, 1) 13%, rgba(255, 92, 0, 1) 50%, rgba(0, 0, 0, 1) 87%);
     }
     /* MENU BUTTON START */
     .ediHome {
@@ -110,33 +117,30 @@
         height: 32px;
         padding: 16px;
     }
-
-    .menu_1, .menu_2, .menu_3  {
+    .menu_1, .menu_2, .menu_3 {
         width: 32px;
         height: 5px;
-        background: rgba(255, 71, 0, 1);
+        background: rgba(255, 92, 0, 1);
         border-radius: 10px;
         transition: 333ms;
     }
-
     .change.menu_1 {
         /* -webkit-transform: rotate(-135deg) translate(-14px, -14px); */
         transform: rotate(-135deg) translate(-5px, -5px);
     }
-    
-    .change.menu_2 {opacity: 0;}
-    
+    .change.menu_2 {
+        opacity: 0;
+    }
     .change.menu_3 {
         /* -webkit-transform: rotate(135deg) translate(-15px, 15px); */
         transform: rotate(135deg) translate(-10px, 12px);
     }
-/* MENU BUTTON END */
-
+    /* MENU BUTTON END */
     .ediTitleContainer {
         display: inline-grid;
         width: 100%;
         text-align: center;
-        font-family: 'StreakerFreaker';
+        /* font-family: 'Sedgwick Ave Display', cursive; */
         font-size: x-large;
         font-weight: normal;
         font-style: normal;
@@ -152,19 +156,17 @@
         top: 0;
         left: 0;
         z-index: 2;
-        background: linear-gradient(90deg, rgba(198, 0, 33, 1) 0%, rgba(0,0,0,1) 35%, gba(198, 0, 33, 1) 100%);
+        background: linear-gradient(90deg, rgba(198, 0, 33, 1) 0%, rgba(0, 0, 0, 1) 35%, gba(198, 0, 33, 1) 100%);
     }
     .listItem {
         display: none;
     }
-
     /* MOBILE NAV START */
     .listGroup.mobileNav {
         display: grid;
         grid-template-columns: none;
         grid-template-rows: repeat(7, 1fr);
         row-gap: 5vh;
-
     }
     .listItem.mobileNav {
         display: block;
@@ -173,5 +175,4 @@
         height: 100%;
     }
     /* MOBILE NAV START */
-
 }

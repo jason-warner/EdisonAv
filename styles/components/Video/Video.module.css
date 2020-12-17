@@ -1,25 +1,23 @@
 .vidContainer {
-    height: calc(100vh - 64px);
-    width: 100vw;
-  }
-  
-  .format {
-    height: calc(100vh - 64px);
-    width: 100vw;
-    position: absolute;
-    left: 0;
-    top: 64px;
-  }
-  
-  @media only screen and (max-width: 768px) {
-    .vidContainer {
-        margin-top: 64px;
-    }
-  }
+  height: calc(100vh - 64px);
+  width: 100vw;
+}
 
-  .playButton {
-      position: absolute;
-      z-index: 4;
+.format {
+  height: calc(100vh - 64px);
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 64px;
+}
+
+@media only screen and (max-width: 768px) {
+  .vidContainer {
+    margin-top: 64px;
   }
-  
-  
+}
+
+.playButton {
+  position: absolute;
+  z-index: 4;
+}

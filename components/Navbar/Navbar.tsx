@@ -28,7 +28,7 @@ const Navbar = ({ context, audio }) => {
                 </div>
                 <Link href="/" >
                     <div className={navStyles.ediTitleContainer}>
-                        <h1 className={navStyles.ediTitle + mobileNav}>Edison Av</h1>
+                        <h1 className={navStyles.ediTitle + mobileNav + menuChange}>Edison Av</h1>
                     </div>
                 </Link>
                 {MenuItems.map((item, index) => {

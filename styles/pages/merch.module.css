@@ -1,5 +1,33 @@
-.main {
+.merch {
+    min-width: 355px;
+    background-image: linear-gradient(to bottom, #5303df, #b500b7, #e4008c, #fa0063, #ff0040, #f51f47, #ea2e4d, #df3952, #b23b68, #7d4069, #4f3d56, #333333);
+}
+
+.checkout {
+    position: fixed;
+    width: 100%;
+    overflow: hidden hidden;
+}
+
+.categories {
+    height: 32px;
+    display: flex;
+    list-style-type: none;
+    padding: 0;
     margin: 1em 0;
+}
+
+.categories>li {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    margin: 0 1em;
+    width: fit-content;
+    margin: auto;
+}
+
+.change.merch {
+    overflow: hidden hidden;
 }
 
 .grid {
@@ -10,12 +38,16 @@
     padding: 0;
     margin: 0 auto;
     margin: 0 1em;
+    padding-bottom: 1em;
 }
+
 .cart {
     width: 64px;
     height: 64px;
 }
+
 .cart {
+    font-size: 8px;
     border-radius: 100%;
     z-index: 2;
     position: fixed;
@@ -29,34 +61,76 @@
     /* filter: invert(55%) sepia(73%) saturate(7147%) hue-rotate(359deg) brightness(107%) contrast(109%); */
 }
 
-.cart > img {
-    width: 50px;
-    height: 53px;
-    padding: 7.5px;
+.cart>img {
+    width: 35px;
+    height: 35px;
+    padding: 14.5px;
     filter: invert(45%) sepia(97%) saturate(4887%) hue-rotate(2deg) brightness(102%) contrast(107%);
 }
 
-.grid > li {
+.grid>li {
     text-align: center;
     border: 5px solid black;
     border-radius: 20px;
 }
-.grid > li > img {
+
+.grid>li>img {
     width: 90%;
     margin-top: 20px;
 }
-.grid > li > button {
+
+.grid>li>button {
     margin-bottom: 20px
 }
-.grid > .albumGrid {
+
+.grid>.albumGrid {
     width: 100vw;
 }
 
+.shopCart {
+    color: white;
+    text-align: center;
+    position: fixed;
+    width: calc(100vw - 64px);
+    height: calc(100vh - 64px);
+    top: 0;
+    left: 0;
+    z-index: 2;
+    margin: 64px 32px 32px 32px;
+    color: white;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, .9);
+    overflow: auto auto;
+}
+
+/* .addedItem {
+    z-index: 2;
+    position: relative;
+
+} */
+
 @media only screen and (max-width: 768px) {
+    .categories {
+        flex-direction: column;
+        width: 100%;
+        height: unset;
+    }
+    .categories>li {
+        margin: 0 auto;
+        width: 100%;
+    }
     .grid {
         margin: 0;
     }
     .main {
         padding: 0 5px;
+    }
+    .shopCart {
+        width: calc(100vw - 20px);
+        height: calc(100vh - 64px);
+        margin-left: 10px;
+    }
+    .categories>li {
+        margin: initial;
     }
 }
