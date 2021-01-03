@@ -15,9 +15,9 @@ const SplashPage = () => {
     [iosDevice, setDevice] = useState(null),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
-    [charzarr, updateCharzarr] = useState([]),
+    [charzarr, setCharzarr] = useState([]),
+    [charCount, setCharCount] = useState([]),
     [, setButton] = useState(null),
-    [iterate, setIterator] = useState(null),
     songRef = useRef(null),
     buttonRef = useRef(null),
     charRef = useRef(null);
@@ -32,7 +32,6 @@ const SplashPage = () => {
       : context = new window.AudioContext;
     setSplashConext(context);
     splashState(!splash);
-
     let iosDevice = null;
     const
       iosSong = songRef.current,
@@ -56,104 +55,115 @@ const SplashPage = () => {
     return iosPlayVid();
   };
 
-  const iterator = () => {
-    alert('1 ITERATOR START');
-    for (let i = 33; i < 126; i++) {
-      alert('2 FOR LOOP START. i = ' + (i - 32));
-      let char = String.fromCharCode(i).toString();
-      console.log(charRef.current.childNodes.length);
-      if (charRef.current.childNodes.length < 1 ) {
-        alert('3 ADD A CHAR');
-        updateCharzarr(arr => [...arr, char])
-        alert(charRef.current.childNodes.length);
-        setIterator(true);
-        alert(charRef.current.childNodes.length);
-      } else if (charRef.current.childNodes.length > 0) {
-        alert('4 REMOVE A CHAR');
-        charRef.current.removeChild(charRef.current.childNodes[0]);
-        setIterator(!iterator);
-      }
+
+  const addChar = () => {
+    let charNum: number = charRef.current.childNodes.length + 33;
+    let charCounter: number = charCount[0]++;
+    let char: string = String.fromCharCode(charNum);
+    if (charRef.current.childNodes.length < 2) {
+      setCharCount(arr => [arr.push(charCounter)]);
+      setCharzarr(arr => [...arr, charCount[0]]);
+      setTimeout(() => alert(
+        "char: " + char +
+        "\ncharNum: " + charNum +
+        "\ncharCount: " + charCount[0] +
+        "\ncharCounter: " + charCounter +
+        "\ncharCount length: " + charCount.length +
+        "\nDOM node length: " + charRef.current.childNodes.length
+      ), 0);
     }
-    setTimeout(() => console.log(charRef.current.childNodes), 5000);
+    console.log("Add a char: " + charRef.current.childNodes.length);
+    console.log(" char: " + char + " length: " + charRef.current.childNodes.length);
   }
-  // useEffect(() => {
-  //   window.onload = () => iterator();
-  // });
-  const didMountRef = useRef(false)
+
+  const removeChar = () => {
+    if (charRef.current.childNodes.length > 0) {
+      charRef.current.removeChild(charRef.current.childNodes[0]);
+      // charCount.shift();
+    }
+    // console.log('4 REMOVE A CHAR // arr: ' + charRef.current.childNodes.length);
+  }
   useEffect(() => {
-    if (didMountRef.current) {
-      return iterator();
-    } else didMountRef.current = true
+    window.onload = () => {
+      const addInterval = setInterval(() => {
+        addChar();
+      }, 1000);
+      const removeInterval = setInterval(() => {
+        removeChar();
+      }, 900);
+      if (charRef.current.childNodes.length > 50) { clearInterval(addInterval); clearInterval(removeInterval); alert('DONE'); }
+    }
   });
 
-return (
-  <>
-    <div className={styles.loaderPage + showThePage}>
-      <div className={"wrapper " + styles.wrapper2}>
-        <div className="simple_load_spinner"></div>
-      </div>
-    </div>
 
-    <div className={styles.splashPage + unsplash}>
-      <div ref={charRef} className={styles.charzarr}>
-        {
-          charzarr.map((char, zar) => {
-            return (
-              <h1 className={styles.title} key={zar}>
-                {char}
-              </h1>
-            );
-          })
-        }
+  return (
+    <>
+      <div className={styles.loaderPage + showThePage}>
+        <div className={"wrapper " + styles.wrapper2}>
+          <div className="simple_load_spinner"></div>
+        </div>
       </div>
-      <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
-      <div className={styles.icons}>
-        <span>&#128266;</span>
-        <span>&#127909;</span>
-        <span>&#127850;</span>
-      </div>
-      <button
-        ref={buttonRef}
-        className={styles.splashButton}
-        onClick={splashButton}
-      >
-        ENTER
+
+      <div className={styles.splashPage + unsplash}>
+        <div ref={charRef} className={styles.charzarr}>
+          {
+            charzarr.map((char, zar) => {
+              return (
+                <h1 className={styles.title} key={zar}>
+                  {char}
+                </h1>
+              );
+            })
+          }
+        </div>
+        <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
+        <div className={styles.icons}>
+          <span>&#128266;</span>
+          <span>&#127909;</span>
+          <span>&#127850;</span>
+        </div>
+        <button
+          ref={buttonRef}
+          className={styles.splashButton}
+          onClick={splashButton}
+        >
+          ENTER
           {/* {iosDevice && */}
-        <audio preload="auto" className={styles.audio}>
-          <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
-        </audio>
-        {/* } */}
-      </button>
-    </div>
+          <audio preload="auto" className={styles.audio}>
+            <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
+          </audio>
+          {/* } */}
+        </button>
+      </div>
 
-    {
-      splash &&
-      <Navbar
-        context={splashContext}
-        audio={audio}
-      />
-    }
-
-    <ErrorHandler>
-      <main className={styles.vidContainer}>
-        <Video
-          setVideoReady={setVideoReady}
-          setdaVid={setdaVid}
-          playVid={playVid}
-        />
-
-      </main>
-      {splash &&
-        <AudioVisualizer
-          iosDevice={iosDevice}
-          getVid={getVid}
-          splashContext={splashContext}
-          splashAudio={audio}
+      {
+        splash &&
+        <Navbar
+          context={splashContext}
+          audio={audio}
         />
       }
-    </ErrorHandler>
-  </>
-);
+
+      <ErrorHandler>
+        <main className={styles.vidContainer}>
+          <Video
+            setVideoReady={setVideoReady}
+            setdaVid={setdaVid}
+            playVid={playVid}
+          />
+
+        </main>
+        {splash &&
+          <AudioVisualizer
+            iosDevice={iosDevice}
+            getVid={getVid}
+            splashContext={splashContext}
+            splashAudio={audio}
+          />
+        }
+      </ErrorHandler>
+    </>
+  );
 }
 
 export default SplashPage;
@@ -207,3 +217,26 @@ export default SplashPage;
   //   // setVideoReady(true);
   //   setdaVid(true);
   // }
+
+  // const iterator = () => {
+  //   console.log('1 ITERATOR START');
+  //   let iterate = false;
+  //   // for (let i = 33; i < 126; i++) {
+  //     console.log('2 FOR LOOP START. i = ' + (i - 32));
+  //     let char = String.fromCharCode(i).toString();
+  //     let charLen = charRef.current.childNodes.length
+  //     if (charLen < 1) {
+  //       iterate = false;
+  //       setCharzarr(arr => [...arr, char])
+  //       console.log('3 ADD A CHAR // arr: ' + charLen);
+  //     }
+  //     else if (charLen > 0) {
+  //       charRef.current.removeChild(charRef.current.childNodes[0]);
+  //       console.log('4 REMOVE A CHAR // arr: ' + charLen);
+  //     }
+  //   // }
+  // }
+
+
+
+

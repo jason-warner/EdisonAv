@@ -4,7 +4,6 @@ import CartItems from '../components/Cart/CartItems';
 // import Merchandise from '../components/Merchandise';
 // import Items from '../components/Items';
 import { useState } from 'react';
-
 import { NextPage } from 'next'
 import Cart from '../components/Cart/Cart'
 import CartSummary from '../components/Cart/CartSummary'
@@ -67,7 +66,7 @@ const Schedule: NextPage = () => {
                 </Cart>
             </main>
         </div>
-    );
+    ); 
 }
 
 export default Schedule;
