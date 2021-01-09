@@ -55,35 +55,38 @@ const SplashPage = () => {
     return iosPlayVid();
   };
 
-
+  ////
+  //starting number to begin char code iteration
+  // alert("charcount[0]: "+ charCount[0]);
   const addChar = () => {
-    let charNum: number = charRef.current.childNodes.length + 33;
-    let charCounter: number = charCount[0]++;
-    let char: string = String.fromCharCode(charNum);
+    //let charCounter use second item in array to iterator
+    //assign the iterated num as charcode
+    // let char: string = String.fromCharCode(charCounter);
+    //prevent adding another char row to dom
     if (charRef.current.childNodes.length < 2) {
-      setCharCount(arr => [arr.push(charCounter)]);
-      setCharzarr(arr => [...arr, charCount[0]]);
-      setTimeout(() => alert(
-        "char: " + char +
-        "\ncharNum: " + charNum +
-        "\ncharCount: " + charCount[0] +
-        "\ncharCounter: " + charCounter +
-        "\ncharCount length: " + charCount.length +
-        "\nDOM node length: " + charRef.current.childNodes.length
-      ), 0);
+      //push the increment to second arr position
+      setCharCount(arr => [arr.unshift((charCount[0])++)]);
+      //add iterated char to the dom arr
+      setCharzarr(arr => [...arr, String.fromCharCode(charCount[0])]);
+      // remove the previously iterated char
+        // setTimeout(() => alert(
+        //   "char: " + String.fromCharCode(charCount[0]) +
+        //   "\ncharCount[0]: " + charCount[0]
+        // )
+        // , 0);
+      console.log("Add a char: " + charRef.current.childNodes.length);
+      console.log(" char: " + String.fromCharCode(charCount[0]) + " length: " + charRef.current.childNodes.length);
     }
-    console.log("Add a char: " + charRef.current.childNodes.length);
-    console.log(" char: " + char + " length: " + charRef.current.childNodes.length);
   }
-
   const removeChar = () => {
     if (charRef.current.childNodes.length > 0) {
       charRef.current.removeChild(charRef.current.childNodes[0]);
-      // charCount.shift();
+      charCount.splice(1);
     }
     // console.log('4 REMOVE A CHAR // arr: ' + charRef.current.childNodes.length);
   }
   useEffect(() => {
+    setCharCount(arr => [arr.push(33)]);
     window.onload = () => {
       const addInterval = setInterval(() => {
         addChar();
@@ -91,9 +94,13 @@ const SplashPage = () => {
       const removeInterval = setInterval(() => {
         removeChar();
       }, 900);
-      if (charRef.current.childNodes.length > 50) { clearInterval(addInterval); clearInterval(removeInterval); alert('DONE'); }
+      if (charRef.current.childNodes.length > 50) {
+        clearInterval(addInterval); clearInterval(removeInterval); alert('DONE');
+      }
     }
-  });
+  }, []);
+  ////
+
 
 
   return (
