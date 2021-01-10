@@ -15,9 +15,10 @@ const SplashPage = () => {
     [iosDevice, setDevice] = useState(null),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
+    [killSwitch, setKillSwitch] = useState(false),
+    [, setButton] = useState(null),
     [charzarr, setCharzarr] = useState([]),
     [charCount, setCharCount] = useState([]),
-    [, setButton] = useState(null),
     songRef = useRef(null),
     buttonRef = useRef(null),
     charRef = useRef(null);
@@ -55,51 +56,53 @@ const SplashPage = () => {
     return iosPlayVid();
   };
 
-  ////
-  //starting number to begin char code iteration
-  // alert("charcount[0]: "+ charCount[0]);
-  const addChar = () => {
-    //let charCounter use second item in array to iterator
-    //assign the iterated num as charcode
-    // let char: string = String.fromCharCode(charCounter);
-    //prevent adding another char row to dom
-    if (charRef.current.childNodes.length < 2) {
-      //push the increment to second arr position
-      setCharCount(arr => [arr.unshift((charCount[0])++)]);
+  //// LANDING TITLE ITERATION -- START
+
+  useEffect(() => {
+    let charNodes = charRef.current.childNodes;
+    //starting number to begin char code iteration
+    setCharCount(arr => [arr.push(33)]);
+    //set up intervals 
+    const addInterval = setInterval(() => {
+      addChar(charNodes);
+    }, 1000);
+    const removeInterval = setInterval(() => {
+      removeChar(charNodes);
+    }, 999.9);
+    if (killSwitch) {
+      clearInterval(addInterval);
+      clearInterval(removeInterval);
+      return console.log("KILLSWITCHED");
+    }
+  }, [killSwitch]);
+  const addChar = (charNodes) => {
+    if (charCount[0] >= 40) {
+      return setKillSwitch(true);
+    }
+    if (charNodes.length < 2) {
+      //assign the iterated num as charcode
+      let char: string = String.fromCharCode(charCount[0]);
+      //add iterate num to first index of counter arr
+      setCharCount(arr => [arr.unshift(charCount[0]++)]);
       //add iterated char to the dom arr
-      setCharzarr(arr => [...arr, String.fromCharCode(charCount[0])]);
-      // remove the previously iterated char
-        // setTimeout(() => alert(
-        //   "char: " + String.fromCharCode(charCount[0]) +
-        //   "\ncharCount[0]: " + charCount[0]
-        // )
-        // , 0);
-      console.log("Add a char: " + charRef.current.childNodes.length);
-      console.log(" char: " + String.fromCharCode(charCount[0]) + " length: " + charRef.current.childNodes.length);
+      setCharzarr(arr => [...arr, char]);
+      console.log(
+        "charCount[0]: " + charCount[0]
+      )
     }
   }
-  const removeChar = () => {
-    if (charRef.current.childNodes.length > 0) {
-      charRef.current.removeChild(charRef.current.childNodes[0]);
+  const removeChar = (charNodes) => {
+    if (charCount[0] >= 40) {
+      return setKillSwitch(true);
+    }
+    if (charNodes.length > 0) {
+      //remove the dom element to prepare for the next one
+      charRef.current.removeChild(charNodes[0]);
+      // remove the previously iterated char
       charCount.splice(1);
     }
-    // console.log('4 REMOVE A CHAR // arr: ' + charRef.current.childNodes.length);
   }
-  useEffect(() => {
-    setCharCount(arr => [arr.push(33)]);
-    window.onload = () => {
-      const addInterval = setInterval(() => {
-        addChar();
-      }, 1000);
-      const removeInterval = setInterval(() => {
-        removeChar();
-      }, 900);
-      if (charRef.current.childNodes.length > 50) {
-        clearInterval(addInterval); clearInterval(removeInterval); alert('DONE');
-      }
-    }
-  }, []);
-  ////
+  //// LANDING TITLE ITERATION -- END
 
 
 
@@ -231,15 +234,15 @@ export default SplashPage;
   //   // for (let i = 33; i < 126; i++) {
   //     console.log('2 FOR LOOP START. i = ' + (i - 32));
   //     let char = String.fromCharCode(i).toString();
-  //     let charLen = charRef.current.childNodes.length
-  //     if (charLen < 1) {
+  //     let charNodes = charRef.current.childNodes.length
+  //     if (charNodes < 1) {
   //       iterate = false;
   //       setCharzarr(arr => [...arr, char])
-  //       console.log('3 ADD A CHAR // arr: ' + charLen);
+  //       console.log('3 ADD A CHAR // arr: ' + charNodes);
   //     }
-  //     else if (charLen > 0) {
+  //     else if (charNodes > 0) {
   //       charRef.current.removeChild(charRef.current.childNodes[0]);
-  //       console.log('4 REMOVE A CHAR // arr: ' + charLen);
+  //       console.log('4 REMOVE A CHAR // arr: ' + charNodes);
   //     }
   //   // }
   // }
