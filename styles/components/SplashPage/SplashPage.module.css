@@ -11,8 +11,27 @@
   overflow: hidden scroll;
 }
 
+.splashTitle {
+  font-size: 80px;
+}
+
+.titleBox {
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .charzarr {
-  display: inline-block;
+
+  display: block;
+  font-family: var(--title-font);
+  color: var(--brand-color);
+  height: 100px;
+  width: 100vw;
+  margin: 4em auto;
+}
+.title {
+    margin: 0;
 }
 
 .icons {
@@ -25,13 +44,6 @@
 
 .unSplash {
   display: none;
-}
-
-.title {
-  font-size: 100px;
-  margin: 64px 0;
-  font-family: var(--title-font);
-  color: var(--brand-color);
 }
 
 .disclaimer {
@@ -60,12 +72,7 @@
 /* SPIN LOADER START */
 
 .loaderPage {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 4;
+  display: inline-block;
   background-color: var(--void-color);
 }
 

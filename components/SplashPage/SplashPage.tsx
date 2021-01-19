@@ -19,12 +19,14 @@ const SplashPage = () => {
     [, setButton] = useState(null),
     [charzarr, setCharzarr] = useState([]),
     [charCount, setCharCount] = useState([]),
+    [killCount, setKillCount] = useState([]),
     songRef = useRef(null),
     buttonRef = useRef(null),
     charRef = useRef(null);
 
-  const unsplash = ` ${splash && styles.unSplash}`;
-  const showThePage = ` ${videoReady && styles.showThePage}`;
+  const
+    unsplash = ` ${splash && styles.unSplash}`,
+    showThePage = ` ${videoReady && styles.showThePage}`;
 
   const splashButton = () => {
     let context = null;
@@ -33,13 +35,13 @@ const SplashPage = () => {
       : context = new window.AudioContext;
     setSplashConext(context);
     splashState(!splash);
-    let iosDevice = null;
+    let iosDevice: boolean = null;
     const
       iosSong = songRef.current,
       iosAudio = new Audio(iosSong.src);
     setAudio(iosAudio);
     if ('webkitAudioContext' in window) {
-      iosDevice = true
+      iosDevice = true;
       setDevice(iosDevice);
       // return iosDevice && getVid ? iosAudio.play() : undefined;
       return context.resume() && setTimeout(() => iosAudio.play(), 100);
@@ -56,75 +58,93 @@ const SplashPage = () => {
     return iosPlayVid();
   };
 
-  //// LANDING TITLE ITERATION -- START
 
+
+
+
+
+  //TITLE ITERATION START
+
+  let
+    charTitle: string[] = ["Edison Av"],
+    charSpeed: number = 100,
+    charStart: number = 33,
+    charEnd: number[] = [],
+    charStarter: string = null;
+  charTitle = charTitle[0].split("");
   useEffect(() => {
-    let charNodes = charRef.current.childNodes;
-    //starting number to begin char code iteration
-    setCharCount(arr => [arr.push(33)]);
-    //set up intervals 
+    charTitle.map((char, index) => {
+
+      //create the array to hold the title's ending char codes
+      charEnd.push(char.charCodeAt(0));
+
+      //create unique counter starting points for each char in title
+      //// charStart = charStart + index;
+      charStart = charEnd[index]
+      charCount[index] = charStart;
+      setCharCount(prevArr => [...prevArr, charCount]);
+
+      //only one character can be in the charzarr array
+      charStarter = String.fromCharCode(charCount[index]);
+      charzarr[index] = charStarter;
+    });
+
     const addInterval = setInterval(() => {
-      addChar(charNodes);
-    }, 1000);
-    const removeInterval = setInterval(() => {
-      removeChar(charNodes);
-    }, 999.9);
+      addChar();
+    }, charSpeed);
     if (killSwitch) {
       clearInterval(addInterval);
-      clearInterval(removeInterval);
-      return console.log("KILLSWITCHED");
     }
-  }, [killSwitch]);
-  const addChar = (charNodes) => {
-    if (charCount[0] >= 40) {
-      return setKillSwitch(true);
-    }
-    if (charNodes.length < 2) {
+    // alert('swag')
+    console.log(charzarr);
+    console.log(charRef.current.childNodes)
+  }, [])
+
+
+
+
+
+  const addChar = () => {
+    charEnd.map((charCode, index) => {
       //assign the iterated num as charcode
-      let char: string = String.fromCharCode(charCount[0]);
-      //add iterate num to first index of counter arr
-      setCharCount(arr => [arr.unshift(charCount[0]++)]);
-      //add iterated char to the dom arr
-      setCharzarr(arr => [...arr, char]);
-      console.log(
-        "charCount[0]: " + charCount[0]
-      )
-    }
+      let char: string = String.fromCharCode(charCount[index]);
+      //increment current index of counter arr
+      (charCount[index])++;
+      setCharCount(prevArr => [...prevArr, charCount]);
+      //replace the index of dom arr with iterated char
+      charzarr[index] = char;
+      // setCharzarr(prevArr => [...prevArr, charzarr]);
+    })
   }
-  const removeChar = (charNodes) => {
-    if (charCount[0] >= 40) {
-      return setKillSwitch(true);
-    }
-    if (charNodes.length > 0) {
-      //remove the dom element to prepare for the next one
-      charRef.current.removeChild(charNodes[0]);
-      // remove the previously iterated char
-      charCount.splice(1);
-    }
+
+
+
+
+  //TITLE ITERATION END
+
+
+  const createMarkup = () => {
+    return { __html: charzarr.join("") };
   }
-  //// LANDING TITLE ITERATION -- END
+
+
 
 
 
   return (
     <>
-      <div className={styles.loaderPage + showThePage}>
-        <div className={"wrapper " + styles.wrapper2}>
-          <div className="simple_load_spinner"></div>
-        </div>
-      </div>
-
       <div className={styles.splashPage + unsplash}>
         <div ref={charRef} className={styles.charzarr}>
           {
             charzarr.map((char, zar) => {
               return (
-                <h1 className={styles.title} key={zar}>
+                <span className={styles.splashTitle} key={zar}>
                   {char}
-                </h1>
+                </span>
               );
             })
           }
+          <div dangerouslySetInnerHTML={createMarkup()} />
         </div>
         <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
         <div className={styles.icons}>
@@ -132,22 +152,26 @@ const SplashPage = () => {
           <span>&#127909;</span>
           <span>&#127850;</span>
         </div>
-        <button
-          ref={buttonRef}
-          className={styles.splashButton}
-          onClick={splashButton}
-        >
-          ENTER
-          {/* {iosDevice && */}
-          <audio preload="auto" className={styles.audio}>
-            <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
-          </audio>
-          {/* } */}
-        </button>
+        {!videoReady ?
+          <div className={styles.loaderPage + showThePage}>
+            <div className={"wrapper " + styles.wrapper2}>
+              <div className="simple_load_spinner"></div>
+            </div>
+          </div>
+          :
+          <button
+            ref={buttonRef}
+            className={styles.splashButton}
+            onClick={splashButton}
+          > ENTER
+            <audio preload="auto" className={styles.audio}>
+              <source ref={songRef} src="/FLEXICUTIONEdisonAv.mp3" type="audio/mpeg" />
+            </audio>
+          </button>
+        }
       </div>
 
-      {
-        splash &&
+      {splash &&
         <Navbar
           context={splashContext}
           audio={audio}
@@ -234,15 +258,15 @@ export default SplashPage;
   //   // for (let i = 33; i < 126; i++) {
   //     console.log('2 FOR LOOP START. i = ' + (i - 32));
   //     let char = String.fromCharCode(i).toString();
-  //     let charNodes = charRef.current.childNodes.length
-  //     if (charNodes < 1) {
+  //     let charRef.current.childNodes = charRef.current.childNodes.length
+  //     if (charRef.current.childNodes < 1) {
   //       iterate = false;
   //       setCharzarr(arr => [...arr, char])
-  //       console.log('3 ADD A CHAR // arr: ' + charNodes);
+  //       console.log('3 ADD A CHAR // arr: ' + charRef.current.childNodes);
   //     }
-  //     else if (charNodes > 0) {
+  //     else if (charRef.current.childNodes > 0) {
   //       charRef.current.removeChild(charRef.current.childNodes[0]);
-  //       console.log('4 REMOVE A CHAR // arr: ' + charNodes);
+  //       console.log('4 REMOVE A CHAR // arr: ' + charRef.current.childNodes);
   //     }
   //   // }
   // }
