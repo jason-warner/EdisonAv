@@ -67,20 +67,20 @@ const SplashPage = () => {
 
   let
     charTitle: string[] = ["Edison Av"],
-    charSpeed: number = 100,
-    charStart: number = 33,
+    charSpeed: number = 10,
+    charStart: number = 0,
     charEnd: number[] = [],
     charStarter: string = null;
   charTitle = charTitle[0].split("");
   useEffect(() => {
-    charTitle.map((char, index) => {
+    !killSwitch && charTitle.map((char, index) => {
 
       //create the array to hold the title's ending char codes
       charEnd.push(char.charCodeAt(0));
 
       //create unique counter starting points for each char in title
       //// charStart = charStart + index;
-      charStart = charEnd[index]
+      charStart = charStart + index;
       charCount[index] = charStart;
       setCharCount(prevArr => [...prevArr, charCount]);
 
@@ -88,17 +88,18 @@ const SplashPage = () => {
       charStarter = String.fromCharCode(charCount[index]);
       charzarr[index] = charStarter;
     });
-
+    killCount[0] = 0;
     const addInterval = setInterval(() => {
       addChar();
     }, charSpeed);
+
     if (killSwitch) {
-      clearInterval(addInterval);
+      console.log("KILLSWITCHED");
+      // console.log('killcount[0]: ' + killCount[0]);
+      return clearInterval(addInterval);
     }
-    // alert('swag')
-    console.log(charzarr);
-    console.log(charRef.current.childNodes)
-  }, [])
+    console.log('killcount[0]: ' + killCount[0]);
+  }, [killSwitch])
 
 
 
@@ -106,14 +107,25 @@ const SplashPage = () => {
 
   const addChar = () => {
     charEnd.map((charCode, index) => {
+      if (charCount[index] === (charCode + 1)) {
+        if (killCount[index] >= ((charTitle.length + 1))) {
+          //kill all once killcount is equal to length of title
+          return setKillSwitch(true);
+        } else {
+          //increment the kill counter until each char is solved
+          (killCount[0])++;
+          return setKillCount(prevArr => [...prevArr, killCount])
+        }
+      } else {
       //assign the iterated num as charcode
       let char: string = String.fromCharCode(charCount[index]);
       //increment current index of counter arr
       (charCount[index])++;
       setCharCount(prevArr => [...prevArr, charCount]);
       //replace the index of dom arr with iterated char
-      charzarr[index] = char;
+      return charzarr[index] = char;
       // setCharzarr(prevArr => [...prevArr, charzarr]);
+      }
     })
   }
 
