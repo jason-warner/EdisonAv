@@ -1,10 +1,11 @@
 import styles from '../../styles/components/SplashPage/SplashPage.module.css';
+import {TitleIterator} from '../TitleIterator/TitleIterator';
 import AudioVisualizer from '../AudioVisualizer/AudioVisualizer';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Video from '../Video/Video';
-import React from 'react';
+// import React from 'react';
 
 
 const SplashPage = () => {
@@ -15,14 +16,9 @@ const SplashPage = () => {
     [iosDevice, setDevice] = useState(null),
     [splashContext, setSplashConext] = useState(null),
     [audio, setAudio] = useState(null),
-    [killSwitch, setKillSwitch] = useState(false),
     [, setButton] = useState(null),
-    [charzarr, setCharzarr] = useState([]),
-    [charCount, setCharCount] = useState([]),
-    [killCount, setKillCount] = useState([]),
     songRef = useRef(null),
-    buttonRef = useRef(null),
-    charRef = useRef(null);
+    buttonRef = useRef(null);
 
   const
     unsplash = ` ${splash && styles.unSplash}`,
@@ -59,105 +55,10 @@ const SplashPage = () => {
   };
 
 
-
-
-
-
-  //TITLE ITERATION START
-
-  let
-    charTitle: string[] = ["Edison Av"],
-    charSpeed: number = 10,
-    charStart: number = 0,
-    charEnd: number[] = [],
-    charStarter: string = null;
-  charTitle = charTitle[0].split("");
-  useEffect(() => {
-    !killSwitch && charTitle.map((char, index) => {
-
-      //create the array to hold the title's ending char codes
-      charEnd.push(char.charCodeAt(0));
-
-      //create unique counter starting points for each char in title
-      //// charStart = charStart + index;
-      charStart = charStart + index;
-      charCount[index] = charStart;
-      setCharCount(prevArr => [...prevArr, charCount]);
-
-      //only one character can be in the charzarr array
-      charStarter = String.fromCharCode(charCount[index]);
-      charzarr[index] = charStarter;
-    });
-    killCount[0] = 0;
-    const addInterval = setInterval(() => {
-      addChar();
-    }, charSpeed);
-
-    if (killSwitch) {
-      console.log("KILLSWITCHED");
-      // console.log('killcount[0]: ' + killCount[0]);
-      return clearInterval(addInterval);
-    }
-    console.log('killcount[0]: ' + killCount[0]);
-  }, [killSwitch])
-
-
-
-
-
-  const addChar = () => {
-    charEnd.map((charCode, index) => {
-      if (charCount[index] === (charCode + 1)) {
-        if (killCount[index] >= ((charTitle.length + 1))) {
-          //kill all once killcount is equal to length of title
-          return setKillSwitch(true);
-        } else {
-          //increment the kill counter until each char is solved
-          (killCount[0])++;
-          return setKillCount(prevArr => [...prevArr, killCount])
-        }
-      } else {
-      //assign the iterated num as charcode
-      let char: string = String.fromCharCode(charCount[index]);
-      //increment current index of counter arr
-      (charCount[index])++;
-      setCharCount(prevArr => [...prevArr, charCount]);
-      //replace the index of dom arr with iterated char
-      return charzarr[index] = char;
-      // setCharzarr(prevArr => [...prevArr, charzarr]);
-      }
-    })
-  }
-
-
-
-
-  //TITLE ITERATION END
-
-
-  const createMarkup = () => {
-    return { __html: charzarr.join("") };
-  }
-
-
-
-
-
   return (
     <>
       <div className={styles.splashPage + unsplash}>
-        <div ref={charRef} className={styles.charzarr}>
-          {
-            charzarr.map((char, zar) => {
-              return (
-                <span className={styles.splashTitle} key={zar}>
-                  {char}
-                </span>
-              );
-            })
-          }
-          <div dangerouslySetInnerHTML={createMarkup()} />
-        </div>
+        <TitleIterator />
         <p className={styles.disclaimer}>Enter for audio, video and cookies.</p>
         <div className={styles.icons}>
           <span>&#128266;</span>
@@ -182,7 +83,6 @@ const SplashPage = () => {
           </button>
         }
       </div>
-
       {splash &&
         <Navbar
           context={splashContext}
@@ -223,11 +123,6 @@ export default SplashPage;
 //     return getVid && iosAudio.play();
 //   }
 // }, [getVid])
-
-
-
-
-
 
 
 {/* <button ref={buttonRef} className={styles.playButton} onClick={playVid} >
